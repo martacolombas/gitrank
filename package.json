@@ -1,0 +1,24 @@
+{
+  "name": "gitrank",
+  "version": "1.0.0",
+  "description": "GitRank is a web application that groups the pull requests of all the repositories the user is part of. They are subscribed by default to all the repositories, however, subscriptions can be managed from the user’s settings.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "git",
+    "github",
+    "pullrequest",
+    "leaderboard",
+    "rank"
+  ],
+  "author": "martacolombas",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.8"
+  }
+}
