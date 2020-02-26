@@ -1,9 +1,8 @@
 .pr-container {
   display:flex;
   padding: 5px;
-  border: lightgrey;
   border-radius: 0.5em;
-  box-shadow: 1.5px 1px #888888;
+  box-shadow: 1.25px 1px 1px 1px #a0a0a0;
   overflow: hidden;
 }
 
