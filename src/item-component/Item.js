@@ -4,48 +4,62 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Item() {
   return (
-    <div>
+    <div className='pr-container'>
       <div className='pin-container'>
         <button>
         <FontAwesomeIcon icon='thumbtack' />
         </button>
       </div>
-      <div className='title-container'>
-        Added pinned items to the Dashboard
-      </div>
-      <div className='information-container'>
-        <div className='status-title-container'>
-          Author
+      <div className='item-body-container'>
+        <div className='title-container'>
+          Added pinned items to the Dashboard
         </div>
-        <div className='author-container'>
-          Steve Jobs
-        </div>
-        <div className='status-title-container'>
-          Status
-        </div>
-        <div className='status-container'>
-          Bill gates requested changes
-        </div>
-        <div className='status-title-container'>
-          Repository
-        </div>
-        <div className='repository-container'>
-          GitRank
-        </div>
-        <div className='status-title-container'>
-        Date created
-          <div className='date-created'>
-            dd/mm/yyy
+        <div className='information-container'>
+          <div className='detail-container'>
+            <div className='detail-title-container'>
+              Author
+            </div>
+            <div className='gitInfo-container'>
+              Steve Jobs
+            </div>
           </div>
-          <div className='time-elapsed'>
-            13 days ago
+          <div className='detail-container'>
+            <div className='detail-title-container'>
+              Status
+            </div>
+            <div className='gitInfo-container'>
+              Bill gates requested changes
+            </div>
+          </div>
+          <div className='detail-container'>
+            <div className='detail-title-container'>
+              Repository
+            </div>
+            <div className='gitInfo-container'>
+              GitRank
+            </div>
+          </div>
+          <div className='detail-container'>
+            <div className='detail-title-container'>
+            Date created
+            </div>
+            <div className='gitInfo-container'>
+              dd/mm/yyy
+            </div>
+            <div className='gitInfo-container light'>
+              13 days ago
+            </div>
           </div>
         </div>
       </div>
       <div className='actions-container'>
         <button>
           <FontAwesomeIcon icon='eye'/>
+        </button>
+        <button>
           <FontAwesomeIcon icon='copy'/>
+        </button>
+        <button>
           <FontAwesomeIcon icon='trash'/>
         </button>
       </div>

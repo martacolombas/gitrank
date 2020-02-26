@@ -1,0 +1,69 @@
+.pr-container {
+  display:flex;
+  padding: 5px;
+}
+
+.pin-container {
+  background-color:red;
+  display: flex;
+  flex:0.25;
+}
+
+.item-body-container{
+  background-color: seashell;
+  display: flex;
+  flex-direction: column;
+  flex:6;
+}
+
+.title-container {
+  font-weight: 700;
+  padding: 8px;
+}
+
+.detail-container {
+  display: flex;
+}
+
+.information-container {
+  background-color:pink;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.information-container > div {
+  display: flex;
+  flex-basis: calc(50% - 20px);
+  justify-content: right;
+  flex-direction: row;
+  padding: 8px;
+  }
+
+.information-container > div > div {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.detail-title-container {
+  background-color:white;
+  padding: 4px;
+  font-weight: 700;
+}
+
+.light {
+  font-weight: 200;
+}
+
+.gitInfo-container {
+  background-color:white;
+  display: flex;
+  padding: 4px;
+}
+
+.actions-container {
+  background-color:purple;
+  display: flex;
+  padding: 4px;
+}
