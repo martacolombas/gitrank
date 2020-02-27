@@ -68,6 +68,8 @@ query PRinfo {
                   }
                 }
                 state
+                createdAt
+                updatedAt
               }
             }
           }

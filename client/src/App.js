@@ -13,10 +13,10 @@ function App() {
 
   if(error) return <p>Error</p> // todo make an error page
 
-  let info;
+
   let prs = [];
   if (data) {
-    info = data.user.repositories.nodes.map(element => {
+    data.user.repositories.nodes.map(element => {
       return ({
         prs: element.pullRequests
       });

@@ -4,7 +4,6 @@ import Item from '../item-component/Item';
 
 function List({prs}) {
   if(prs){
-    console.log(prs)
     return (
       <div className='list-container'>
         {
