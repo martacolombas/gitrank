@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import List from './list-component/List';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -9,8 +9,28 @@ import { GET_PRS } from './ApiClient';
 library.add(fas);
 
 function App() {
-  const [prs, setPrs] = useState([])
-  const { loading, data, error } = useQuery(GET_PRS, {onCompleted: setPrs});
+  const { loading, data, error } = useQuery(GET_PRS);
+
+  if(error) return <p>Error</p> // todo make an error page
+
+  let info;
+  let prs = [];
+  if (data) {
+    info = data.user.repositories.nodes.map(element => {
+      return ({
+        prs: element.pullRequests
+      });
+    }).map(element => {
+        return ({
+          prs: element.prs.nodes
+        });
+    }).filter(element => {
+      return element.prs.length > 0;
+    }).map(element => {
+      return element.prs;
+    }).forEach(element => {
+      prs.push(...element);
+    });}
 
   return (
     <div className='leaderboard'>
@@ -19,7 +39,7 @@ function App() {
       </div>
       {loading
       ? <p>Loading</p>
-      :<List prs ={prs.user.repositories} />}
+      : <List prs={prs} />}
     </div>
   );
 }

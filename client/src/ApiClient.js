@@ -21,6 +21,9 @@ const authLink = setContext((_, { headers }) => ({
 export const client = new ApolloClient({
   cache,
   link: authLink.concat(link),
+  headers: {
+    "Access-Control-Allow-Origin": "*"
+  }
 });
 
 export const  GET_PRS = gql`
@@ -33,6 +36,7 @@ query PRinfo {
         name
         pullRequests(last: 100, orderBy: {field: CREATED_AT, direction: ASC}) {
           nodes {
+            id
             title
             createdAt
             updatedAt

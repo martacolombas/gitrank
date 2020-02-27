@@ -2,7 +2,19 @@ import React from 'react';
 import './Item.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Item() {
+
+function Item({pr}) {
+  const statusDetails = (status, reviews) => {
+    const arrayedReviews = reviews.nodes //reviews {nodes: [], ...} -- we are just interested in the nodes arr
+    if(status==='OPEN' && arrayedReviews.length) {
+      return arrayedReviews[0].name ? `${arrayedReviews[0].state} by ${arrayedReviews[0].name}` : `${arrayedReviews[0].state} by YOU`
+    } else {
+      return status;
+    }
+  }
+
+  // TODO now the position in the array is 0, but NEEDS TO BE FIXED, to the most recent status
+
   return (
     <div className='pr-container'>
       <div className='pin-container'>
@@ -11,8 +23,8 @@ function Item() {
         </button>
       </div>
       <div className='item-body-container'>
-        <div className='title-container'>
-          Added pinned items to the Dashboard
+        <div className='title-container' >
+          {pr && pr.title}
         </div>
         <div className='information-container'>
           <div className='detail-container'>
@@ -20,7 +32,7 @@ function Item() {
               Author
             </div>
             <div className='gitInfo-container'>
-              Steve Jobs
+              {pr && pr.author.name ? pr.author.name : `YOU`}
             </div>
           </div>
           <div className='detail-container'>
@@ -28,7 +40,7 @@ function Item() {
               Status
             </div>
             <div className='gitInfo-container'>
-              Bill gates requested changes
+              {pr && statusDetails(pr.state, pr.reviews)}
             </div>
           </div>
           <div className='detail-container'>
@@ -36,7 +48,7 @@ function Item() {
               Repository
             </div>
             <div className='gitInfo-container'>
-              GitRank
+              {pr && pr.repository.name}
             </div>
           </div>
           <div className='detail-container'>
@@ -44,10 +56,11 @@ function Item() {
             Date created
             </div>
             <div className='gitInfo-container'>
-              dd/mm/yyy
+              {pr && pr.createdAt}
             </div>
             <div className='gitInfo-container light'>
-              13 days ago
+              {pr && pr.createdAt}
+              {/* needs to calculate how long ago */}
             </div>
           </div>
         </div>

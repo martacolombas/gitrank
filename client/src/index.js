@@ -6,6 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { client } from './ApiClient';
 
+
 ReactDOM.render(
 <ApolloProvider client={client}>
   <App />

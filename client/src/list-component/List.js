@@ -1,11 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './List.css';
 import Item from '../item-component/Item';
 
-function List() {
-  return (
-    <Item/>
-  );
+function List({prs}) {
+  if(prs){
+    console.log(prs)
+    return (
+      <div className='list-container'>
+        {
+          (prs).map((pr) => {
+            return( <Item pr={pr} key={pr.id} />);
+      })}
+      </div>
+    );
+  }
 }
 
 export default List;
