@@ -2,10 +2,10 @@ import React from 'react';
 import './LoginPage.css';
 import Login from '../login-component/Login';
 
-function LoginPage({isLoggedIn}) {
+function LoginPage({setAllowed, ...props}) {
     return (
       <div className='loginPage-container'>
-        <Login isLoggedIn={isLoggedIn}/>
+        <Login setAllowed={setAllowed}/>
       </div>
     );
   }

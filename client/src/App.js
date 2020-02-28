@@ -1,21 +1,22 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./App.css";
 import Dashboard from "./dashboard-component/Dashboard";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./loginPage-component/LoginPage";
+import ProtectedRoute from './Routes.js'
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState('');
+  const [isAllowed, setAllowed] = useState('');
+
+  useEffect(() => {
+    //look in the localStorage
+  }, [])
 
   return (
     <Router>
       <Switch>
-          <Route path="/login">
-            <LoginPage isLoggedIn={isLoggedIn} />
-        </Route>
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
+        <Route path="/login" component={LoginPage} setAllowed={setAllowed}/>
+        <ProtectedRoute isAllowed={isAllowed} exact path="/dashboard" component={Dashboard} />
       </Switch>
     </Router>
   );
