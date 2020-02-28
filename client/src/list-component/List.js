@@ -3,7 +3,6 @@ import './List.css';
 import Item from '../item-component/Item';
 
 function List({prs}) {
-  console.log(prs);
   if(prs){
     return (
       <div className='list-container'>

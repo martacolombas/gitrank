@@ -23,7 +23,7 @@ function Item({pr}) {
               Author
             </div>
             <div className='gitInfo-container'>
-              {pr && pr.author.name ? pr.author.name : `YOU`}
+              {pr && pr.author.name ? pr.author.name : `You`}
             </div>
           </div>
           <div className='detail-container'>
@@ -31,7 +31,7 @@ function Item({pr}) {
               Status
             </div>
             <div className='gitInfo-container'>
-              {<Status status={statusDetails(pr.reviews.nodes)}/>}
+              <Status statusDet={statusDetails(pr.reviews.nodes)} state={pr.state}/>
             </div>
           </div>
           <div className='detail-container'>
@@ -56,14 +56,14 @@ function Item({pr}) {
         </div>
       </div>
       <div className='actions-container'>
-        <button>
-          <FontAwesomeIcon icon='eye'/>
+        <button className='button'>
+          <FontAwesomeIcon icon='eye' className='button'/>
         </button>
-        <button>
-          <FontAwesomeIcon icon='copy'/>
+        <button className='button'>
+          <FontAwesomeIcon icon='copy' className='button'/>
         </button>
-        <button>
-          <FontAwesomeIcon icon='trash'/>
+        <button className='button'>
+          <FontAwesomeIcon icon='trash' className='button'/>
         </button>
       </div>
     </div>

@@ -39,3 +39,33 @@ export const reviewsByAuthor = (reviews) => {
   }, {});
   return orderById;
 }
+
+export const beautifyStatus = (status) => {
+  switch(status){
+    case 'OPEN':
+      return status[0]+status.substring(1).toLowerCase();
+    case 'MERGED':
+      return status[0]+status.substring(1).toLowerCase();
+    case 'CLOSED':
+      return status[0]+status.substring(1).toLowerCase();
+    case 'CHANGES_REQUESTED':
+      return 'requested changes';
+    default:
+      return status.toLowerCase();
+  }
+}
+
+export const chooseEmoji = (status) => {
+  switch(status){
+    case 'OPEN':
+      return '🔥'
+    case 'MERGED':
+      return '😁👍'
+    case 'CLOSED':
+      return '🛑'
+    case 'CHANGES_REQUESTED':
+      return '🙋';
+    default:
+      return '💯' ;
+  }
+}
