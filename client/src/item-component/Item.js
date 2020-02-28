@@ -3,19 +3,20 @@ import Status from '../status-component/Status';
 import './Item.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatDate, dateDiff, statusDetails } from '../helperFunc';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 
 function Item({pr}) {
   return (
     <div className='pr-container'>
       <div className='pin-container'>
-        <button>
-        <FontAwesomeIcon icon='thumbtack' />
+        <button className='button no-background'>
+        <FontAwesomeIcon icon='thumbtack' className='icon'/>
         </button>
       </div>
       <div className='item-body-container'>
         <div className='title-container' >
-          {pr && pr.title}
+          <a href={`${pr.url}`} target='_blank' rel='noopener noreferrer'>{pr && pr.title}</a>
         </div>
         <div className='information-container'>
           <div className='detail-container'>
@@ -39,7 +40,7 @@ function Item({pr}) {
               Repository
             </div>
             <div className='gitInfo-container'>
-              {pr && pr.repository.name}
+              <a href={`${pr.repository.url}`} target='_blank' rel='noopener noreferrer'>{pr && pr.repository.name}</a>
             </div>
           </div>
           <div className='detail-container'>
@@ -57,13 +58,15 @@ function Item({pr}) {
       </div>
       <div className='actions-container'>
         <button className='button'>
-          <FontAwesomeIcon icon='eye' className='button'/>
+          <FontAwesomeIcon icon='eye' className='icon'/>
         </button>
+        <CopyToClipboard text={pr.url}>
+          <button className='button'>
+            <FontAwesomeIcon icon='copy' className='icon'/>
+          </button>
+        </CopyToClipboard>
         <button className='button'>
-          <FontAwesomeIcon icon='copy' className='button'/>
-        </button>
-        <button className='button'>
-          <FontAwesomeIcon icon='trash' className='button'/>
+          <FontAwesomeIcon icon='trash' className='icon'/>
         </button>
       </div>
     </div>

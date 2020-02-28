@@ -12,7 +12,15 @@
 .pin-container {
   display: flex;
   flex:0.25;
+  max-height: 50px;
+  margin: 0;
+  align-content: center;
 }
+
+.no-background{
+  background-color: white;
+}
+/* check why this is not displaying white */
 
 .item-body-container{
   display: flex;
@@ -62,7 +70,9 @@
   padding: 4px;
   position: absolute;
   align-self: flex-end;
-  z-index: 10;
+  right: -8%;
+  top: 90%;
+  transform: translate(-50%, -50%);
 }
 
 .button{
@@ -71,9 +81,28 @@
   margin: 4px;
   border-radius: 8px;
   background-color: lightgrey;
+  display: flex;
+  align-items: center;
 }
 
 .icon{
   min-width: 25px;
   min-height: 25px;
+  margin: 3px;
+}
+
+a {
+  text-decoration: none ;
+  color: black;
+}
+a:hover
+{
+ color:blue;
+ text-decoration:none;
+ cursor:pointer;
+}
+
+.button:hover{
+background-color: cornflowerblue;
+cursor:pointer;
 }

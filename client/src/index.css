@@ -1,9 +1,9 @@
 body {
   margin: 0;
-  padding: 2px;
   font-family: 'Oxygen';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
 }
 
 code {
