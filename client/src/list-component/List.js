@@ -3,11 +3,12 @@ import './List.css';
 import Item from '../item-component/Item';
 
 function List({prs}) {
+  console.log(prs);
   if(prs){
     return (
       <div className='list-container'>
         {
-          (prs).map((pr) => {
+          prs.map((pr) => {
             return( <Item pr={pr} key={pr.id} />);
       })}
       </div>

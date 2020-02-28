@@ -1,29 +1,41 @@
+import moment from 'moment';
 
 export const formatDate = (date) => {
   //date --> 2020-02-26T20:19:38Z
-  const newDate = date.match(/([^T]+)/);
-  return newDate[0];
+  const newDate = moment(date).format('L LT'); // returns date as DD/MM/YYY H:MM A/PM
+  return newDate;
 }
 
-export const dateDiff = (created, updated) => {
-  const diff = created.getTime() - updated.getTime();
-  if(diff){
-    let date = new Date(diff);
-    let year = date.getFullYear();
-    let month = ('0' + (date.getMonth() + 1)).slice(-2);
-    let day = ('0' + date.getDate()).slice(-2);
-    return `${year}-${month}-${day}`;
-  } else {
-    return '';
-  }
+export const dateDiff = (updated) => {
+  return moment(updated).fromNow();
 }
 
-export const statusDetails = (status, reviews) => {
-    const arrayedReviews = reviews.nodes //reviews {nodes: [], ...} -- we are just interested in the nodes arr
-    if(status==='OPEN' && arrayedReviews.length) {
-      return arrayedReviews[0].name ? `${arrayedReviews[0].state} by ${arrayedReviews[0].name}` : `${arrayedReviews[0].state} by YOU`
-    } else {
-      return status;
+export const statusDetails = (reviews) => {
+  const iterableRev = reviewsByAuthor(reviews);
+  // reviewsByAuthor returns an obj like {12345678abcde=: Array(1), 987654zswer: Array(1)} -- where Array is an array of objects that represent each of the reviews by authorId
+  const reviewsToShow = [];
+    for (let key in iterableRev) {
+      reviewsToShow.push(iterableRev[key][iterableRev[key].length-1]); // last element in the array is the most recent one
     }
+    return reviewsToShow;
   }
-// TODO now the position in the array is 0, but NEEDS TO BE FIXED, to the most recent status
+
+export const reviewsByAuthor = (reviews) => {
+  const orderedRev = reviews.map((element) => {
+    return ({
+      author: element.author.name,
+      author_id: element.author.id,
+      createdAt: element.createdAt,
+      state: element.state
+    });
+  });
+  const orderById = orderedRev.reduce((acc, obj) => {
+    let key = obj.author_id;
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push(obj);
+    return acc;
+  }, {});
+  return orderById;
+}

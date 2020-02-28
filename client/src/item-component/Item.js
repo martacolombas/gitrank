@@ -1,4 +1,5 @@
 import React from 'react';
+import Status from '../status-component/Status';
 import './Item.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatDate, dateDiff, statusDetails } from '../helperFunc';
@@ -30,7 +31,7 @@ function Item({pr}) {
               Status
             </div>
             <div className='gitInfo-container'>
-              {pr && statusDetails(pr.state, pr.reviews)}
+              {<Status status={statusDetails(pr.reviews.nodes)}/>}
             </div>
           </div>
           <div className='detail-container'>
@@ -49,8 +50,7 @@ function Item({pr}) {
               {pr && formatDate(pr.createdAt)}
             </div>
             <div className='gitInfo-container light'>
-              {pr && dateDiff(pr.updatedAt, pr.updatedAt)}
-              {/* needs to calculate how long ago */}
+              {pr && `(last updated ${dateDiff(pr.updatedAt)})`}
             </div>
           </div>
         </div>
