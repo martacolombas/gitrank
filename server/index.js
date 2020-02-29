@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 4000;
+const { id, key, port } = require('./config');
 const GitHubStrategy = require('passport-github2').Strategy;
 const passport = require('passport');
 
@@ -9,9 +9,9 @@ app.get('/', (req, res) => res.send('Hello World!'));
 app.listen(port, () => console.log(`Example app listening on port ${port}! 🚀`));
 
 passport.use(new GitHubStrategy({
-  clientID: GITHUB_CLIENT_ID,
-  clientSecret: GITHUB_CLIENT_SECRET,
-  callbackURL: "http://127.0.0.1:4000/auth/github/callback"
+  clientID: id,
+  clientSecret: key,
+  callbackURL: 'http://localhost:3000/dashboard'
 },
 function(accessToken, refreshToken, profile, done) {
   User.findOrCreate({ githubId: profile.id }, function (err, user) {
