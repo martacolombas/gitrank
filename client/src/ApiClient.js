@@ -5,25 +5,20 @@ import { setContext } from 'apollo-link-context';
 import { gql } from 'apollo-boost';
 
 const cache = new InMemoryCache();
-const link = new createHttpLink({
-  uri: 'https://api.github.com/graphql',
-  credentials: 'omit'
-});
+const link = new createHttpLink({ uri: 'https://api.github.com/graphql' });
 
-const authLink = setContext((_, { headers }) => ({
+const authLink = setContext((_, { headers }) => {
+  return {
     headers: {
       ...headers,
-      authorization: `bearer ${process.env.REACT_APP_GRAPHQL_KEY}`,
+      authorization: `bearer ${localStorage.getItem("token")}`,
     }
-  })
-);
+  };
+});
 
 export const client = new ApolloClient({
   cache,
-  link: authLink.concat(link),
-  headers: {
-    "Access-Control-Allow-Origin": "*"
-  }
+  link: authLink.concat(link)
 });
 
 export const  GET_PRS = gql`
