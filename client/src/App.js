@@ -9,14 +9,17 @@ import Login from "./login-component/Login";
 function App() {
   const [isAllowed, setAllowed] = useState(false);
   const [token, setToken] = useState('')
+  const [username, setUsername] = useState('')
 
   useEffect(() => {
     if(isAllowed) {
-      setToken(localStorage.getItem('token'))
+      setToken(localStorage.getItem('token'));
+      setUsername(localStorage.getItem('username'));
     }
   }, [])
 
-  function assignToken(tokenVal) {
+  function assignCredentials(usernameVal, tokenVal) {
+    setUsername(usernameVal);
     setToken(tokenVal);
     setAllowed(true);
   }
@@ -24,8 +27,8 @@ function App() {
   console.log(token)
 
   return token
-    ? <Dashboard token={token}/>
-    : <LoginPage assignToken={assignToken}/>
+    ? <Dashboard token={token} username={username}/>
+    : <LoginPage assignCredentials={assignCredentials}/>
 }
 
 export default App;

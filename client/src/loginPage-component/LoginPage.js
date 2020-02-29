@@ -2,10 +2,10 @@ import React from 'react';
 import './LoginPage.css';
 import Login from '../login-component/Login';
 
-function LoginPage({assignToken}) {
+function LoginPage({assignCredentials}) {
     return (
       <div className='loginPage-container'>
-        <Login assignToken={assignToken} />
+        <Login assignCredentials={assignCredentials} />
       </div>
     );
   }

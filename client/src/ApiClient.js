@@ -27,8 +27,8 @@ export const client = new ApolloClient({
 });
 
 export const  GET_PRS = gql`
-query PRinfo {
-  user(login: "${process.env.REACT_APP_USERNAME}") {
+query PRinfo ($login: String!){
+  user(login: $login) {
     id
     repositories(first: 30, orderBy: {field: NAME, direction: ASC}) {
       nodes {

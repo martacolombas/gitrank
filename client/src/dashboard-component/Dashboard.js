@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './Dashboard.css';
 import List from '../list-component/List';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -8,9 +8,20 @@ import { GET_PRS } from '../ApiClient';
 
 library.add(fas);
 
-function Dashboard() {
-  const { loading, data, error } = useQuery(GET_PRS);
+function Dashboard({token, username}) {
+  const [credentials, setCredentials] = useState({})
 
+  useEffect(() => {
+    setCredentials({token, username});
+  }, [])
+
+  const { loading, data, error } = useQuery(GET_PRS, {
+    variables: {
+      login: `${credentials.username}`
+    }
+  });
+
+  console.log(credentials);
   if(error) return <p>Error</p> // todo make an error page
 
   let prs = [];
