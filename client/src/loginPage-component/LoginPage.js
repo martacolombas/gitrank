@@ -2,10 +2,10 @@ import React from 'react';
 import './LoginPage.css';
 import Login from '../login-component/Login';
 
-function LoginPage({setAllowed, ...props}) {
+function LoginPage({assignToken}) {
     return (
       <div className='loginPage-container'>
-        <Login setAllowed={setAllowed}/>
+        <Login assignToken={assignToken} />
       </div>
     );
   }

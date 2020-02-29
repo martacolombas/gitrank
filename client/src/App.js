@@ -4,22 +4,35 @@ import Dashboard from "./dashboard-component/Dashboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./loginPage-component/LoginPage";
 import ProtectedRoute from './Routes.js'
+import Login from "./login-component/Login";
 
 function App() {
-  const [isAllowed, setAllowed] = useState('');
+  const [isAllowed, setAllowed] = useState(false);
+  const [token, setToken] = useState('')
 
   useEffect(() => {
-    //look in the localStorage
+    if(isAllowed) {
+      setToken(localStorage.getItem('token'))
+    }
   }, [])
 
-  return (
-    <Router>
-      <Switch>
-        <Route path="/login" component={LoginPage} setAllowed={setAllowed}/>
-        <ProtectedRoute isAllowed={isAllowed} exact path="/dashboard" component={Dashboard} />
-      </Switch>
-    </Router>
-  );
+  function assignToken(tokenVal) {
+    setToken(tokenVal);
+    setAllowed(true);
+  }
+
+  console.log(token)
+
+  return token
+    ? <Dashboard token={token}/>
+    : <LoginPage assignToken={assignToken}/>
 }
 
 export default App;
+
+   // <Router>
+    //   <Switch>
+    //     <Route path="/login" component={LoginPage} setAllowed={setAllowed}/>
+    //     <ProtectedRoute isAllowed={isAllowed} exact path="/dashboard" component={Dashboard} />
+    //   </Switch>
+    // </Router>

@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Login.css';
 
-function Login({setAllowed}) {
+function Login({assignToken}) {
+  const [token, setToken] = useState ('');
+
+  function handleChange ({target}) {
+    setToken(target.value);
+  }
+
+  function handleSubmit (event) {
+    event.preventDefault();
+    localStorage.setItem('token', token);
+    assignToken(token);
+  }
     return (
       <div className='login-container'>
-        <form>
-          <input placeholder='here goes your gitHub Token' type='text' className='input-container'/>
+        <form onSubmit={handleSubmit}>
+          <input
+          placeholder='Here goes your gitHub Token'
+          value={token}
+          type='text'
+          className='input-container'
+          onChange={handleChange}/>
+        <button type='Submit' className='input-button'>Go!</button>
         </form>
-        <input type='Submit' value='Go!' className='input-button' onClick={() => setAllowed(true)}></input>
       </div>
     );
   }
