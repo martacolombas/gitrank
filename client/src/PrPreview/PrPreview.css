@@ -1,11 +1,15 @@
 
 .PrPreview{
-  border-bottom: 1px solid white;
+  background-color: white;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  padding: 0 8px;
 }
 
 .PrPreview-header{
   display:flex;
   align-items: center;
+  position: relative;
 }
 
 .PrPreview-header-avatar{
@@ -27,6 +31,19 @@
   align-items: center;
   justify-content: center;
 }
+
+.PrPreview-header-actions{
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+}
+
+.PrPreview:hover .PrPreview-header-actions{
+  display: block;
+}
+
 
 
 

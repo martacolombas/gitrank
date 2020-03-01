@@ -2,15 +2,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }
 
 body {
   margin: 0;
   font-family: 'Oxygen';
+  background-color: #f3f2f2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
+  color: #3c3c3c;
 }
 
 code {

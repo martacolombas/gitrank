@@ -55,7 +55,7 @@ export const beautifyStatus = (status) => {
   }
 }
 
-export const chooseEmoji = (status) => {
+export const chooseBg = (status) => {
   switch(status){
     case 'OPEN':
       return '🔥'

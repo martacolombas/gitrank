@@ -44,6 +44,7 @@ query PRinfo ($login: String!){
                 id
                 name
                 email
+                avatarUrl
               }
             }
             repository {
@@ -54,6 +55,7 @@ query PRinfo ($login: String!){
               nodes {
                 name
                 email
+                avatarUrl
               }
             }
             reviews(first: 10) {
@@ -62,6 +64,8 @@ query PRinfo ($login: String!){
                   ... on User {
                     id
                     name
+                    email
+                    avatarUrl
                   }
                 }
                 state

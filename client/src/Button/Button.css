@@ -1,0 +1,8 @@
+.Button{
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.Button-icon{
+  font-size: 18px;
+}
