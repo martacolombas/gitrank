@@ -9,7 +9,8 @@ import { GET_PRS } from '../ApiClient';
 library.add(fas);
 
 function Dashboard({token, username}) {
-  const [credentials, setCredentials] = useState({})
+  const [credentials, setCredentials] = useState({});
+  const [pinnedItems, setPinnedItems] = useState([]);
 
   useEffect(() => {
     setCredentials({token, username});
@@ -21,26 +22,40 @@ function Dashboard({token, username}) {
     }
   });
 
-  console.log(credentials);
+  // setInterval(function(){ alert("Hello"); }, 3000); set interval to refresh the data inside the comp.
+
   if(error) return <p>Error</p> // todo make an error page
 
-  let prs = [];
+  let resultCall = [];
   if (data) {
     data.user.repositories.nodes.map(element => {
       return ({
-        prs: element.pullRequests
+        resultCall: element.pullRequests
       });
     }).map(element => {
         return ({
-          prs: element.prs.nodes
+          resultCall: element.resultCall.nodes
         });
     }).filter(element => {
-      return element.prs.length > 0;
+      return element.resultCall.length > 0;
     }).map(element => {
-      return element.prs;
+      return element.resultCall;
     }).forEach(element => {
-      prs.push(...element);
+      resultCall.push(...element);
     });}
+
+  let notPinned = resultCall
+  .filter(element => !pinnedItems
+    .includes(element.id))
+    .sort((a,b)=> a.createdAt-b.createdAt);
+
+  let pinned = resultCall
+  .filter(element => pinnedItems
+    .includes(element.id))
+    .sort((a,b)=> b.createdAt-a.createdAt);
+
+  let prs = [...pinned, ...notPinned];
+
 
   return (
     <div className='leaderboard'>
@@ -49,7 +64,7 @@ function Dashboard({token, username}) {
       </div>
       {loading
       ? <p>Loading</p>
-      : <List prs={prs} />}
+      : <List prs={prs} setPinnedItems={setPinnedItems}/>}
     </div>
   );
 }

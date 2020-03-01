@@ -11,7 +11,9 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: `bearer ${localStorage.getItem("token")}`,
+      authorization: localStorage.getItem('token')
+      ? `bearer ${localStorage.getItem('token')}`
+      :'',
     }
   };
 });

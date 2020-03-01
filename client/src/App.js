@@ -7,12 +7,11 @@ import ProtectedRoute from './Routes.js'
 import Login from "./login-component/Login";
 
 function App() {
-  const [isAllowed, setAllowed] = useState(false);
   const [token, setToken] = useState('')
   const [username, setUsername] = useState('')
 
   useEffect(() => {
-    if(isAllowed) {
+    if(localStorage.getItem('token')) {
       setToken(localStorage.getItem('token'));
       setUsername(localStorage.getItem('username'));
     }
@@ -21,10 +20,7 @@ function App() {
   function assignCredentials(usernameVal, tokenVal) {
     setUsername(usernameVal);
     setToken(tokenVal);
-    setAllowed(true);
   }
-
-  console.log(token)
 
   return token
     ? <Dashboard token={token} username={username}/>

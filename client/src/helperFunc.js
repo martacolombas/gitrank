@@ -69,3 +69,16 @@ export const chooseEmoji = (status) => {
       return '💯' ;
   }
 }
+
+export const pinItem = (id) => {
+  let pinnedItems = [];
+  pinnedItems.push(id);
+
+  if(!localStorage.getItem('pinnedItems')){
+    localStorage.setItem('pinnedItems', JSON.stringify(pinnedItems));
+  } else {
+    let prevItems = JSON.parse(localStorage.getItem('pinnedItems'));
+    pinnedItems = [...pinnedItems, ...prevItems];
+    localStorage.setItem('pinnedItems', JSON.stringify(pinnedItems));
+  }
+}
