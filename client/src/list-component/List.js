@@ -1,6 +1,6 @@
 import React from 'react';
 import './List.css';
-import Item from '../item-component/Item';
+import PrPreview from '../PrPreview/PrPreview';
 
 function List({prs, setPinnedItems}) {
   if(prs){
@@ -8,7 +8,7 @@ function List({prs, setPinnedItems}) {
       <div className='list-container'>
         {
           prs.map((pr) => {
-            return( <Item pr={pr} key={pr.id} setPinnedItems={setPinnedItems}/>);
+            return( <PrPreview pr={pr} key={pr.id} setPinnedItems={setPinnedItems}/>);
       })}
       </div>
     );

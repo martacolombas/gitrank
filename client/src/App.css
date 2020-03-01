@@ -1,8 +1,10 @@
 .leaderboard{
   display: flex;
   flex-direction: column;
-  align-content: center;
-  align-items: center;
+  align-items: stretch;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .mainTitle-container{

@@ -1,0 +1,35 @@
+
+.PrPreview{
+  border-bottom: 1px solid white;
+}
+
+.PrPreview-header{
+  display:flex;
+  align-items: center;
+}
+
+.PrPreview-header-avatar{
+  display:flex;
+  flex: 0 0 0;
+}
+
+.PrPreview-header-title{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 8px;
+  flex: 1 1 0;
+}
+
+.PrPreview-header-details{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+
