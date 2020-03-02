@@ -10,7 +10,7 @@ library.add(fas);
 
 function Dashboard({token, username}) {
   const [credentials, setCredentials] = useState({});
-  const [pinnedItems, setPinnedItems] = useState([]);
+  const [pinnedItems, setPinnedItems] = useState(localStorage.getItem('pinnedItems') || []);
 
   useEffect(() => {
     setCredentials({token, username});
@@ -55,7 +55,6 @@ function Dashboard({token, username}) {
     .sort((a,b)=> b.createdAt-a.createdAt);
 
   let prs = [...pinned, ...notPinned];
-
 
   return (
     <div className='leaderboard'>

@@ -1,45 +1,28 @@
 import React from 'react';
 import './Status.css';
 import cx from 'classnames';
+import Avatar from '../Avatar/Avatar';
 
 
-function Status ({className, statusDet, state}){
+function Status ({className, reviewers }){
 const classnames = cx('Status', className);
+const avatarStatus = {
+  APPROVED: 'Status-avatar--approved',
+  CHANGES_REQUESTED: 'Status-avatar--changes',
+  COMMENTED: 'Status-avatar--commented'
+};
+
   return (
     <div className={classnames}>
-
+      {reviewers.map(id => {
+        return (<Avatar
+          avatarUrl={id.avatarUrl}
+          size={32}
+          author={id.author}
+          className={`Status-avatar ${avatarStatus[id.state]}`}/>)
+      })}
     </div>
   );
 }
 
 export default Status;
-
-// import React from 'react';
-// import './Status.css';
-// import { beautifyStatus, chooseEmoji } from '../helperFunc';
-// import Emoji from 'a11y-react-emoji';
-
-// function Status({statusDet, state}) {
-//   if (statusDet.length && state) {
-//     return (
-//       <div className='status-container'>
-//         <Emoji symbol={chooseEmoji(state)}/>
-//         <p className='boldText'>{`${beautifyStatus(state)}`}</p>
-//         {`${statusDet.map((status) => {
-//           return (status.author
-//           ? `${status.author} ${beautifyStatus(status.state)}`
-//           : `  You ${beautifyStatus(status.state)}`);
-//         })}`}
-//       </div>
-//     );
-//   } else {
-//     return (
-//       <div className='status-container'>
-//         <Emoji symbol={chooseEmoji(state)}/>
-//         <p className='boldText'>{beautifyStatus(state)}</p>
-//       </div>
-//     );
-//   }
-// }
-
-// export default Status;

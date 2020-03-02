@@ -3,9 +3,9 @@
   margin-bottom: 8px;
   border-radius: 8px;
   padding: 0 8px;
+  display: flex;
 }
 
 .PrDetails-date{
-  display: flex;
-  align-items: flex-start;
+  display: inline-block;
 }

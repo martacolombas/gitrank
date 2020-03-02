@@ -23,10 +23,11 @@ export const statusDetails = (reviews) => {
 export const reviewsByAuthor = (reviews) => {
   const orderedRev = reviews.map((element) => {
     return ({
-      author: element.author.name,
+      author: element.author.login,
       author_id: element.author.id,
       createdAt: element.createdAt,
-      state: element.state
+      state: element.state,
+      avatarUrl: element.author.avatarUrl
     });
   });
   const orderById = orderedRev.reduce((acc, obj) => {
@@ -55,20 +56,6 @@ export const beautifyStatus = (status) => {
   }
 }
 
-export const chooseBg = (status) => {
-  switch(status){
-    case 'OPEN':
-      return '🔥'
-    case 'MERGED':
-      return '😁👍'
-    case 'CLOSED':
-      return '🛑'
-    case 'CHANGES_REQUESTED':
-      return '🙋';
-    default:
-      return '💯' ;
-  }
-}
 
 export const pinItem = (id) => {
   let currentStorage = JSON.parse(localStorage.getItem('pinnedItems', id));

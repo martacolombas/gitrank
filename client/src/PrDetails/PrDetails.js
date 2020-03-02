@@ -11,7 +11,7 @@ function PrDetails({ className, pr }) {
       <div className='PrDetails-date'>
           {pr && `Last updated ${dateDiff(pr.updatedAt)}`}
       </div>
-      { <Status statusDet={statusDetails(pr.reviews.nodes)} state={pr.state}/> }
+      { <Status reviewers={statusDetails(pr.reviews.nodes)} /> }
     </div>
   );
 }

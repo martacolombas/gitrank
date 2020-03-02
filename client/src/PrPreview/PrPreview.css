@@ -33,15 +33,22 @@
 }
 
 .PrPreview-header-actions{
-  display: none;
   position: absolute;
-  top: 0;
   right: 0;
+  bottom: -20px;
 
 }
 
-.PrPreview:hover .PrPreview-header-actions{
-  display: block;
+.PrPreview-header-button{
+  display: none;
+}
+
+.PrPreview:hover .PrPreview-header-button{
+  display: inline-block;
+}
+
+.PrPreview-header-button--isFavorite{
+  display: inline-block;
 }
 
 

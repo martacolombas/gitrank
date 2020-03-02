@@ -16,6 +16,10 @@ function PrPreview({pr, setPinnedItems, className}) {
     setPinnedItems(JSON.parse(localStorage.getItem('pinnedItems')));
   }
 
+  function isFavorite(id){
+   return JSON.parse(localStorage.getItem('pinnedItems')).includes(id);
+  }
+
   if(!pr) {
     return null;
   }
@@ -24,24 +28,24 @@ function PrPreview({pr, setPinnedItems, className}) {
     <div className={classnames}>
       <header className='PrPreview-header'>
         <div className='PrPreview-header-avatar'>
-          <Avatar avatarUrl={pr.author.avatarUrl} author={pr.author.name}/>
+          <Avatar avatarUrl={pr.author.avatarUrl} author={pr.author.login}/>
         </div>
         <div className='PrPreview-header-title'>
-          <h3>
+          <h4>
             {pr.repository.name}
-          </h3>
-          <h2>
+          </h4>
+          <h3>
             {pr.title}
-          </h2>
+          </h3>
         </div>
         <div className='PrPreview-header-details'>
           <Badge className='PrPreview-header-badge' type={pr.state}/>
         </div>
         <div className='PrPreview-header-actions'>
-            <Button icon={'star'} onClick={handlePinButton} prid={pr.id}/>
             <CopyToClipboard text={pr.url}>
-              <Button icon={'copy'}/>
+              <Button icon={'copy'} className={'PrPreview-header-button'}/>
             </CopyToClipboard>
+            <Button icon={'star'} onClick={handlePinButton} prid={pr.id} className={isFavorite(pr.id) ? 'PrPreview-header-button--isFavorite' : 'PrPreview-header-button'}/>
         </div>
       </header>
       <PrDetails pr={pr}/>
