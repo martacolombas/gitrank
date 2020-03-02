@@ -6,6 +6,7 @@ import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
 import Avatar from '../Avatar/Avatar';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import PrDetails from '../PrDetails/PrDetails';
 
 function PrPreview({pr, setPinnedItems, className}) {
   const classnames = cx('PrPreview', className);
@@ -43,6 +44,7 @@ function PrPreview({pr, setPinnedItems, className}) {
             </CopyToClipboard>
         </div>
       </header>
+      <PrDetails pr={pr}/>
     </div>
   );
 }

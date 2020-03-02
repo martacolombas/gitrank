@@ -9,10 +9,9 @@ function PrDetails({ className, pr }) {
   return (
     <div className={classnames}>
       <div className='PrDetails-date'>
-          {/* {pr && formatDate(pr.createdAt)} */}
           {pr && `Last updated ${dateDiff(pr.updatedAt)}`}
       </div>
-      {/* <Status statusDet={statusDetails(pr.reviews.nodes)} state={pr.state}/> */}
+      { <Status statusDet={statusDetails(pr.reviews.nodes)} state={pr.state}/> }
     </div>
   );
 }

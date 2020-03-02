@@ -71,14 +71,17 @@ export const chooseBg = (status) => {
 }
 
 export const pinItem = (id) => {
-  let pinnedItems = [];
-  pinnedItems.push(id);
+  let currentStorage = JSON.parse(localStorage.getItem('pinnedItems', id));
+  let newStorage = [];
 
-  if(!localStorage.getItem('pinnedItems')){
-    localStorage.setItem('pinnedItems', JSON.stringify(pinnedItems));
+  if(!currentStorage){
+    newStorage.push(id);
+    localStorage.setItem('pinnedItems', JSON.stringify(newStorage));
+  } else if (currentStorage.includes(id)) {
+    newStorage = currentStorage.filter(element => element !== id);
+    localStorage.setItem('pinnedItems', JSON.stringify(newStorage));
   } else {
-    let prevItems = JSON.parse(localStorage.getItem('pinnedItems'));
-    pinnedItems = [...pinnedItems, ...prevItems];
-    localStorage.setItem('pinnedItems', JSON.stringify(pinnedItems));
+    currentStorage.push(id);
+    localStorage.setItem('pinnedItems', JSON.stringify(currentStorage));
   }
 }

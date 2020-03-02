@@ -3,7 +3,7 @@ import './Status.css';
 import cx from 'classnames';
 
 
-function Status ({className}){
+function Status ({className, statusDet, state}){
 const classnames = cx('Status', className);
   return (
     <div className={classnames}>
