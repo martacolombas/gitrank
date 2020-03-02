@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoginPage.css';
-import Login from '../login-component/Login';
+import Login from '../Login/Login';
 
 function LoginPage({assignCredentials}) {
     return (

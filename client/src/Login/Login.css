@@ -22,24 +22,25 @@
 .input-container {
   width: 300px;
   height: 50px;
-  font-size: x-large;
   display: flex;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 7px 10px 5px 0px rgba(0,0,0,0.34);
   margin: 4px;
+  border: none;
+  font-size: 16px;
 }
 
 .input-button{
-  width: 180px;
-  padding: 4px 0;
-  border-radius: 3px;
-  padding: 30px;
-  margin-top: 10px;
-  border-radius: 15px;
-  font-size: x-large;
-  color: white ;
-  background: rgb(34,193,195);
-  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  padding: 8px 16px;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: large;
+    color: white;
+    background: rgb(133,192,225);
+background: linear-gradient(0deg, rgba(133,192,225,1) 0%, rgba(228,119,175,1) 100%);
+}
+
+.pic{
+  height:200px;
 }
 

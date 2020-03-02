@@ -1,19 +1,18 @@
 import React, {useState, useEffect} from "react";
 import "./App.css";
 import Dashboard from "./dashboard-component/Dashboard";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import LoginPage from "./loginPage-component/LoginPage";
-import ProtectedRoute from './Routes.js'
-import Login from "./login-component/Login";
+import LoginPage from "./LoginPage/LoginPage";
 
 function App() {
   const [token, setToken] = useState('')
   const [username, setUsername] = useState('')
+  const [isEnterprise, setEnterprise] = useState(false)
 
   useEffect(() => {
     if(localStorage.getItem('token')) {
       setToken(localStorage.getItem('token'));
       setUsername(localStorage.getItem('username'));
+      setEnterprise(JSON.parse(localStorage.getItem('isEnterprise')));
     }
   }, [])
 
