@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Login.css';
 import Button from '../Button/Button';
 import cx from 'classnames';
-import { useDebounce } from 'use-debounce'
+import Checkbox from '../Checkbox/Checkbox';
 
 //TODO(marta) create a form component
 
@@ -49,18 +49,19 @@ function Login({className, assignCredentials}) {
     if(username && token){
       if(!isEnterprise){
         setEnableForm(true);
-      }
-      if(isEnterprise && enterpriseUrl) {
+      }else if(isEnterprise && !enterpriseUrl) {
+        setEnableForm(false);
+      }else if (isEnterprise && enterpriseUrl) {
         setEnableForm(true);
       }
     } else if (isFormEnabled) {
       setEnableForm(false);
     }
-  }, [username, token])
+  }, [username, token, isEnterprise, enterpriseUrl ])
 
     return (
       <div className={classnames}>
-        <img src="https://cdn.sparkfun.com/assets/home_page_posts/1/4/7/0/femalecodertocat.png" className='pic'>
+        <img src='https://cdn.sparkfun.com/assets/home_page_posts/1/4/7/0/femalecodertocat.png' className='pic'>
         </img>
         <form onSubmit={handleSubmit} className='Login-form'>
         <input
@@ -80,11 +81,11 @@ function Login({className, assignCredentials}) {
           <a href='https://help.github.com/en/enterprise/2.17/user/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line' target='_blank'>
             <p>Click here to find out how to create one!</p>
           </a>
-          <input type='checkbox'
+          <Checkbox
           checked={isEnterprise}
-          className='Login-input Login-input--checkbox'
+          className='Login-input'
           onChange={handleEnterprise}
-          /> GitHub Enterprise
+          text='GitHub Enterprise'/>
           {isEnterprise  && <input
           placeholder='GraphQL endpoint'
           required

@@ -1,0 +1,11 @@
+.Checkbox{
+  width: 3px;
+  height: 3px;
+  padding: 8px;
+}
+
+.input-container{
+  display:flex;
+  padding: 12px 8px;
+}
+
