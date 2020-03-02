@@ -1,8 +1,8 @@
 import React from 'react';
-import './List.css';
+import './PrList.css';
 import PrPreview from '../PrPreview/PrPreview';
 
-function List({prs, setPinnedItems}) {
+function PrList({prs, setPinnedItems}) {
   if(prs){
     return (
       <div className='list-container'>
@@ -17,5 +17,5 @@ function List({prs, setPinnedItems}) {
   }
 }
 
-export default List;
+export default PrList;
 

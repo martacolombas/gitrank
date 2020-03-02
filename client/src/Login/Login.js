@@ -4,7 +4,7 @@ import './Login.css';
 function Login({assignCredentials}) {
   const [token, setToken] = useState ('');
   const [username, setUsername] = useState ('');
-  const [isEnterprise, setEnterprise] = useState();
+  const [isEnterprise, setEnterprise] = useState(false);
 
   function handleTokenChange ({target}) {
     setToken(target.value);
@@ -15,9 +15,7 @@ function Login({assignCredentials}) {
   }
 
   function handleEnterprise ({target}) {
-    setEnterprise(!target.value);
-    console.log(isEnterprise)
-    console.log(target.value)
+    setEnterprise(target.checked);
   }
 
   function handleSubmit (event) {
@@ -47,7 +45,7 @@ function Login({assignCredentials}) {
           onChange={handleTokenChange}/>
           <p>Click here to find out how to create one!</p>
           GitHub Enterprise <input type='checkbox'
-          value={isEnterprise}
+          checked={isEnterprise}
           onChange={handleEnterprise}
           />
           <input

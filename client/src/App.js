@@ -6,13 +6,11 @@ import LoginPage from "./LoginPage/LoginPage";
 function App() {
   const [token, setToken] = useState('')
   const [username, setUsername] = useState('')
-  const [isEnterprise, setEnterprise] = useState(false)
 
   useEffect(() => {
     if(localStorage.getItem('token')) {
       setToken(localStorage.getItem('token'));
       setUsername(localStorage.getItem('username'));
-      setEnterprise(JSON.parse(localStorage.getItem('isEnterprise')));
     }
   }, [])
 

@@ -41,22 +41,6 @@ export const reviewsByAuthor = (reviews) => {
   return orderById;
 }
 
-export const beautifyStatus = (status) => {
-  switch(status){
-    case 'OPEN':
-      return status[0]+status.substring(1).toLowerCase();
-    case 'MERGED':
-      return status[0]+status.substring(1).toLowerCase();
-    case 'CLOSED':
-      return status[0]+status.substring(1).toLowerCase();
-    case 'CHANGES_REQUESTED':
-      return 'requested changes';
-    default:
-      return status.toLowerCase();
-  }
-}
-
-
 export const pinItem = (id) => {
   let currentStorage = JSON.parse(localStorage.getItem('pinnedItems', id));
   let newStorage = [];

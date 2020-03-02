@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './Dashboard.css';
-import List from '../list-component/List';
+import PrList from '../PrList/PrList';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { useQuery } from '@apollo/react-hooks';
@@ -22,7 +22,7 @@ function Dashboard({token, username}) {
     }
   });
 
-  // setInterval(function(){ alert("Hello"); }, 3000); set interval to refresh the data inside the comp.
+  // todo(marta): include set interval to refresh the Prs
 
   if(error) return <p>Error</p> // todo make an error page
 
@@ -63,7 +63,7 @@ function Dashboard({token, username}) {
       </div>
       {loading
       ? <p>Loading</p>
-      : <List prs={prs} setPinnedItems={setPinnedItems}/>}
+      : <PrList prs={prs} setPinnedItems={setPinnedItems}/>}
     </div>
   );
 }
