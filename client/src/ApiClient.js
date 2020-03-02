@@ -4,7 +4,7 @@ import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { gql } from 'apollo-boost';
 
-const GRAPHQL_ENDPOINT = JSON.parse(localStorage.getItem('isEnterprise')) || 'https://api.github.com/graphql';
+const GRAPHQL_ENDPOINT = JSON.parse(localStorage.getItem('enterpriseUrl')) || 'https://api.github.com/graphql';
 
 const cache = new InMemoryCache();
 const link = new createHttpLink({ uri: `${GRAPHQL_ENDPOINT}` });

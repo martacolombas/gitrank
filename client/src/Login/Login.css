@@ -1,4 +1,4 @@
-.login-container {
+.Login {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -10,7 +10,7 @@
   justify-content: space-evenly;
 }
 
-.form-container{
+.Login-form{
   padding: 8px;
   margin: 4px;
   display: flex;
@@ -19,7 +19,7 @@
   justify-content: space-around;
 }
 
-.input-container {
+.Login-input {
   width: 300px;
   height: 50px;
   display: flex;
@@ -30,17 +30,31 @@
   font-size: 16px;
 }
 
-.input-button{
+.Login-button{
   padding: 8px 16px;
-    margin-top: 10px;
-    border-radius: 10px;
-    font-size: large;
-    color: white;
-    background: rgb(133,192,225);
-background: linear-gradient(0deg, rgba(133,192,225,1) 0%, rgba(228,119,175,1) 100%);
+  margin-top: 10px;
+  border-radius: 10px;
+  font-size: large;
+  color: white;
+  background: rgb(133,192,225);
+  background: linear-gradient(0deg, rgba(133,192,225,1) 0%, rgba(228,119,175,1) 100%);
+  display: inline-block;
+  left: 150px;
+}
+
+.Login-button--disabled{
+  background: rgb(193,193,193);
+  background: radial-gradient(circle, rgba(193,193,193,1) 0%, rgba(103,103,103,1) 100%);
 }
 
 .pic{
   height:200px;
+}
+
+.Login-input--checkbox{
+  width: 3px;
+  height: 3px;
+  padding: 8px;
+  display: inline-block;
 }
 

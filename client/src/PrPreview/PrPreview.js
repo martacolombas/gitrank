@@ -16,8 +16,8 @@ function PrPreview({pr, setPinnedItems, className}) {
     setPinnedItems(JSON.parse(localStorage.getItem('pinnedItems')));
   }
 
-  function isFavorite(id){
-   return JSON.parse(localStorage.getItem('pinnedItems')).includes(id);
+  function isFavorite(id = 0){
+   return localStorage.getItem('pinnedItems') ? JSON.parse(localStorage.getItem('pinnedItems')).includes(id) : false;
   }
 
   if(!pr) {
