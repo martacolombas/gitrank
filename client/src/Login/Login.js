@@ -77,7 +77,9 @@ function Login({className, assignCredentials}) {
           className='Login-input'
           required
           onChange={handleTokenChange}/>
-          <p>Click here to find out how to create one!</p>
+          <a href='https://help.github.com/en/enterprise/2.17/user/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line' target='_blank'>
+            <p>Click here to find out how to create one!</p>
+          </a>
           <input type='checkbox'
           checked={isEnterprise}
           className='Login-input Login-input--checkbox'
