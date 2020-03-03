@@ -90,3 +90,17 @@ export const GET_PRS = gql`
 		}
 	}
 `;
+
+export const GET_REPOS = gql`
+	query getRepos($login: String!) {
+		user(login: $login) {
+			id
+			repositories(first: 100) {
+				nodes {
+					id
+					nameWithOwner
+				}
+			}
+		}
+	}
+`;

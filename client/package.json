@@ -27,7 +27,9 @@
     "react-linkify": "^1.0.0-alpha",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
-    "use-debounce": "^3.3.0"
+    "react-select": "^3.0.8",
+    "use-debounce": "^3.3.0",
+    "use-interval": "^1.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

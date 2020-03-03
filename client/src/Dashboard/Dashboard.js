@@ -4,7 +4,8 @@ import PrList from '../PrList/PrList';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_PRS } from '../ApiClient';
+import { GET_PRS, GET_REPOS } from '../ApiClient';
+import Filter from '../Filter/Filter';
 
 library.add(fas);
 
@@ -12,6 +13,13 @@ function Dashboard({ token, username }) {
 	const [credentials, setCredentials] = useState({});
 	const [pinnedItems, setPinnedItems] = useState(
 		localStorage.getItem('pinnedItems') || []
+	);
+	const [selectedRepos, setSelectedRepos] = useState(
+		localStorage.getItem('selectedRepos') || [
+			{ value: 'chocolate', label: 'Chocolate' },
+			{ value: 'strawberry', label: 'Strawberry' },
+			{ value: 'vanilla', label: 'Vanilla' },
+		]
 	);
 
 	useEffect(() => {
@@ -23,8 +31,23 @@ function Dashboard({ token, username }) {
 		variables: {
 			login: `${credentials.username}`,
 		},
-		pollInterval: 40000,
+		// pollInterval: 40000, //todo uncomment
 	});
+
+	// const {
+	// 	loading: reposLoading,
+	// 	data: reposData,
+	// 	error: reposError,
+	// } = useQuery(GET_REPOS, {
+	// 	variables: {
+	// 		login: `${credentials.username}`,
+	// 	},
+	// });
+
+	// let repos = reposData.user.repositories.nodes;
+	// repos.forEach(element => {
+	// 	setSelectedRepos(element.nameWithOwner);
+	// });
 
 	if (error) return <p>Error</p>; // todo make an error page
 	if (loading) return <p>loading</p>;
@@ -65,7 +88,8 @@ function Dashboard({ token, username }) {
 	return (
 		<div className='leaderboard'>
 			<div className='mainTitle-container'>Your PRs dashboard</div>
-			{<PrList prs={prs} setPinnedItems={setPinnedItems} />}
+			<Filter options={selectedRepos} />
+			<PrList prs={prs} setPinnedItems={setPinnedItems} />
 		</div>
 	);
 }
