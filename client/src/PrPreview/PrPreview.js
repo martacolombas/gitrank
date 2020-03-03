@@ -34,10 +34,10 @@ function PrPreview({ pr, setPinnedItems, className }) {
 				</div>
 				<div className='PrPreview-header-title'>
 					<a href={pr.repository.url} target='_blank' rel='noopener noreferrer'>
-						<h4>{pr.repository.name}</h4>
+						<h5>{pr.repository.name}</h5>
 					</a>
 					<a href={pr.url} target='_blank' rel='noopener noreferrer'>
-						<h3>{pr.title}</h3>
+						<h4>{pr.title}</h4>
 					</a>
 				</div>
 				<div className='PrPreview-header-details'>

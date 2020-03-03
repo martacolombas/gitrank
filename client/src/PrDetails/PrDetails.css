@@ -4,8 +4,10 @@
 	border-radius: 8px;
 	padding: 4px 8px 8px 4px;
 	display: flex;
+	align-items: center;
 }
 
 .PrDetails-date {
 	display: inline-block;
+	font-size: 12px;
 }

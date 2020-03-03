@@ -1,6 +1,7 @@
 .mainTitle-container {
 	position: relative;
-	font-size: x-large;
+	font-size: large;
 	padding: 16px;
 	font-weight: 900;
+	align-self: center;
 }

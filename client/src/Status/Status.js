@@ -26,7 +26,7 @@ function Status({ className, reviewers }) {
 				return (
 					<Avatar
 						avatarUrl={id.avatarUrl}
-						size={32}
+						size={28}
 						author={id.author}
 						title={
 							id.author
