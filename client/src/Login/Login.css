@@ -1,54 +1,60 @@
 .Login {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  padding: 8px;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	padding: 8px;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
-.Login-form{
-  padding: 8px;
-  margin: 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+.Login-form {
+	padding: 8px;
+	margin: 4px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
 }
 
 .Login-input {
-  width: 300px;
-  height: 50px;
-  display: flex;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 4px;
-  border: none;
-  font-size: 16px;
+	width: 300px;
+	height: 50px;
+	display: flex;
+	padding: 20px;
+	border-radius: 10px;
+	margin: 4px;
+	border: none;
+	font-size: 16px;
 }
 
-.Login-button{
-  padding: 8px 16px;
-  margin-top: 10px;
-  border-radius: 10px;
-  font-size: large;
-  color: white;
-  background: rgb(133,192,225);
-  background: linear-gradient(0deg, rgba(133,192,225,1) 0%, rgba(228,119,175,1) 100%);
-  display: inline-block;
-  left: 150px;
+.Login-button {
+	padding: 8px 16px;
+	margin-top: 10px;
+	border-radius: 10px;
+	font-size: large;
+	color: white;
+	background: rgb(133, 192, 225);
+	background: linear-gradient(
+		0deg,
+		rgba(133, 192, 225, 1) 0%,
+		rgba(228, 119, 175, 1) 100%
+	);
+	display: inline-block;
+	left: 150px;
 }
 
-.Login-button--disabled{
-  background: rgb(193,193,193);
-  background: radial-gradient(circle, rgba(193,193,193,1) 0%, rgba(103,103,103,1) 100%);
+.Login-button--disabled {
+	background: rgb(193, 193, 193);
+	background: radial-gradient(
+		circle,
+		rgba(193, 193, 193, 1) 0%,
+		rgba(103, 103, 103, 1) 100%
+	);
 }
 
-.pic{
-  height:200px;
+.pic {
+	height: 200px;
 }
-
-

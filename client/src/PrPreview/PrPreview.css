@@ -1,59 +1,50 @@
-
-.PrPreview{
-  background-color: white;
-  margin-bottom: 8px;
-  border-radius: 8px;
-  padding: 0 8px;
+.PrPreview {
+	background-color: white;
+	margin-bottom: 8px;
+	border-radius: 8px;
+	padding: 0 8px;
 }
 
-.PrPreview-header{
-  display:flex;
-  align-items: center;
-  position: relative;
+.PrPreview-header {
+	display: flex;
+	align-items: center;
+	position: relative;
 }
 
-.PrPreview-header-avatar{
-  display:flex;
-  flex: 0 0 0;
+.PrPreview-header-avatar {
+	display: flex;
+	flex: 0 0 0;
 }
 
-.PrPreview-header-title{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 8px;
-  flex: 1 1 0;
+.PrPreview-header-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 8px;
+	flex: 1 1 0;
 }
 
-.PrPreview-header-details{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.PrPreview-header-details {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.PrPreview-header-actions{
-  position: absolute;
-  right: 0;
-  bottom: -20px;
-
+.PrPreview-header-actions {
+	position: absolute;
+	right: 0;
+	bottom: -20px;
 }
 
-.PrPreview-header-button{
-  display: none;
+.PrPreview-header-button {
+	display: none;
 }
 
-.PrPreview:hover .PrPreview-header-button{
-  display: inline-block;
+.PrPreview:hover .PrPreview-header-button {
+	display: inline-block;
 }
 
-.PrPreview-header-button--isFavorite{
-  display: inline-block;
+.PrPreview-header-button--isFavorite {
+	display: inline-block;
 }
-
-
-
-
-
-
-

@@ -1,11 +1,11 @@
-.PrDetails{
-  background-color: white;
-  margin-bottom: 8px;
-  border-radius: 8px;
-  padding: 0 8px;
-  display: flex;
+.PrDetails {
+	background-color: white;
+	margin-bottom: 8px;
+	border-radius: 8px;
+	padding: 0 8px;
+	display: flex;
 }
 
-.PrDetails-date{
-  display: inline-block;
+.PrDetails-date {
+	display: inline-block;
 }

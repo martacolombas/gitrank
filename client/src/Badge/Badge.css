@@ -1,21 +1,20 @@
-
 .Badge {
-padding: 4px 8px;
-display: inline-block;
-border-radius: 4px;
-opacity: 0.5;
-font-weight: 600;
-color: white;
+	padding: 4px 8px;
+	display: inline-block;
+	border-radius: 4px;
+	opacity: 0.5;
+	font-weight: 600;
+	color: white;
 }
 
-.Badge--open{
-background-color: teal;
+.Badge--open {
+	background-color: teal;
 }
 
-.Badge--merged{
-background-color: green;
+.Badge--merged {
+	background-color: green;
 }
 
-.Badge--closed{
-background-color: red;
+.Badge--closed {
+	background-color: red;
 }

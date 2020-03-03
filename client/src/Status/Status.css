@@ -1,24 +1,24 @@
-.Status{
-  display: inline-flex;
-  flex-direction: row-reverse;
-  padding-left: 50px;
-  padding-bottom: 5px;
+.Status {
+	display: inline-flex;
+	flex-direction: row-reverse;
+	padding-left: 50px;
+	padding-bottom: 5px;
 }
 
-.Status-avatar{
-  margin-left: -10px;
-  position: relative;
-  border: 1px solid #ffffff;
+.Status-avatar {
+	margin-left: -10px;
+	position: relative;
+	border: 1px solid #ffffff;
 }
 
-.Status-avatar--approved{
-  border: 1px solid green;
+.Status-avatar--approved {
+	border: 1px solid green;
 }
 
-.Status-avatar--commented{
-  border: 1px solid white;
+.Status-avatar--commented {
+	border: 1px solid white;
 }
 
-.Status-avatar--changes{
-  border: 1px solid red;
+.Status-avatar--changes {
+	border: 1px solid red;
 }

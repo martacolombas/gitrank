@@ -1,9 +1,9 @@
-.Button{
-  min-width: 32px;
-  min-height: 32px;
-  border: none;
+.Button {
+	min-width: 32px;
+	min-height: 32px;
+	border: none;
 }
 
-.Button-icon{
-  font-size: 18px;
+.Button-icon {
+	font-size: 18px;
 }

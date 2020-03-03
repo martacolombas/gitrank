@@ -1,15 +1,15 @@
-.leaderboard{
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  max-width: 1000px;
-  margin: 0 auto;
+.leaderboard {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: center;
+	max-width: 1000px;
+	margin: 0 auto;
 }
 
-.mainTitle-container{
-  position: relative;
-  font-size: x-large;
-  padding: 16px;
-  font-weight: 900;
+.mainTitle-container {
+	position: relative;
+	font-size: x-large;
+	padding: 16px;
+	font-weight: 900;
 }

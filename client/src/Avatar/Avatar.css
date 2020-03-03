@@ -1,14 +1,8 @@
-.Avatar{
-  border-radius: 4px;
-  overflow: hidden;
+.Avatar {
+	border-radius: 4px;
+	overflow: hidden;
 }
 
-.Avatar img{
-  max-width: 100%;
+.Avatar img {
+	max-width: 100%;
 }
-
-/* .overlayingInline{
-  margin-left: -10px;
-  position: relative;
-  border: 1px solid #ffffff;
-} */
