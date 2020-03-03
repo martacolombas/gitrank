@@ -23,7 +23,7 @@ function Dashboard({ token, username }) {
 		variables: {
 			login: `${credentials.username}`,
 		},
-		pollInterval: 10000,
+		pollInterval: 40000,
 	});
 
 	if (error) return <p>Error</p>; // todo make an error page

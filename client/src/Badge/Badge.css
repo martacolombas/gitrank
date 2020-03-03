@@ -2,22 +2,22 @@
 	padding: 4px 8px;
 	display: inline-block;
 	border-radius: 4px;
-	opacity: 0.5;
 	font-weight: 600;
 	color: white;
-	font-size: 14px;
+	font-size: 8px;
+	text-transform: uppercase;
 }
 
 .Badge--open {
-	background-color: teal;
+	background-color: #28a744;
 }
 
 .Badge--merged {
-	background-color: green;
+	background-color: #6f42c1;
 }
 
 .Badge--closed {
-	background-color: red;
+	background-color: #cb2431;
 }
 
 .emoji {

@@ -12,13 +12,13 @@
 }
 
 .Status-avatar--approved {
-	border: 1px solid green;
+	border: 2px solid #28a744;
 }
 
 .Status-avatar--commented {
-	border: 1px solid lightcyan;
+	border: 2px solid lightgrey;
 }
 
 .Status-avatar--changes {
-	border: 1px solid red;
+	border: 2px solid #cb2431;
 }

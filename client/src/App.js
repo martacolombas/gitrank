@@ -27,10 +27,3 @@ function App() {
 }
 
 export default App;
-
-// <Router>
-//   <Switch>
-//     <Route path="/login" component={LoginPage} setAllowed={setAllowed}/>
-//     <ProtectedRoute isAllowed={isAllowed} exact path="/dashboard" component={Dashboard} />
-//   </Switch>
-// </Router>
