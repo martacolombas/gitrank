@@ -58,7 +58,7 @@ function Dashboard({ token, username }) {
 
 	let pinned = resultCall
 		.filter(element => pinnedItems.includes(element.id))
-		.sort((a, b) => b.createdAt - a.createdAt);
+		.sort((a, b) => a.createdAt - b.createdAt);
 
 	let prs = [...pinned, ...notPinned];
 
