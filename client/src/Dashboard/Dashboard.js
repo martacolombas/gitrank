@@ -5,6 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_PRS } from '../ApiClient';
+import useInterval from 'use-interval';
 
 library.add(fas);
 
@@ -18,39 +19,40 @@ function Dashboard({ token, username }) {
 		setCredentials({ token, username });
 	}, []);
 
+	let resultCall = [];
+	// useInterval(() => {
 	const { loading, data, error } = useQuery(GET_PRS, {
 		variables: {
 			login: `${credentials.username}`,
 		},
 	});
 
-	// todo(marta): include set interval to refresh the Prs
-
 	if (error) return <p>Error</p>; // todo make an error page
+	if (loading) return <p>loading</p>;
 
-	let resultCall = [];
 	if (data) {
 		data.user.repositories.nodes
 			.map(element => {
 				return {
-					resultCall: element.pullRequests,
+					prs: element.pullRequests,
 				};
 			})
 			.map(element => {
 				return {
-					resultCall: element.resultCall.nodes,
+					prs: element.prs.nodes,
 				};
 			})
 			.filter(element => {
-				return element.resultCall.length > 0;
+				return element.prs.length > 0;
 			})
 			.map(element => {
-				return element.resultCall;
+				return element.prs;
 			})
 			.forEach(element => {
 				resultCall.push(...element);
 			});
 	}
+	// }, 10000);
 
 	let notPinned = resultCall
 		.filter(element => !pinnedItems.includes(element.id))
@@ -65,11 +67,7 @@ function Dashboard({ token, username }) {
 	return (
 		<div className='leaderboard'>
 			<div className='mainTitle-container'>Your PRs dashboard</div>
-			{loading ? (
-				<p>Loading</p>
-			) : (
-				<PrList prs={prs} setPinnedItems={setPinnedItems} />
-			)}
+			{<PrList prs={prs} setPinnedItems={setPinnedItems} />}
 		</div>
 	);
 }
