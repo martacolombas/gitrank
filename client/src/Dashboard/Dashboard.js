@@ -20,11 +20,11 @@ function Dashboard({ token, username }) {
 	}, []);
 
 	let resultCall = [];
-	// useInterval(() => {
 	const { loading, data, error } = useQuery(GET_PRS, {
 		variables: {
 			login: `${credentials.username}`,
 		},
+		pollInterval: 10000,
 	});
 
 	if (error) return <p>Error</p>; // todo make an error page
@@ -52,7 +52,6 @@ function Dashboard({ token, username }) {
 				resultCall.push(...element);
 			});
 	}
-	// }, 10000);
 
 	let notPinned = resultCall
 		.filter(element => !pinnedItems.includes(element.id))

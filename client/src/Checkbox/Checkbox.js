@@ -2,7 +2,7 @@ import React from 'react';
 import './Checkbox.css';
 import cx from 'classnames';
 
-function Checkbox({ className, text, size = 3, ...props }) {
+function Checkbox({ className, text, size = 12, ...props }) {
 	const classnames = cx('Checkbox', className);
 	return (
 		<div className='input-container'>
