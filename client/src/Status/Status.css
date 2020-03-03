@@ -1,8 +1,7 @@
 .Status {
 	display: inline-flex;
 	flex-direction: row-reverse;
-	padding-left: 50px;
-	padding-bottom: 5px;
+	padding-left: 20px;
 }
 
 .Status-avatar {

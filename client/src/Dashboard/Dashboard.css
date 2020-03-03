@@ -16,8 +16,9 @@
 }
 
 .Dashboard-filter {
+	font-size: 14px;
 	max-width: 600px;
-	min-width: 200px;
+	min-width: 300px;
 	margin-bottom: 16px;
 	align-self: center;
 }
