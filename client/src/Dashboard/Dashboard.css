@@ -1,7 +1,23 @@
-.mainTitle-container {
+.Dashboard {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: center;
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.Dashboard-title {
 	position: relative;
 	font-size: large;
 	padding: 16px;
 	font-weight: 900;
+	align-self: center;
+}
+
+.Dashboard-filter {
+	max-width: 600px;
+	min-width: 200px;
+	margin-bottom: 16px;
 	align-self: center;
 }
