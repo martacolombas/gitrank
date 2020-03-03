@@ -41,7 +41,11 @@ function PrPreview({ pr, setPinnedItems, className }) {
 					</a>
 				</div>
 				<div className='PrPreview-header-details'>
-					<Badge className='PrPreview-header-badge' type={pr.state} />
+					<Badge
+						className='PrPreview-header-badge'
+						type={pr.state}
+						emoji={true}
+					/>
 				</div>
 				<div className='PrPreview-header-actions'>
 					<CopyToClipboard text={pr.url}>

@@ -18,3 +18,7 @@
 .Badge--closed {
 	background-color: red;
 }
+
+.emoji {
+	opacity: 1;
+}
