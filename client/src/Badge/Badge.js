@@ -6,8 +6,8 @@ import Emoji from 'a11y-react-emoji';
 function Badge({ className, type = '', ...props }) {
 	const emojis = {
 		OPEN: <Emoji symbol='👋' label='open' className='emoji' />,
-		MERGED: <Emoji symbol='✔️' label='open' className='emoji' />,
-		CLOSED: <Emoji symbol='🛑' label='open' className='emoji' />,
+		MERGED: <Emoji symbol='👍' label='open' className='emoji' />,
+		CLOSED: <Emoji symbol='👎' label='open' className='emoji' />,
 	};
 
 	const typeClassName = type.toLowerCase().replace(/_/, '-');

@@ -33,11 +33,21 @@ function PrPreview({ pr, setPinnedItems, className }) {
 					<Avatar avatarUrl={pr.author.avatarUrl} author={pr.author.login} />
 				</div>
 				<div className='PrPreview-header-title'>
-					<a href={pr.repository.url} target='_blank' rel='noopener noreferrer'>
-						<h5>{pr.repository.name}</h5>
+					<a
+						className='PrPreview-header-repo'
+						href={pr.repository.url}
+						target='_blank'
+						rel='noopener noreferrer'
+					>
+						{pr.repository.name}
 					</a>
-					<a href={pr.url} target='_blank' rel='noopener noreferrer'>
-						<h4>{pr.title}</h4>
+					<a
+						className='PrPreview-header-name'
+						href={pr.url}
+						target='_blank'
+						rel='noopener noreferrer'
+					>
+						{pr.title}
 					</a>
 				</div>
 				<div className='PrPreview-header-details'>

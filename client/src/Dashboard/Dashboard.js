@@ -28,7 +28,6 @@ function Dashboard({ className, token, username }) {
 		setCredentials({ token, username });
 	}, []);
 
-	let resultCall = [];
 	const { loading, data, error } = useQuery(GET_PRS, {
 		variables: {
 			login: `${credentials.username}`,
@@ -57,27 +56,25 @@ function Dashboard({ className, token, username }) {
 	if (error) return <p>Error</p>; // todo make an error page
 	if (loading) return <p>loading</p>; //todo add stylying
 
+	let resultCall = [];
+
 	if (data) {
-		data.user.repositories.nodes
+		resultCall = data.user.repositories.nodes
 			.map(element => {
-				return {
-					prs: element.pullRequests,
-				};
+				return element.pullRequests;
 			})
 			.map(element => {
-				return {
-					prs: element.prs.nodes,
-				};
+				return element.nodes;
 			})
-			.filter(element => {
-				return element.prs.length > 0;
-			})
-			.map(element => {
-				return element.prs;
-			})
-			.forEach(element => {
-				resultCall.push(...element);
-			});
+			.reduce((acc, element) => {
+				return acc.concat(element);
+			}, []);
+
+		if (Array.isArray(selectedRepos) && selectedRepos.length > 0) {
+			resultCall = resultCall.filter(element =>
+				selectedRepos.some(repo => repo.value === element.repository.id)
+			);
+		}
 	}
 
 	let notPinned = resultCall
@@ -97,6 +94,7 @@ function Dashboard({ className, token, username }) {
 				options={options}
 				className='Dashboard-filter'
 				value={selectedRepos}
+				placeholder='Select your repos...'
 				onChange={value => {
 					setSelectedRepos(value);
 					localStorage.setItem('selectedRepos', JSON.stringify(selectedRepos));

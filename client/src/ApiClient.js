@@ -58,6 +58,7 @@ export const GET_PRS = gql`
 							repository {
 								name
 								url
+								id
 							}
 							assignees(first: 10) {
 								nodes {
