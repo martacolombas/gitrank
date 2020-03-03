@@ -83,6 +83,7 @@ function Login({ className, assignCredentials }) {
 				<a
 					href='https://help.github.com/en/enterprise/2.17/user/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line'
 					target='_blank'
+					rel='noopener noreferrer'
 				>
 					<p>Click here to find out how to create one!</p>
 				</a>
