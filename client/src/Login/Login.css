@@ -27,7 +27,7 @@
 	border-radius: 10px;
 	margin: 4px;
 	border: none;
-	font-size: 16px;
+	font-size: 12px;
 }
 
 .Login-button {
@@ -57,4 +57,12 @@
 
 .pic {
 	height: 200px;
+}
+
+.Login-link {
+	font-size: 11px;
+}
+
+.Login-link:hover {
+	color: teal;
 }

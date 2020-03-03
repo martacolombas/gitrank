@@ -1,10 +1,17 @@
 .Checkbox {
-	width: 3px;
-	height: 3px;
-	padding: 8px;
+	width: 12px;
+	height: 12px;
+	padding: 12px;
 }
 
 .input-container {
 	display: flex;
 	padding: 12px 8px;
+	justify-content: center;
+	align-items: center;
+}
+
+.Checkbox-text {
+	font-size: 12px;
+	margin-left: 8px;
 }

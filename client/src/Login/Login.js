@@ -80,12 +80,10 @@ function Login({ className, assignCredentials }) {
 					required
 					onChange={handleTokenChange}
 				/>
-				<a
-					href='https://help.github.com/en/enterprise/2.17/user/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line'
-					target='_blank'
-					rel='noopener noreferrer'
-				>
-					<p>Click here to find out how to create one!</p>
+				<a href='' target='_blank' rel='noopener noreferrer'>
+					<p className='Login-link'>
+						Click here to find out how to create one!
+					</p>
 				</a>
 				<Checkbox
 					checked={isEnterprise}
