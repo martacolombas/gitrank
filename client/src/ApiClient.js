@@ -57,6 +57,7 @@ export const GET_PRS = gql`
 							}
 							repository {
 								name
+								nameWithOwner
 								url
 								id
 							}

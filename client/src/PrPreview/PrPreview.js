@@ -39,7 +39,7 @@ function PrPreview({ pr, setPinnedItems, className }) {
 						target='_blank'
 						rel='noopener noreferrer'
 					>
-						{pr.repository.name}
+						{pr.repository.nameWithOwner}
 					</a>
 					<a
 						className='PrPreview-header-name'
