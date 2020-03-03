@@ -62,6 +62,7 @@ function Login({ className, assignCredentials }) {
 			<img
 				src='https://cdn.sparkfun.com/assets/home_page_posts/1/4/7/0/femalecodertocat.png'
 				className='pic'
+				alt='login femalecodercat'
 			></img>
 			<form onSubmit={handleSubmit} className='Login-form'>
 				<input
@@ -80,7 +81,11 @@ function Login({ className, assignCredentials }) {
 					required
 					onChange={handleTokenChange}
 				/>
-				<a href='' target='_blank' rel='noopener noreferrer'>
+				<a
+					href='https://help.github.com/en/enterprise/2.17/user/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line'
+					target='_blank'
+					rel='noopener noreferrer'
+				>
 					<p className='Login-link'>
 						Click here to find out how to create one!
 					</p>

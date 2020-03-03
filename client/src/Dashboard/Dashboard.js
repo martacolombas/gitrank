@@ -5,7 +5,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_PRS } from '../ApiClient';
-import useInterval from 'use-interval';
 
 library.add(fas);
 
