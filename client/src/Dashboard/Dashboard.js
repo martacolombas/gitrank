@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import './Dashboard.css';
-import PrList from '../PrList/PrList';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { useQuery } from '@apollo/react-hooks';
-import { GET_PRS, GET_REPOS } from '../ApiClient';
-import Filter from '../Filter/Filter';
-import cx from 'classnames';
+import React, { useState, useEffect } from "react";
+import cx from "classnames";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { useQuery } from "@apollo/react-hooks";
+import "./Dashboard.css";
+import PrList from "../PrList/PrList";
+import { GET_PRS, GET_REPOS } from "../ApiClient";
+import Filter from "../Filter/Filter";
+import { mergePRs, filterByRepos } from "./utils";
 
 library.add(fas);
 
