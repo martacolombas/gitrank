@@ -31,7 +31,7 @@ export const GET_PRS = gql`
 	query PRinfo($login: String!) {
 		user(login: $login) {
 			id
-			repositories(first: 30, orderBy: { field: NAME, direction: ASC }) {
+			repositories(last: 100, orderBy: { field: NAME, direction: ASC }) {
 				nodes {
 					id
 					name
@@ -57,11 +57,9 @@ export const GET_PRS = gql`
 							}
 							repository {
 								name
-								nameWithOwner
 								url
-								id
 							}
-							assignees(first: 10) {
+							assignees(last: 10) {
 								nodes {
 									name
 									email
@@ -69,7 +67,7 @@ export const GET_PRS = gql`
 									login
 								}
 							}
-							reviews(first: 10) {
+							reviews(last: 10) {
 								nodes {
 									author {
 										... on User {
