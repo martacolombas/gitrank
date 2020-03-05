@@ -30,10 +30,14 @@ function Status({ className, reviewers }) {
 						author={id.author}
 						title={
 							id.author
-								? `${id.author} ${avatarStatus[id.state].statusname}`
+								? `${id.author} ${
+										avatarStatus[id.state].statusname
+								  }`
 								: `You ${avatarStatus[id.state].statusname}`
 						}
-						className={`Status-avatar ${avatarStatus[id.state].classname}`}
+						className={`Status-avatar ${
+							avatarStatus[id.state].classname
+						}`}
 					/>
 				);
 			})}

@@ -38,7 +38,10 @@ function Login({ className, assignCredentials }) {
 		localStorage.setItem('token', token);
 		localStorage.setItem('isEnterprise', JSON.stringify(isEnterprise));
 		if (isEnterprise) {
-			localStorage.setItem('enterpriseUrl', JSON.stringify(enterpriseUrl));
+			localStorage.setItem(
+				'enterpriseUrl',
+				JSON.stringify(enterpriseUrl)
+			);
 		}
 		assignCredentials(username, token);
 	}

@@ -1,7 +1,7 @@
 import React from 'react';
 import './PrPreview.css';
 import cx from 'classnames';
-import { pinItem } from '../helperFunc';
+import { pinItem } from '../../helperFunc';
 import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
 import Avatar from '../Avatar/Avatar';
@@ -30,7 +30,10 @@ function PrPreview({ pr, setPinnedItems, className }) {
 		<div className={classnames}>
 			<header className='PrPreview-header'>
 				<div className='PrPreview-header-avatar'>
-					<Avatar avatarUrl={pr.author.avatarUrl} author={pr.author.login} />
+					<Avatar
+						avatarUrl={pr.author.avatarUrl}
+						author={pr.author.login}
+					/>
 				</div>
 				<div className='PrPreview-header-title'>
 					<a
@@ -59,7 +62,10 @@ function PrPreview({ pr, setPinnedItems, className }) {
 				</div>
 				<div className='PrPreview-header-actions'>
 					<CopyToClipboard text={pr.url}>
-						<Button icon={'copy'} className={'PrPreview-header-button'} />
+						<Button
+							icon={'copy'}
+							className={'PrPreview-header-button'}
+						/>
 					</CopyToClipboard>
 					<Button
 						icon={'star'}
