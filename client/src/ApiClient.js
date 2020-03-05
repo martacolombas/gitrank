@@ -9,7 +9,9 @@ const GRAPHQL_ENDPOINT =
 	'https://api.github.com/graphql';
 
 const cache = new InMemoryCache();
-const link = new createHttpLink({ uri: `${GRAPHQL_ENDPOINT}` });
+const link = new createHttpLink({
+	uri: `${GRAPHQL_ENDPOINT}`,
+});
 
 const authLink = setContext((_, { headers }) => {
 	return {
