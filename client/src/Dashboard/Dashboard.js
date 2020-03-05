@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import './Dashboard.css';
-import PrList from '../PrList/PrList';
+import cx from 'classnames';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { useQuery } from '@apollo/react-hooks';
+import './Dashboard.css';
+import PrList from '../PrList/PrList';
 import { GET_PRS, GET_REPOS } from '../ApiClient';
 import Filter from '../Filter/Filter';
-import cx from 'classnames';
+import { mergePRs, filterByRepos } from './utils';
 
 library.add(fas);
 
 function Dashboard({ className, token, username }) {
-	const classnames = cx('Dashboard', className);
-	const [credentials, setCredentials] = useState({});
 	const [pinnedItems, setPinnedItems] = useState(
 		localStorage.getItem('pinnedItems')
 			? JSON.parse(localStorage.getItem('pinnedItems'))
@@ -23,14 +22,9 @@ function Dashboard({ className, token, username }) {
 			? JSON.parse(localStorage.getItem('selectedRepos'))
 			: []
 	);
-
-	useEffect(() => {
-		setCredentials({ token, username });
-	}, []);
-
 	const { loading, data, error } = useQuery(GET_PRS, {
 		variables: {
-			login: `${credentials.username}`,
+			login: `${username}`,
 		},
 		// pollInterval: 40000, //todo uncomment
 	});
@@ -41,7 +35,7 @@ function Dashboard({ className, token, username }) {
 		error: reposError,
 	} = useQuery(GET_REPOS, {
 		variables: {
-			login: `${credentials.username}`,
+			login: `${username}`,
 		},
 	});
 
@@ -56,39 +50,19 @@ function Dashboard({ className, token, username }) {
 	if (error) return <p>Error</p>; // todo make an error page
 	if (loading) return <p>loading</p>; //todo add stylying
 
-	let resultCall = [];
+	const allPRs = data ? mergePRs(data) : [];
+	const filteredByRepos = filterByRepos(allPRs, selectedRepos);
 
-	if (data) {
-		resultCall = data.user.repositories.nodes
-			.map(element => {
-				return element.pullRequests;
-			})
-			.map(element => {
-				return element.nodes;
-			})
-			.reduce((acc, element) => {
-				return acc.concat(element);
-			}, []);
-
-		if (Array.isArray(selectedRepos) && selectedRepos.length > 0) {
-			resultCall = resultCall.filter(element =>
-				selectedRepos.some(repo => repo.value === element.repository.id)
-			);
-		}
-	}
-
-	let notPinned = resultCall
-		.filter(element => !pinnedItems.includes(element.id))
-		.sort((a, b) => a.createdAt - b.createdAt);
-
-	let pinned = resultCall
-		.filter(element => pinnedItems.includes(element.id))
-		.sort((a, b) => a.createdAt - b.createdAt);
-
-	let prs = [...pinned, ...notPinned];
+	const notPinned = filteredByRepos.filter(
+		element => !pinnedItems.includes(element.id)
+	);
+	const pinned = filteredByRepos.filter(element =>
+		pinnedItems.includes(element.id)
+	);
+	const prs = [...pinned, ...notPinned];
 
 	return (
-		<div className='Dashboard'>
+		<div className={cx('Dashboard', className)}>
 			<div className='Dashboard-title'>Your PRs dashboard</div>
 			<Filter
 				options={options}
@@ -97,7 +71,10 @@ function Dashboard({ className, token, username }) {
 				placeholder='Select your repos...'
 				onChange={value => {
 					setSelectedRepos(value);
-					localStorage.setItem('selectedRepos', JSON.stringify(selectedRepos));
+					localStorage.setItem(
+						'selectedRepos',
+						JSON.stringify(selectedRepos)
+					);
 				}}
 			/>
 			<PrList
