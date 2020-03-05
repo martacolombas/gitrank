@@ -123,6 +123,18 @@ export const GET_REPOS = gql`
 					nameWithOwner
 				}
 			}
+			organizations(first: 10) {
+				repositories(
+					first: 50
+					orderBy: { field: UPDATED_AT, direction: DESC }
+				) {
+					nodes {
+						id
+						name
+						nameWithOwner
+					}
+				}
+			}
 		}
 	}
 `;
