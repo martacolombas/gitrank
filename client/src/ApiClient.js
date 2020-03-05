@@ -5,26 +5,26 @@ import { setContext } from 'apollo-link-context';
 import { gql } from 'apollo-boost';
 
 const GRAPHQL_ENDPOINT =
-  JSON.parse(localStorage.getItem('enterpriseUrl')) ||
-  'https://api.github.com/graphql';
+	JSON.parse(localStorage.getItem('enterpriseUrl')) ||
+	'https://api.github.com/graphql';
 
 const cache = new InMemoryCache();
 const link = new createHttpLink({ uri: `${GRAPHQL_ENDPOINT}` });
 
 const authLink = setContext((_, { headers }) => {
-  return {
-    headers: {
-      ...headers,
-      authorization: localStorage.getItem('token')
-        ? `bearer ${localStorage.getItem('token')}`
-        : ''
-    }
-  };
+	return {
+		headers: {
+			...headers,
+			authorization: localStorage.getItem('token')
+				? `bearer ${localStorage.getItem('token')}`
+				: '',
+		},
+	};
 });
 
 export const client = new ApolloClient({
-  cache,
-  link: authLink.concat(link)
+	cache,
+	link: authLink.concat(link),
 });
 const repositoriesFragment = `
 repositories(first: 30, orderBy: { field: UPDATED_AT, direction: DESC }) {
@@ -104,15 +104,15 @@ export const GET_PRS = gql`
 `;
 
 export const GET_REPOS = gql`
-  query getRepos($login: String!) {
-    user(login: $login) {
-      id
-      repositories(first: 100) {
-        nodes {
-          id
-          nameWithOwner
-        }
-      }
-    }
-  }
+	query getRepos($login: String!) {
+		user(login: $login) {
+			id
+			repositories(first: 100) {
+				nodes {
+					id
+					nameWithOwner
+				}
+			}
+		}
+	}
 `;
