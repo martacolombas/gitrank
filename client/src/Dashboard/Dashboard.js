@@ -7,7 +7,7 @@ import './Dashboard.css';
 import PrList from '../PrList/PrList';
 import { GET_PRS, GET_REPOS } from '../ApiClient';
 import Filter from '../Filter/Filter';
-import { mergePRs, filterByRepos } from './utils';
+import { groupPRs, filterByRepos } from './utils';
 
 library.add(fas);
 
@@ -50,7 +50,7 @@ function Dashboard({ className, token, username }) {
 	if (error) return <p>Error</p>; // todo make an error page
 	if (loading) return <p>loading</p>; //todo add stylying
 
-	const allPRs = data ? mergePRs(data) : [];
+	const allPRs = data ? groupPRs(data) : [];
 	const filteredByRepos = filterByRepos(allPRs, selectedRepos);
 
 	const notPinned = filteredByRepos.filter(

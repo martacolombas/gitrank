@@ -26,15 +26,16 @@ export const client = new ApolloClient({
 	cache,
 	link: authLink.concat(link),
 });
+
 const repositoriesFragment = `
-repositories(first: 30, orderBy: { field: UPDATED_AT, direction: DESC }) {
+repositories(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }) {
 	nodes {
 		id
 		name
 		pullRequests(
 			last: 20
 			states: OPEN
-			orderBy: { field: UPDATED_AT, direction: ASC }
+			orderBy: { field: UPDATED_AT, direction: DESC }
 		) {
 			nodes {
 				id
@@ -92,14 +93,13 @@ export const GET_PRS = gql`
 		user(login: $login) {
 			id
 			${repositoriesFragment}
-			organizations (first: 5) {
+			organizations (first: 10) {
 				totalCount
 				nodes {
 					${repositoriesFragment}
 				}
 			}
 		}
-
 	}
 `;
 

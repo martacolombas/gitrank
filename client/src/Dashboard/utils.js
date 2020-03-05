@@ -1,17 +1,17 @@
-export function getPRFromRepos(repos) {
+function getPRFromRepos(repos) {
 	return repos.reduce((acc, element) => {
 		return acc.concat(element.pullRequests.nodes);
 	}, []);
 }
 
-export function getReposFromOrgs(orgs) {
+function getReposFromOrgs(orgs) {
 	return orgs.reduce(
 		(acc, element) => acc.concat(element.repositories.nodes),
 		[]
 	);
 }
 
-export function mergePRs(queryData) {
+export function groupPRs(queryData) {
 	const userReposPRs = getPRFromRepos(queryData.user.repositories.nodes);
 	const orgsReposPRs = getPRFromRepos(
 		getReposFromOrgs(queryData.user.organizations.nodes)
