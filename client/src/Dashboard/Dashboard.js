@@ -7,11 +7,11 @@ import './Dashboard.css';
 import PrList from '../PrList/PrList';
 import { GET_PRS, GET_REPOS } from '../ApiClient';
 import Filter from '../Filter/Filter';
-import { groupPRs, filterByRepos } from './utils';
+import { groupPRs, filterByRepos, groupAllRepos } from './utils';
 
 library.add(fas);
 
-function Dashboard({ className, token, username }) {
+function Dashboard({ className, username }) {
 	const [pinnedItems, setPinnedItems] = useState(
 		localStorage.getItem('pinnedItems')
 			? JSON.parse(localStorage.getItem('pinnedItems'))
@@ -42,7 +42,7 @@ function Dashboard({ className, token, username }) {
 	let options = [];
 
 	if (reposData) {
-		options = reposData.user.repositories.nodes.map(element => {
+		options = groupAllRepos(reposData).map(element => {
 			return { value: element.id, label: element.nameWithOwner };
 		});
 	}

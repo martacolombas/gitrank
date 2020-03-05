@@ -117,21 +117,19 @@ export const GET_REPOS = gql`
 	query getRepos($login: String!) {
 		user(login: $login) {
 			id
-			repositories(first: 100) {
+			repositories(last: 10) {
 				nodes {
 					id
 					nameWithOwner
 				}
 			}
 			organizations(first: 10) {
-				repositories(
-					first: 50
-					orderBy: { field: UPDATED_AT, direction: DESC }
-				) {
-					nodes {
-						id
-						name
-						nameWithOwner
+				nodes {
+					repositories(last: 10) {
+						nodes {
+							id
+							nameWithOwner
+						}
 					}
 				}
 			}

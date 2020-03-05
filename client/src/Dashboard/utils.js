@@ -1,4 +1,4 @@
-function getSelectedInfoFromRepos(repos) {
+export function getPRs(repos) {
 	return repos.reduce((acc, element) => {
 		return acc.concat(element.pullRequests.nodes);
 	}, []);
@@ -12,10 +12,8 @@ function getReposFromOrgs(orgs) {
 }
 
 export function groupPRs(queryData) {
-	const userReposPRs = getSelectedInfoFromRepos(
-		queryData.user.repositories.nodes
-	);
-	const orgsReposPRs = getSelectedInfoFromRepos(
+	const userReposPRs = getPRs(queryData.user.repositories.nodes);
+	const orgsReposPRs = getPRs(
 		getReposFromOrgs(queryData.user.organizations.nodes)
 	);
 
@@ -32,11 +30,7 @@ export function filterByRepos(allPRs, repos) {
 }
 
 export function groupAllRepos(queryData) {
-	const userRepos = getSelectedInfoFromRepos(
-		queryData.user.repositories.nodes
-	);
-	const orgRepos = getSelectedInfoFromRepos(
-		queryData.user.organizations.repositories.nodes
-	);
-	return [...userRepos, ...orgRepos];
+	const userRepos = queryData.user.repositories.nodes;
+	const orgRepos = getReposFromOrgs(queryData.user.organizations.nodes);
+	return [...orgRepos, ...userRepos];
 }
