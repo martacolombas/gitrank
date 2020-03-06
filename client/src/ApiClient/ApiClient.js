@@ -3,6 +3,7 @@ import { ApolloClient, IntrospectionFragmentMatcher } from 'apollo-boost';
 import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { gql } from 'apollo-boost';
+import { repositoriesFragment, selectedReposFragment } from './Fragments';
 
 // Apollo client cache will use heuristic fragment matcher, however...
 // ...he heuristic fragment matcher will not work accurately when using ...
@@ -42,67 +43,6 @@ export const client = new ApolloClient({
 	link: authLink.concat(link),
 });
 
-const repositoriesFragment = `
-repositories(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }) {
-	nodes {
-		id
-		name
-		pullRequests(
-			last: 20
-			states: OPEN
-			orderBy: { field: UPDATED_AT, direction: DESC }
-		) {
-			nodes {
-				id
-				title
-				createdAt
-				updatedAt
-				state
-				url
-				author {
-					... on User {
-						id
-						name
-						email
-						avatarUrl
-						login
-					}
-				}
-				repository {
-					name
-					nameWithOwner
-					url
-					id
-				}
-				assignees(first: 10) {
-					nodes {
-						name
-						email
-						avatarUrl
-						login
-					}
-				}
-				reviews(first: 10) {
-					nodes {
-						author {
-							... on User {
-								id
-								name
-								email
-								avatarUrl
-								login
-							}
-						}
-						state
-						createdAt
-						updatedAt
-					}
-				}
-			}
-		}
-	}
-}`;
-
 export const GET_PRS = gql`
 	query PRinfo($login: String!) {
 		user(login: $login) {
@@ -122,20 +62,10 @@ export const GET_REPOS = gql`
 	query getRepos($login: String!) {
 		user(login: $login) {
 			id
-			repositories(last: 10) {
-				nodes {
-					id
-					nameWithOwner
-				}
-			}
+			${selectedReposFragment}
 			organizations(first: 10) {
 				nodes {
-					repositories(last: 10) {
-						nodes {
-							id
-							nameWithOwner
-						}
-					}
+					${selectedReposFragment}
 				}
 			}
 		}
