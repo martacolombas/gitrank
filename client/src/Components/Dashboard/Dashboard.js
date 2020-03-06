@@ -8,6 +8,7 @@ import PrList from '../PrList/PrList';
 import { GET_PRS, GET_REPOS } from '../../ApiClient/ApiClient';
 import Filter from '../Filter/Filter';
 import { groupPRs, filterByRepos, groupAllRepos } from './utils';
+import TransitionPage from '../TransitionPage/TransitionPage';
 
 library.add(fas);
 
@@ -47,8 +48,24 @@ function Dashboard({ className, username }) {
 		});
 	}
 
-	if (error) return <p>Error</p>; // todo make an error page
-	if (loading) return <p>loading</p>; //todo add stylying
+	if (error) {
+		console.error(error);
+		return (
+			<TransitionPage
+				src='https://octodex.github.com/images/deckfailcat.png'
+				children='Something went wrong fetching your Prs... '
+			/>
+		);
+	}
+
+	if (loading) {
+		return (
+			<TransitionPage
+				src='https://octodex.github.com/images/hula_loop_octodex03.gif'
+				children='Fetching your PRs...'
+			/>
+		);
+	}
 
 	const allPRs = data ? groupPRs(data) : [];
 	const filteredByRepos = filterByRepos(allPRs, selectedRepos);
@@ -73,7 +90,7 @@ function Dashboard({ className, username }) {
 					setSelectedRepos(value);
 					localStorage.setItem(
 						'selectedRepos',
-						JSON.stringify(selectedRepos)
+						JSON.stringify(value)
 					);
 				}}
 			/>

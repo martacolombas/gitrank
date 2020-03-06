@@ -25,6 +25,7 @@ function Status({ className, reviewers }) {
 			{reviewers.map(id => {
 				return (
 					<Avatar
+						key={id.author_id}
 						avatarUrl={id.avatarUrl}
 						size={24}
 						author={id.author}
