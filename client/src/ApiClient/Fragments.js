@@ -66,5 +66,9 @@ export const selectedReposFragment = `repositories(
 				nodes {
 					id
 					nameWithOwner
+					owner {
+						id
+						login
+					}
 				}
 			}`;

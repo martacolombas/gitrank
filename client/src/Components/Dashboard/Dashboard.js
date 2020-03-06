@@ -13,6 +13,7 @@ import TransitionPage from '../TransitionPage/TransitionPage';
 library.add(fas);
 
 function Dashboard({ className, username }) {
+	// STATES
 	const [pinnedItems, setPinnedItems] = useState(
 		localStorage.getItem('pinnedItems')
 			? JSON.parse(localStorage.getItem('pinnedItems'))
@@ -23,6 +24,13 @@ function Dashboard({ className, username }) {
 			? JSON.parse(localStorage.getItem('selectedRepos'))
 			: []
 	);
+	const [selectedOwner, setSelectedOwner] = useState(
+		localStorage.getItem('selectedOwner')
+			? JSON.parse(localStorage.getItem('selectedOwner'))
+			: []
+	);
+
+	// API CALLS
 	const { loading, data, error } = useQuery(GET_PRS, {
 		variables: {
 			login: `${username}`,
@@ -40,14 +48,29 @@ function Dashboard({ className, username }) {
 		},
 	});
 
+	// FILTER OPTIONS
 	let options = [];
+	let allOptions = [];
+	let ownerOptions = []; // this variable is necessary to filter options (above) by owner
 
 	if (reposData) {
-		options = groupAllRepos(reposData).map(element => {
-			return { value: element.id, label: element.nameWithOwner };
+		allOptions = groupAllRepos(reposData).map(element => {
+			return {
+				value: element.id,
+				label: element.nameWithOwner,
+				ownerId: element.owner.id,
+			};
+		});
+
+		ownerOptions = groupAllRepos(reposData).map(element => {
+			return {
+				value: element.owner.id,
+				label: element.owner.login,
+			};
 		});
 	}
 
+	// TRANSITION PAGES
 	if (error) {
 		console.error(error);
 		return (
@@ -67,6 +90,17 @@ function Dashboard({ className, username }) {
 		);
 	}
 
+	// DATA MANIPULATION -OPTIONS
+	if (selectedOwner && selectedOwner.length) {
+		const selectedIds = selectedOwner.map(element => element.value);
+		options = allOptions.filter(element =>
+			selectedIds.includes(element.ownerId)
+		);
+	} else {
+		options = [...allOptions];
+	}
+
+	// DATA MANIPULATION -PRS
 	const allPRs = data ? groupPRs(data) : [];
 	const filteredByRepos = filterByRepos(allPRs, selectedRepos);
 
@@ -81,6 +115,19 @@ function Dashboard({ className, username }) {
 	return (
 		<div className={cx('Dashboard', className)}>
 			<div className='Dashboard-title'>Your PRs dashboard</div>
+			<Filter
+				options={ownerOptions}
+				className='Dashboard-filter'
+				value={selectedOwner}
+				placeholder='Select the owner'
+				onChange={value => {
+					setSelectedOwner(value);
+					localStorage.setItem(
+						'selectedOwner',
+						JSON.stringify(value)
+					);
+				}}
+			/>
 			<Filter
 				options={options}
 				className='Dashboard-filter'
