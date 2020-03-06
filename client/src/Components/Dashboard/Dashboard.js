@@ -94,11 +94,19 @@ function Dashboard({ className, username }) {
 					);
 				}}
 			/>
-			<PrList
-				prs={prs}
-				setPinnedItems={setPinnedItems}
-				className={'Dashboard-list'}
-			/>
+			{prs.length ? (
+				<PrList
+					prs={prs}
+					setPinnedItems={setPinnedItems}
+					className={'Dashboard-list'}
+				/>
+			) : (
+				<TransitionPage
+					className='Dashboard-list'
+					image='https://octodex.github.com/images/monroe.jpg'
+					children={'No open Prs 🎵'}
+				/>
+			)}
 		</div>
 	);
 }
