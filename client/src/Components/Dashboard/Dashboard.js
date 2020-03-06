@@ -52,6 +52,7 @@ function Dashboard({ className, username }) {
 	let options = [];
 	let allOptions = [];
 	let ownerOptions = []; // this variable is necessary to filter options (above) by owner
+	let authors = [];
 
 	if (reposData) {
 		allOptions = groupAllRepos(reposData).map(element => {
@@ -59,13 +60,16 @@ function Dashboard({ className, username }) {
 				value: element.id,
 				label: element.nameWithOwner,
 				ownerId: element.owner.id,
+				login: element.owner.login,
 			};
 		});
 
-		ownerOptions = groupAllRepos(reposData).map(element => {
+		ownerOptions = Array.from(
+			new Set(allOptions.map(element => element.ownerId))
+		).map(id => {
 			return {
-				value: element.owner.id,
-				label: element.owner.login,
+				value: id,
+				label: allOptions.find(element => element.ownerId === id).login,
 			};
 		});
 	}
@@ -112,35 +116,47 @@ function Dashboard({ className, username }) {
 	);
 	const prs = [...pinned, ...notPinned];
 
+	// DATA MANIPULATION AUTHORS
+	if (data) {
+		console.log('allPrs :', allPRs);
+		authors = allPRs.map(element => {
+			return {
+				a: 'hello',
+			};
+		});
+	}
+
 	return (
 		<div className={cx('Dashboard', className)}>
 			<div className='Dashboard-title'>Your PRs dashboard</div>
-			<Filter
-				options={ownerOptions}
-				className='Dashboard-filter'
-				value={selectedOwner}
-				placeholder='Select the owner'
-				onChange={value => {
-					setSelectedOwner(value);
-					localStorage.setItem(
-						'selectedOwner',
-						JSON.stringify(value)
-					);
-				}}
-			/>
-			<Filter
-				options={options}
-				className='Dashboard-filter'
-				value={selectedRepos}
-				placeholder='Select your repos...'
-				onChange={value => {
-					setSelectedRepos(value);
-					localStorage.setItem(
-						'selectedRepos',
-						JSON.stringify(value)
-					);
-				}}
-			/>
+			<div className='Dashboard-navBar'>
+				<Filter
+					options={ownerOptions}
+					className='Dashboard-filter'
+					value={selectedOwner}
+					placeholder='Select the owner'
+					onChange={value => {
+						setSelectedOwner(value);
+						localStorage.setItem(
+							'selectedOwner',
+							JSON.stringify(value)
+						);
+					}}
+				/>
+				<Filter
+					options={options}
+					className='Dashboard-filter'
+					value={selectedRepos}
+					placeholder='Select your repos...'
+					onChange={value => {
+						setSelectedRepos(value);
+						localStorage.setItem(
+							'selectedRepos',
+							JSON.stringify(value)
+						);
+					}}
+				/>
+			</div>
 			{prs.length ? (
 				<PrList
 					prs={prs}

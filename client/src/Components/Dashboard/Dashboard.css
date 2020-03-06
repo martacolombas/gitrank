@@ -15,6 +15,13 @@
 	align-self: center;
 }
 
+.Dashboard-navBar {
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-evenly;
+}
+
 .Dashboard-filter {
 	font-size: 14px;
 	max-width: 600px;
