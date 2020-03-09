@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Dashboard from './Components/Dashboard/Dashboard';
-import LoginPage from './Components/LoginPage/LoginPage';
+import Dashboard from './components/Dashboard/Dashboard';
+import LoginPage from './components/LoginPage/LoginPage';
 
 function App() {
 	const [token, setToken] = useState('');
