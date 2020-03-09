@@ -24,7 +24,7 @@ By helping collaborators, you're getting one step closer to your ultimate goal.
 
 1. Visit https://gitrank.dev/
 2. Type in your username
-3. Copy paster your Github token
+3. Copy paste your Github token
 4. (optional) Github enterprise? We have a solution for you too. Paste your company's graphql endpoint
 5. Happy coding! :woman_technologist: :purple_heart:
 
