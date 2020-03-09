@@ -1,0 +1,9 @@
+.SidebarContent {
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	align-content: stretch;
+	height: 100%;
+	padding: 16px;
+	align-items: center;
+}

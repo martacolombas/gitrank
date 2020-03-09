@@ -1,0 +1,9 @@
+.Sidebar {
+	display: flex;
+	flex-direction: column;
+}
+.Sidebar-button {
+	margin: 5px;
+	flex: 0 0 0;
+	max-width: 24px;
+}

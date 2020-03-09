@@ -1,15 +1,17 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 import { Transition } from 'react-transition-group';
+import cx from 'classnames';
+import './SidebarContent.css';
 
-const duration = 1000;
+const duration = 200;
 
 const sidebarStyle = {
 	transition: `width ${duration}ms`,
 };
 const sidebarTransitionStyles = {
 	entering: { width: 0 },
-	entered: { width: '200px' },
-	exiting: { width: '200px' },
+	entered: { width: '400px' },
+	exiting: { width: '400px' },
 	exited: { width: 0 },
 };
 const linkStyle = {
@@ -32,6 +34,7 @@ function sidebarContent({ className, content, isOpen, ...props }) {
 						style={{
 							...linkStyle,
 							...linkTransitionStyles[state],
+							'background-color': 'white',
 						}}
 						className={'SidebarContent'}
 					>
@@ -45,16 +48,14 @@ function sidebarContent({ className, content, isOpen, ...props }) {
 		<Transition in={isOpen} timeout={duration}>
 			{state => (
 				<div
-					className='sidebar'
+					className='SidebarContent'
 					style={{
 						...sidebarStyle,
 						...sidebarTransitionStyles[state],
+						padding: '0px',
 					}}
 				>
 					{renderContent()}
-					<div className='sidebar-link'>Home</div>
-					<div className='sidebar-link'>About</div>
-					<div className='sidebar-link'>Contact</div>
 				</div>
 			)}
 		</Transition>

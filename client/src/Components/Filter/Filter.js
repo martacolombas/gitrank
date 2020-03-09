@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import cx from 'classnames';
+import './Filter.css';
 
 function Filter({ className, options, ...props }) {
 	const classnames = cx('Filter', className);

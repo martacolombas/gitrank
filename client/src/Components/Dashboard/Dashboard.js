@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,7 @@ import { GET_PRS, GET_REPOS } from '../../ApiClient/ApiClient';
 import Filter from '../Filter/Filter';
 import { groupPRs, filterByRepos, groupAllRepos } from './utils';
 import TransitionPage from '../TransitionPage/TransitionPage';
+import Sidebar from '../Sidebar/Sidebar';
 
 library.add(fas);
 
@@ -80,33 +81,40 @@ function Dashboard({ className, username }) {
 
 	return (
 		<div className={cx('Dashboard', className)}>
-			<div className='Dashboard-title'>Your PRs dashboard</div>
-			<Filter
-				options={options}
-				className='Dashboard-filter'
-				value={selectedRepos}
-				placeholder='Select your repos...'
-				onChange={value => {
-					setSelectedRepos(value);
-					localStorage.setItem(
-						'selectedRepos',
-						JSON.stringify(value)
-					);
-				}}
+			<Sidebar
+				className='Dashboard-sidebar'
+				content={
+					<Filter
+						options={options}
+						className='Dashboard-filter'
+						value={selectedRepos}
+						placeholder='Select your repos...'
+						onChange={value => {
+							setSelectedRepos(value);
+							localStorage.setItem(
+								'selectedRepos',
+								JSON.stringify(value)
+							);
+						}}
+					/>
+				}
 			/>
-			{prs.length ? (
-				<PrList
-					prs={prs}
-					setPinnedItems={setPinnedItems}
-					className={'Dashboard-list'}
-				/>
-			) : (
-				<TransitionPage
-					className='Dashboard-list'
-					image='https://octodex.github.com/images/monroe.jpg'
-					children={'No open Prs 🎵'}
-				/>
-			)}
+			<div className='Dashboard-content'>
+				<div className='Dashboard-title'>Your PRs dashboard</div>
+				{prs.length ? (
+					<PrList
+						prs={prs}
+						setPinnedItems={setPinnedItems}
+						className={'Dashboard-list'}
+					/>
+				) : (
+					<TransitionPage
+						className='Dashboard-list'
+						image='https://octodex.github.com/images/monroe.jpg'
+						children={'No open Prs 🎵'}
+					/>
+				)}
+			</div>
 		</div>
 	);
 }
