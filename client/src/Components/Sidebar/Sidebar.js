@@ -16,7 +16,6 @@ function Sidebar({ className, ...props }) {
 			<Button
 				className='Sidebar-button'
 				icon={isOpen ? 'times' : 'bars'}
-				isOpen={isOpen}
 				onClick={toggleBar}
 				size={45}
 			/>
