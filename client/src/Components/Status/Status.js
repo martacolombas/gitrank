@@ -18,6 +18,14 @@ function Status({ className, reviewers }) {
 			classname: 'Status-avatar--commented',
 			statusname: 'commented',
 		},
+		PENDING: {
+			classname: 'Status-avatar--pending',
+			statusname: 'pending',
+		},
+		DISMISSED: {
+			classname: 'Status-avatar--dismissed',
+			statusname: 'dismissed',
+		},
 	};
 
 	return (
