@@ -1,4 +1,4 @@
-export function getPRs(repos) {
+function getPRs(repos) {
 	return repos.reduce((acc, element) => {
 		return acc.concat(element.pullRequests.nodes);
 	}, []);
