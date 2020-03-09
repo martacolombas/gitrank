@@ -5,19 +5,28 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { useQuery } from '@apollo/react-hooks';
 import './Dashboard.css';
 import PrList from '../PrList/PrList';
-import { GET_PRS, GET_REPOS } from '../../ApiClient/ApiClient';
+import { GET_PRS } from '../../ApiClient/ApiClient';
 import Filter from '../Filter/Filter';
-import { groupPRs, filterByRepos, groupAllRepos } from './utils';
+import { groupPRs, filterById } from './utils';
 import TransitionPage from '../TransitionPage/TransitionPage';
 import Sidebar from '../Sidebar/Sidebar';
 
 library.add(fas);
 
 function Dashboard({ className, username }) {
+<<<<<<< HEAD
 	// STATES
+=======
+	// COMPONENT STATE
+>>>>>>> 2f29181
 	const [pinnedItems, setPinnedItems] = useState(
 		localStorage.getItem('pinnedItems')
 			? JSON.parse(localStorage.getItem('pinnedItems'))
+			: []
+	);
+	const [selectedAuthors, setSelectedAuthors] = useState(
+		localStorage.getItem('selectedAuthors')
+			? JSON.parse(localStorage.getItem('selectedAuthors'))
 			: []
 	);
 	const [selectedRepos, setSelectedRepos] = useState(
@@ -25,11 +34,33 @@ function Dashboard({ className, username }) {
 			? JSON.parse(localStorage.getItem('selectedRepos'))
 			: []
 	);
+<<<<<<< HEAD
 	const [selectedOwner, setSelectedOwner] = useState(
 		localStorage.getItem('selectedOwner')
 			? JSON.parse(localStorage.getItem('selectedOwner'))
 			: []
 	);
+=======
+
+	let filteredIds = [];
+	if (Array.isArray(selectedAuthors) && Array.isArray(selectedRepos)) {
+		if (selectedAuthors.length && selectedRepos.length) {
+			filteredIds = [...selectedAuthors, ...selectedRepos].map(
+				element => {
+					return element.prId;
+				}
+			);
+		} else if (selectedAuthors.length) {
+			filteredIds = [...selectedAuthors].map(element => {
+				return element.prId;
+			});
+		} else if (selectedRepos.length) {
+			filteredIds = [...selectedRepos].map(element => {
+				return element.prId;
+			});
+		}
+	}
+>>>>>>> 2f29181
 
 	// API CALLS
 	const { loading, data, error } = useQuery(GET_PRS, {
@@ -39,16 +70,46 @@ function Dashboard({ className, username }) {
 		// pollInterval: 40000, //todo uncomment
 	});
 
-	const {
-		loading: reposLoading,
-		data: reposData,
-		error: reposError,
-	} = useQuery(GET_REPOS, {
-		variables: {
-			login: `${username}`,
-		},
+	// DATA ORDERING AND MANIPULATION - ALL PRS
+
+	const allPRs = data ? groupPRs(data) : [];
+
+	const allAuthors = allPRs.map(element => {
+		return {
+			id: element.author.id,
+			username: element.author.login,
+			prId: element.id,
+		};
+	});
+	const allRepos = allPRs.map(element => {
+		return {
+			id: element.repository.id,
+			nameWithOwner: element.repository.nameWithOwner,
+			prId: element.id,
+		};
 	});
 
+	// FILTER OPTIONS
+	let authorsOptions = [];
+	let filteredAuthorOptions = [];
+
+	authorsOptions = allAuthors.map(element => {
+		return {
+			value: element.id,
+			label: element.username,
+			prId: element.prId,
+		};
+	});
+
+	if (filteredIds.length) {
+		filteredAuthorOptions = authorsOptions.filter(
+			element => !filteredIds.includes(element.prId)
+		);
+	} else {
+		filteredAuthorOptions = [...authorsOptions];
+	}
+
+<<<<<<< HEAD
 	// FILTER OPTIONS
 	let options = [];
 	let allOptions = [];
@@ -76,6 +137,28 @@ function Dashboard({ className, username }) {
 	}
 
 	// TRANSITION PAGES
+=======
+	let reposOptions = [];
+	let filteredReposOptions = [];
+
+	reposOptions = allRepos.map(element => {
+		return {
+			value: element.id,
+			label: element.nameWithOwner,
+			prId: element.prId,
+		};
+	});
+	if (filteredIds.length) {
+		filteredReposOptions = reposOptions.filter(
+			element => !filteredIds.includes(element.prId)
+		);
+	} else {
+		filteredReposOptions = [...reposOptions];
+	}
+
+	// ERROR AND LOADING HANDLING
+
+>>>>>>> 2f29181
 	if (error) {
 		console.error(error);
 		return (
@@ -95,6 +178,7 @@ function Dashboard({ className, username }) {
 		);
 	}
 
+<<<<<<< HEAD
 	// DATA MANIPULATION -OPTIONS
 	if (selectedOwner && selectedOwner.length) {
 		const selectedIds = selectedOwner.map(element => element.value);
@@ -108,11 +192,15 @@ function Dashboard({ className, username }) {
 	// DATA MANIPULATION -PRS
 	const allPRs = data ? groupPRs(data) : [];
 	const filteredByRepos = filterByRepos(allPRs, selectedRepos);
+=======
+	// FINAL PRS SELECTION
+	const filteredByIds = filterById(allPRs, filteredIds);
+>>>>>>> 2f29181
 
-	const notPinned = filteredByRepos.filter(
+	const notPinned = filteredByIds.filter(
 		element => !pinnedItems.includes(element.id)
 	);
-	const pinned = filteredByRepos.filter(element =>
+	const pinned = filteredByIds.filter(element =>
 		pinnedItems.includes(element.id)
 	);
 	const prs = [...pinned, ...notPinned];
@@ -129,6 +217,7 @@ function Dashboard({ className, username }) {
 
 	return (
 		<div className={cx('Dashboard', className)}>
+<<<<<<< HEAD
 			<div className='Dashboard-title'>Your PRs dashboard</div>
 			<div className='Dashboard-navBar'>
 				<Filter
@@ -157,6 +246,56 @@ function Dashboard({ className, username }) {
 						);
 					}}
 				/>
+=======
+			<Sidebar
+				className='Dashboard-sidebar'
+				content={
+					<>
+						<Filter
+							options={filteredAuthorOptions}
+							className='Dashboard-filter'
+							value={selectedAuthors}
+							placeholder='Select authors..'
+							onChange={value => {
+								setSelectedAuthors(value);
+								localStorage.setItem(
+									'selectedAuthors',
+									JSON.stringify(value)
+								);
+							}}
+						/>
+						<Filter
+							options={filteredReposOptions}
+							className='Dashboard-filter'
+							value={selectedRepos}
+							placeholder='Select your repos...'
+							onChange={value => {
+								setSelectedRepos(value);
+								localStorage.setItem(
+									'selectedRepos',
+									JSON.stringify(value)
+								);
+							}}
+						/>
+					</>
+				}
+			/>
+			<div className='Dashboard-content'>
+				<div className='Dashboard-title'>Your PRs dashboard</div>
+				{prs.length ? (
+					<PrList
+						prs={prs}
+						setPinnedItems={setPinnedItems}
+						className={'Dashboard-list'}
+					/>
+				) : (
+					<TransitionPage
+						className='Dashboard-list'
+						image='https://octodex.github.com/images/monroe.jpg'
+						children={'No open Prs 🎵'}
+					/>
+				)}
+>>>>>>> 2f29181
 			</div>
 			{prs.length ? (
 				<PrList

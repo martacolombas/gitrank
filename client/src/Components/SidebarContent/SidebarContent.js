@@ -34,7 +34,7 @@ function sidebarContent({ className, content, isOpen, ...props }) {
 						style={{
 							...linkStyle,
 							...linkTransitionStyles[state],
-							'background-color': 'white',
+							backgroundColor: 'white',
 						}}
 						className={'SidebarContent'}
 					>
