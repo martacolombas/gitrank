@@ -75,7 +75,7 @@ React
 
 `CONTRIBUTE.md` coming soon!
 
-Meanwhile, fork the repo and send me a PR :boom: https://img.shields.io/github/forks/martacolombas/gitrank?label=Fork&style=social
+Meanwhile, fork the repo and send me a PR :boom: ![]https://img.shields.io/github/forks/martacolombas/gitrank?label=Fork&style=social
 
 ### Suggest a feature!
 
