@@ -10,6 +10,7 @@
 	box-shadow: lightgrey;
 	display: grid;
 	padding: 4px;
+	position: fixed;
 }
 
 span.nobreak {
