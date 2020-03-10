@@ -116,16 +116,6 @@ function Dashboard({ className, username }) {
 	);
 	const prs = [...pinned, ...notPinned];
 
-	// DATA MANIPULATION AUTHORS
-	if (data) {
-		console.log('allPrs :', allPRs);
-		authors = allPRs.map(element => {
-			return {
-				a: 'hello',
-			};
-		});
-	}
-
 	return (
 		<div className={cx('Dashboard', className)}>
 			<div className='Dashboard-title'>Your PRs dashboard</div>
