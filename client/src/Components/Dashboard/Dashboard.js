@@ -9,6 +9,7 @@ import { GET_PRS, GET_REPOS } from '../../ApiClient/ApiClient';
 import Filter from '../Filter/Filter';
 import { groupPRs, filterByRepos, groupAllRepos } from './utils';
 import TransitionPage from '../TransitionPage/TransitionPage';
+import Feedback from '../Feedback/Feedback';
 
 library.add(fas);
 
@@ -118,6 +119,7 @@ function Dashboard({ className, username }) {
 
 	return (
 		<div className={cx('Dashboard', className)}>
+			<Feedback />
 			<div className='Dashboard-title'>Your PRs dashboard</div>
 			<div className='Dashboard-navBar'>
 				<Filter
