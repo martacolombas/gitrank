@@ -5,14 +5,16 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { useQuery } from '@apollo/react-hooks';
 import './Dashboard.css';
 import PrList from '../PrList/PrList';
+import Badge from '../Badge/Badge';
 import { GET_PRS, GET_REPOS } from '../../ApiClient/ApiClient';
 import Filter from '../Filter/Filter';
 import { groupPRs, filterByRepos, groupAllRepos } from './utils';
 import TransitionPage from '../TransitionPage/TransitionPage';
+import { defaultProps } from 'react-select/src/Select';
 
 library.add(fas);
 
-function Dashboard({ className, username }) {
+function Dashboard({ className, username, offline }) {
 	// STATES
 	const [pinnedItems, setPinnedItems] = useState(
 		localStorage.getItem('pinnedItems')
@@ -116,18 +118,11 @@ function Dashboard({ className, username }) {
 	);
 	const prs = [...pinned, ...notPinned];
 
-	// DATA MANIPULATION AUTHORS
-	if (data) {
-		console.log('allPrs :', allPRs);
-		authors = allPRs.map(element => {
-			return {
-				a: 'hello',
-			};
-		});
-	}
-
 	return (
 		<div className={cx('Dashboard', className)}>
+			{offline && (
+				<Badge type={offline} className='Dashboard-offlineBadge' />
+			)}
 			<div className='Dashboard-title'>Your PRs dashboard</div>
 			<div className='Dashboard-navBar'>
 				<Filter
