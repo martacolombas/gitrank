@@ -85,7 +85,7 @@ function Login({ className, assignCredentials }) {
 					onChange={handleTokenChange}
 				/>
 				<a
-					href='https://help.github.com/en/enterprise/2.17/user/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line'
+					href='https://github.com/martacolombas/gitrank#github-token'
 					target='_blank'
 					rel='noopener noreferrer'
 				>
