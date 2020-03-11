@@ -1,5 +1,7 @@
 # <img src="assets/femalecodertocat.png" width=50> gitRank
 
+:tada: gitRank is a PWA, you can **download** it now!
+
 ### Tracking PRs has never been so easy
 
 If a Slack message like _"Can anyone review this PR, please?"_ sound familiar to you, this might interest you, so keep reading!​ :sassy_woman:
@@ -34,13 +36,13 @@ If it's unclear to you how to generate your github token follow the instructions
 
 Gitrank will only need read permissions to access your PRs, **we will not modify or create**
 
-<img src="assets/tokenPermissions.png" width=250>
+<img src="assets/tokenPermissions.png" width=350>
 
 `Disclaimer:` GitRank **DOES NOT STORE YOUR TOKEN**, username or PR information.
 
 #### Screenshots
 
-<img src="assets/Gitrank-vid.gif" width=550>
+<img src="assets/Gitrank-vid.gif" width=650>
 
 ### Tech Stack
 
@@ -81,6 +83,6 @@ Meanwhile, fork the repo and send me a PR :boom: ![](https://img.shields.io/gith
 
 Many options:
 
--   Open an issue :spiral_notepad:
--   Find me on Twitter ![](https://img.shields.io/twitter/follow/martacolombas?label=Twitter&style=social)
--   Find me on [LinkedIn](https://www.linkedin.com/in/martacolombas/)
+- Open an issue :spiral_notepad:
+- Find me on Twitter ![](https://img.shields.io/twitter/follow/martacolombas?label=Twitter&style=social)
+- Find me on [LinkedIn](https://www.linkedin.com/in/martacolombas/)
