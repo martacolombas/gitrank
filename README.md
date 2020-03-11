@@ -1,6 +1,7 @@
 # <img src="assets/femalecodertocat.png" width=50> gitRank
 
 :tada: gitRank is a PWA, you can **download** it now!
+<img src="assets/install.png" width=350>
 
 ### Tracking PRs has never been so easy
 
