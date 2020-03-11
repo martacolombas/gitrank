@@ -93,11 +93,13 @@ function Dashboard({ className, username }) {
 
 	// TRANSITION PAGES
 	if (error || authorsError || reposError) {
+		localStorage.getItem('token') && localStorage.removeItem('token');
+		localStorage.getItem('username') && localStorage.removeItem('username');
 		console.error(error);
 		return (
 			<TransitionPage
 				src='https://octodex.github.com/images/deckfailcat.png'
-				children='Something went wrong fetching your Prs... '
+				children='Something went wrong fetching your PRs... Please, refresh the page'
 			/>
 		);
 	}
