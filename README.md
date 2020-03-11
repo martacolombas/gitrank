@@ -36,7 +36,7 @@ Gitrank will only need read permissions to access your PRs, **we will not modify
 
 <img src="assets/tokenPermissions.png" width=250>
 
-`Disclaimer:` GitRank does not store your token, username or PR information.
+`Disclaimer:` GitRank **DOES NOT STORE YOUR TOKEN**, username or PR information.
 
 #### Screenshots
 
