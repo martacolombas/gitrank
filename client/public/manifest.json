@@ -1,6 +1,6 @@
 {
-	"short_name": "GitRank",
-	"name": "Ranking for GitHub's Pull Requests",
+	"short_name": "gitRank",
+	"name": "gitRank - your PR dashboard",
 	"icons": [
 		{
 			"src": "femalecodertocat.png",
