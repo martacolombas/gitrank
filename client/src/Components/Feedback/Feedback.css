@@ -1,0 +1,40 @@
+.Feedback {
+	background-color: #ffffff;
+	width: 200px;
+	height: 90px;
+	position: absolute;
+	left: 1.5%;
+	top: 80%;
+	border-radius: 5px;
+	box-sizing: border-box;
+	box-shadow: lightgrey;
+	display: grid;
+	padding: 4px;
+	position: fixed;
+}
+
+span.nobreak {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.Feedback-github {
+	display: flex;
+	padding: 4px;
+}
+
+.Feedback-github-text {
+	display: flex;
+	font-size: 10px;
+}
+
+.Feedback-twitter {
+	display: flex;
+	padding: 4px;
+}
+
+.Feedback-twitter-text {
+	display: flex;
+	font-size: 10px;
+}

@@ -10,15 +10,12 @@ import Filter from '../Filter/Filter';
 import { groupPRs, filterById } from './utils';
 import TransitionPage from '../TransitionPage/TransitionPage';
 import Sidebar from '../Sidebar/Sidebar';
+import Feedback from '../Feedback/Feedback';
 
 library.add(fas);
 
 function Dashboard({ className, username }) {
-<<<<<<< HEAD
-	// STATES
-=======
 	// COMPONENT STATE
->>>>>>> 2f29181
 	const [pinnedItems, setPinnedItems] = useState(
 		localStorage.getItem('pinnedItems')
 			? JSON.parse(localStorage.getItem('pinnedItems'))
@@ -34,13 +31,11 @@ function Dashboard({ className, username }) {
 			? JSON.parse(localStorage.getItem('selectedRepos'))
 			: []
 	);
-<<<<<<< HEAD
 	const [selectedOwner, setSelectedOwner] = useState(
 		localStorage.getItem('selectedOwner')
 			? JSON.parse(localStorage.getItem('selectedOwner'))
 			: []
 	);
-=======
 
 	let filteredIds = [];
 	if (Array.isArray(selectedAuthors) && Array.isArray(selectedRepos)) {
@@ -60,7 +55,6 @@ function Dashboard({ className, username }) {
 			});
 		}
 	}
->>>>>>> 2f29181
 
 	// API CALLS
 	const { loading, data, error } = useQuery(GET_PRS, {
@@ -109,8 +103,6 @@ function Dashboard({ className, username }) {
 		filteredAuthorOptions = [...authorsOptions];
 	}
 
-<<<<<<< HEAD
-	// FILTER OPTIONS
 	let options = [];
 	let allOptions = [];
 	let ownerOptions = []; // this variable is necessary to filter options (above) by owner
@@ -134,10 +126,18 @@ function Dashboard({ className, username }) {
 				label: allOptions.find(element => element.ownerId === id).login,
 			};
 		});
+
+		ownerOptions = Array.from(
+			new Set(allOptions.map(element => element.ownerId))
+		).map(id => {
+			return {
+				value: id,
+				label: allOptions.find(element => element.ownerId === id).login,
+			};
+		});
 	}
 
 	// TRANSITION PAGES
-=======
 	let reposOptions = [];
 	let filteredReposOptions = [];
 
@@ -156,9 +156,7 @@ function Dashboard({ className, username }) {
 		filteredReposOptions = [...reposOptions];
 	}
 
-	// ERROR AND LOADING HANDLING
-
->>>>>>> 2f29181
+	// TRANSITION PAGES
 	if (error) {
 		console.error(error);
 		return (
@@ -178,7 +176,6 @@ function Dashboard({ className, username }) {
 		);
 	}
 
-<<<<<<< HEAD
 	// DATA MANIPULATION -OPTIONS
 	if (selectedOwner && selectedOwner.length) {
 		const selectedIds = selectedOwner.map(element => element.value);
@@ -191,11 +188,7 @@ function Dashboard({ className, username }) {
 
 	// DATA MANIPULATION -PRS
 	const allPRs = data ? groupPRs(data) : [];
-	const filteredByRepos = filterByRepos(allPRs, selectedRepos);
-=======
-	// FINAL PRS SELECTION
 	const filteredByIds = filterById(allPRs, filteredIds);
->>>>>>> 2f29181
 
 	const notPinned = filteredByIds.filter(
 		element => !pinnedItems.includes(element.id)
@@ -217,36 +210,8 @@ function Dashboard({ className, username }) {
 
 	return (
 		<div className={cx('Dashboard', className)}>
-<<<<<<< HEAD
+			<Feedback />
 			<div className='Dashboard-title'>Your PRs dashboard</div>
-			<div className='Dashboard-navBar'>
-				<Filter
-					options={ownerOptions}
-					className='Dashboard-filter'
-					value={selectedOwner}
-					placeholder='Select the owner'
-					onChange={value => {
-						setSelectedOwner(value);
-						localStorage.setItem(
-							'selectedOwner',
-							JSON.stringify(value)
-						);
-					}}
-				/>
-				<Filter
-					options={options}
-					className='Dashboard-filter'
-					value={selectedRepos}
-					placeholder='Select your repos...'
-					onChange={value => {
-						setSelectedRepos(value);
-						localStorage.setItem(
-							'selectedRepos',
-							JSON.stringify(value)
-						);
-					}}
-				/>
-=======
 			<Sidebar
 				className='Dashboard-sidebar'
 				content={
@@ -295,7 +260,8 @@ function Dashboard({ className, username }) {
 						children={'No open Prs 🎵'}
 					/>
 				)}
->>>>>>> 2f29181
+				>>>>>>> 2f29181 ======= >>>>>>>
+				61ceb4731d542fc12424e02ea1efb6712cf7129f
 			</div>
 			{prs.length ? (
 				<PrList

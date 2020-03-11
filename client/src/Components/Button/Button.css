@@ -4,6 +4,6 @@
 	border: none;
 }
 
-.Button-icon {
-	font-size: 12px;
+.Button:hover {
+	cursor: pointer;
 }
