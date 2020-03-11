@@ -34,9 +34,9 @@ If it's unclear to you how to generate your github token follow the instructions
 
 Gitrank will only need read permissions to access your PRs, **we will not modify or create**
 
-<img src="assets/token_permissions.png" width=250>
+<img src="assets/tokenPermissions.png" width=250>
 
-`Disclaimer:` GitRank does not store your token, username or PR information.
+`Disclaimer:` GitRank **DOES NOT STORE YOUR TOKEN**, username or PR information.
 
 #### Screenshots
 

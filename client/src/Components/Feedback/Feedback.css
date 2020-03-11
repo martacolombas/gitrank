@@ -1,0 +1,36 @@
+.Feedback {
+	background-color: #f3f2f2;
+	border-radius: 5px;
+	padding: 4px;
+	justify-self: center;
+}
+
+.Feedback-button {
+	background-color: #f3f2f2;
+}
+
+span.nobreak {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.Feedback-github {
+	display: flex;
+	padding: 4px;
+}
+
+.Feedback-github-text {
+	display: flex;
+	font-size: 10px;
+}
+
+.Feedback-twitter {
+	display: flex;
+	padding: 4px;
+}
+
+.Feedback-twitter-text {
+	display: flex;
+	font-size: 10px;
+}
