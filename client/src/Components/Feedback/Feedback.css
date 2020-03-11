@@ -5,6 +5,10 @@
 	justify-self: center;
 }
 
+.Feedback-button {
+	background-color: #f3f2f2;
+}
+
 span.nobreak {
 	overflow: hidden;
 	text-overflow: ellipsis;
