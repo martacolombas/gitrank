@@ -113,7 +113,11 @@ function Dashboard({ className, username }) {
 
 	// DATA MANIPULATION -PRS
 	const allPRs = data ? groupPRs(data) : [];
-	const filteredByRepos = filterByRepos(allPRs, selectedRepos);
+	const filteredByRepos = filterByRepos(
+		allPRs,
+		selectedRepos,
+		selectedAuthor
+	);
 
 	const notPinned = filteredByRepos.filter(
 		element => !pinnedItems.includes(element.id)
@@ -121,7 +125,9 @@ function Dashboard({ className, username }) {
 	const pinned = filteredByRepos.filter(element =>
 		pinnedItems.includes(element.id)
 	);
-	const prs = [...pinned, ...notPinned];
+	const prs = [...pinned, ...notPinned].sort((a, b) => {
+		return new Date(b.updatedAt) - new Date(a.updatedAt);
+	});
 
 	return (
 		<div className={cx('Dashboard', className)}>

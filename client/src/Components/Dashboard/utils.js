@@ -17,16 +17,20 @@ export function groupPRs(queryData) {
 		getReposFromOrgs(queryData.user.organizations.nodes)
 	);
 
-	return [...userReposPRs, ...orgsReposPRs].sort(
-		(a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
-	);
+	return [...userReposPRs, ...orgsReposPRs];
 }
-export function filterByRepos(allPRs, repos) {
-	return Array.isArray(repos) && repos.length > 0
-		? allPRs.filter(element =>
-				repos.some(repo => repo.value === element.repository.id)
+export function filterByRepos(allPRs, repos, authors) {
+	const firstFiltering =
+		Array.isArray(repos) && repos.length > 0
+			? allPRs.filter(element =>
+					repos.some(repo => repo.value === element.repository.id)
+			  )
+			: allPRs;
+	return Array.isArray(authors) && authors.length > 0
+		? firstFiltering.filter(element =>
+				authors.some(author => author.value === element.author.id)
 		  )
-		: allPRs;
+		: firstFiltering;
 }
 
 export function groupAllRepos(queryData) {
