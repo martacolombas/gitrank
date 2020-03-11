@@ -21,9 +21,11 @@ export function groupPRs(queryData) {
 		(a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
 	);
 }
-export function filterById(allPRs, ids) {
-	return Array.isArray(ids) && ids.length > 0
-		? allPRs.filter(element => ids.includes(element.id))
+export function filterByRepos(allPRs, repos) {
+	return Array.isArray(repos) && repos.length > 0
+		? allPRs.filter(element =>
+				repos.some(repo => repo.value === element.repository.id)
+		  )
 		: allPRs;
 }
 
