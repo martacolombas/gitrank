@@ -1,8 +1,12 @@
 .Dashboard {
 	display: flex;
+}
+
+.Dashboard-content {
+	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	justify-content: center;
+	justify-content: flex-start;
 	max-width: 750px;
 	margin: 0 auto;
 }
@@ -24,8 +28,11 @@
 
 .Dashboard-filter {
 	font-size: 14px;
-	max-width: 600px;
-	min-width: 300px;
 	margin-bottom: 16px;
 	align-self: center;
+}
+
+.Dashboard-sidebar {
+	display: flex;
+	flex: 1;
 }

@@ -29,6 +29,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-select": "^3.0.8",
+    "react-transition-group": "^4.3.0",
     "use-debounce": "^3.3.0",
     "use-interval": "^1.2.1"
   },

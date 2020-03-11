@@ -5,11 +5,12 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { useQuery } from '@apollo/react-hooks';
 import './Dashboard.css';
 import PrList from '../PrList/PrList';
-import { GET_PRS, GET_REPOS } from '../../ApiClient/ApiClient';
+import { GET_PRS, GET_REPOS, GET_AUTHORS } from '../../ApiClient/ApiClient';
 import Filter from '../Filter/Filter';
 import { groupPRs, filterByRepos, groupAllRepos } from './utils';
 import TransitionPage from '../TransitionPage/TransitionPage';
 import Feedback from '../Feedback/Feedback';
+import Sidebar from '../Sidebar/Sidebar';
 
 library.add(fas);
 
@@ -25,9 +26,9 @@ function Dashboard({ className, username }) {
 			? JSON.parse(localStorage.getItem('selectedRepos'))
 			: []
 	);
-	const [selectedOwner, setSelectedOwner] = useState(
-		localStorage.getItem('selectedOwner')
-			? JSON.parse(localStorage.getItem('selectedOwner'))
+	const [selectedAuthor, setSelectedAuthor] = useState(
+		localStorage.getItem('selectedAuthor')
+			? JSON.parse(localStorage.getItem('selectedAuthor'))
 			: []
 	);
 
@@ -49,44 +50,61 @@ function Dashboard({ className, username }) {
 		},
 	});
 
+	const {
+		loading: authorsLoading,
+		data: authorsData,
+		error: authorsError,
+	} = useQuery(GET_AUTHORS, {
+		variables: {
+			login: `${username}`,
+		},
+	});
+
 	// FILTER OPTIONS
 	let options = [];
-	let allOptions = [];
-	let ownerOptions = []; // this variable is necessary to filter options (above) by owner
-	let authors = [];
+	let authorOptions = [];
 
 	if (reposData) {
-		allOptions = groupAllRepos(reposData).map(element => {
+		options = groupAllRepos(reposData).map(element => {
 			return {
 				value: element.id,
 				label: element.nameWithOwner,
-				ownerId: element.owner.id,
-				login: element.owner.login,
-			};
-		});
-
-		ownerOptions = Array.from(
-			new Set(allOptions.map(element => element.ownerId))
-		).map(id => {
-			return {
-				value: id,
-				label: allOptions.find(element => element.ownerId === id).login,
 			};
 		});
 	}
 
+	if (authorsData) {
+		authorOptions = groupPRs(authorsData)
+			.map(element => {
+				return {
+					value: element.author.id,
+					label: element.author.login,
+				};
+			})
+			.reduce((acc, current) => {
+				const x = acc.find(item => item.value === current.value);
+				if (!x) {
+					return acc.concat([current]);
+				} else {
+					return acc;
+				}
+			}, []);
+	}
+
 	// TRANSITION PAGES
-	if (error) {
+	if (error || authorsError || reposError) {
+		localStorage.getItem('token') && localStorage.removeItem('token');
+		localStorage.getItem('username') && localStorage.removeItem('username');
 		console.error(error);
 		return (
 			<TransitionPage
 				src='https://octodex.github.com/images/deckfailcat.png'
-				children='Something went wrong fetching your Prs... '
+				children='Something went wrong fetching your PRs... Please, refresh the page'
 			/>
 		);
 	}
 
-	if (loading) {
+	if (loading || authorsLoading || reposLoading) {
 		return (
 			<TransitionPage
 				src='https://octodex.github.com/images/hula_loop_octodex03.gif'
@@ -95,19 +113,13 @@ function Dashboard({ className, username }) {
 		);
 	}
 
-	// DATA MANIPULATION -OPTIONS
-	if (selectedOwner && selectedOwner.length) {
-		const selectedIds = selectedOwner.map(element => element.value);
-		options = allOptions.filter(element =>
-			selectedIds.includes(element.ownerId)
-		);
-	} else {
-		options = [...allOptions];
-	}
-
 	// DATA MANIPULATION -PRS
 	const allPRs = data ? groupPRs(data) : [];
-	const filteredByRepos = filterByRepos(allPRs, selectedRepos);
+	const filteredByRepos = filterByRepos(
+		allPRs,
+		selectedRepos,
+		selectedAuthor
+	);
 
 	const notPinned = filteredByRepos.filter(
 		element => !pinnedItems.includes(element.id)
@@ -115,53 +127,64 @@ function Dashboard({ className, username }) {
 	const pinned = filteredByRepos.filter(element =>
 		pinnedItems.includes(element.id)
 	);
-	const prs = [...pinned, ...notPinned];
+	const prs = [...pinned, ...notPinned].sort((a, b) => {
+		return new Date(b.updatedAt) - new Date(a.updatedAt);
+	});
 
 	return (
 		<div className={cx('Dashboard', className)}>
-			<Feedback />
-			<div className='Dashboard-title'>Your PRs dashboard</div>
-			<div className='Dashboard-navBar'>
-				<Filter
-					options={ownerOptions}
-					className='Dashboard-filter'
-					value={selectedOwner}
-					placeholder='Select the owner'
-					onChange={value => {
-						setSelectedOwner(value);
-						localStorage.setItem(
-							'selectedOwner',
-							JSON.stringify(value)
-						);
-					}}
-				/>
-				<Filter
-					options={options}
-					className='Dashboard-filter'
-					value={selectedRepos}
-					placeholder='Select your repos...'
-					onChange={value => {
-						setSelectedRepos(value);
-						localStorage.setItem(
-							'selectedRepos',
-							JSON.stringify(value)
-						);
-					}}
-				/>
+			<Sidebar
+				className='Dashboard-sidebar'
+				content={
+					<>
+						{
+							<Filter
+								options={authorOptions}
+								className='Dashboard-filter'
+								value={selectedAuthor}
+								placeholder='Select the PR author'
+								onChange={value => {
+									setSelectedAuthor(value);
+									localStorage.setItem(
+										'selectedAuthor',
+										JSON.stringify(value)
+									);
+								}}
+							/>
+						}
+						<Filter
+							options={options}
+							className='Dashboard-filter'
+							value={selectedRepos}
+							placeholder='Select your repos...'
+							onChange={value => {
+								setSelectedRepos(value);
+								localStorage.setItem(
+									'selectedRepos',
+									JSON.stringify(value)
+								);
+							}}
+						/>
+						<Feedback />
+					</>
+				}
+			/>
+			<div className='Dashboard-content'>
+				<div className='Dashboard-title'>Your PRs dashboard</div>
+				{prs.length ? (
+					<PrList
+						prs={prs}
+						setPinnedItems={setPinnedItems}
+						className={'Dashboard-list'}
+					/>
+				) : (
+					<TransitionPage
+						className='Dashboard-list'
+						image='https://octodex.github.com/images/monroe.jpg'
+						children={'No open Prs 🎵'}
+					/>
+				)}
 			</div>
-			{prs.length ? (
-				<PrList
-					prs={prs}
-					setPinnedItems={setPinnedItems}
-					className={'Dashboard-list'}
-				/>
-			) : (
-				<TransitionPage
-					className='Dashboard-list'
-					image='https://octodex.github.com/images/monroe.jpg'
-					children={'No open Prs 🎵'}
-				/>
-			)}
 		</div>
 	);
 }
