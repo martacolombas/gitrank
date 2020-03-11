@@ -120,7 +120,6 @@ function Dashboard({ className, username }) {
 
 	return (
 		<div className={cx('Dashboard', className)}>
-			<div className='Dashboard-title'>Your PRs dashboard</div>
 			<Sidebar
 				className='Dashboard-sidebar'
 				content={

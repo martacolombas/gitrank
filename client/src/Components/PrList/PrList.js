@@ -5,7 +5,7 @@ import PrPreview from '../PrPreview/PrPreview';
 function PrList({ prs, setPinnedItems }) {
 	if (prs) {
 		return (
-			<div className='list-container'>
+			<div className='PrList'>
 				{prs.map(pr => {
 					return (
 						<PrPreview

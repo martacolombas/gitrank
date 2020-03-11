@@ -1,16 +1,11 @@
 .Feedback {
-	background-color: #ffffff;
-	width: 200px;
+	background-color: #f3f2f2;
 	height: 90px;
-	position: absolute;
-	left: 1.5%;
-	top: 80%;
 	border-radius: 5px;
-	box-sizing: border-box;
-	box-shadow: lightgrey;
 	display: grid;
 	padding: 4px;
-	position: fixed;
+	width: 100%;
+	align-self: flex-end;
 }
 
 span.nobreak {

@@ -1,0 +1,7 @@
+.PrList {
+	overflow: scroll;
+	height: 90vh;
+	padding: 4px;
+	border-radius: 4px;
+	margin: 8px;
+}
