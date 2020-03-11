@@ -14,7 +14,7 @@ import Sidebar from '../Sidebar/Sidebar';
 
 library.add(fas);
 
-function Dashboard({ className, username }) {
+function Dashboard({ className, username, offline }) {
 	// STATES
 	const [pinnedItems, setPinnedItems] = useState(
 		localStorage.getItem('pinnedItems')

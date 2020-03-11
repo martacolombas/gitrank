@@ -1,10 +1,16 @@
 import React from 'react';
 import './LoginPage.css';
 import Login from '../Login/Login';
+import cx from 'classnames';
+import Badge from '../Badge/Badge';
 
-function LoginPage({ assignCredentials }) {
+function LoginPage({ className, assignCredentials, offline }) {
+	const classnames = cx('LoginPage', className);
 	return (
-		<div className='loginPage-container'>
+		<div className='LoginPage-container'>
+			{offline && (
+				<Badge type={offline} className='LoginPage-offlineBadge' />
+			)}
 			<Login assignCredentials={assignCredentials} />
 		</div>
 	);
