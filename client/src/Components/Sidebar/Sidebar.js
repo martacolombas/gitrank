@@ -11,13 +11,15 @@ function Sidebar({ className, ...props }) {
 	function toggleBar() {
 		toggleSidebar(!isOpen);
 	}
+
 	return (
 		<div className='Sidebar'>
 			<Button
 				className='Sidebar-button'
 				icon={isOpen ? 'times' : 'bars'}
 				onClick={toggleBar}
-				size={45}
+				size={60}
+				iconSize={24}
 			/>
 			<SidebarContent isOpen={isOpen} content={props.content} />
 		</div>
