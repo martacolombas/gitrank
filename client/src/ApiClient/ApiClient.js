@@ -3,7 +3,11 @@ import { ApolloClient, IntrospectionFragmentMatcher } from 'apollo-boost';
 import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { gql } from 'apollo-boost';
-import { repositoriesFragment, selectedReposFragment } from './Fragments';
+import {
+	repositoriesFragment,
+	selectedReposFragment,
+	authorsFragment,
+} from './Fragments';
 
 // Apollo client cache will use heuristic fragment matcher, however...
 // ...he heuristic fragment matcher will not work accurately when using ...
@@ -70,4 +74,18 @@ export const GET_REPOS = gql`
 			}
 		}
 	}
+`;
+
+export const GET_AUTHORS = gql`
+query getRepos($login: String!) {
+user(login: $login) {
+id
+${authorsFragment}
+organizations(first: 10) {
+	nodes {
+	${authorsFragment}
+	}
+}
+}
+}
 `;

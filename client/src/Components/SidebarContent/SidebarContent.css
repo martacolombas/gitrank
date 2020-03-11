@@ -2,10 +2,9 @@
 	display: flex;
 	flex-direction: column;
 	width: 400px;
-	align-content: stretch;
 	height: 100vh;
 	padding: 16px;
-	align-items: center;
 	overflow: hidden;
 	padding-top: 24px;
+	justify-content: flex-start;
 }

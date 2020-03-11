@@ -59,16 +59,36 @@ repositories(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }) {
 	}
 }`;
 
-export const selectedReposFragment = `repositories(
-				first: 50
-				orderBy: { field: UPDATED_AT, direction: DESC }
-			) {
-				nodes {
-					id
-					nameWithOwner
-					owner {
-						id
-						login
-					}
-				}
-			}`;
+export const selectedReposFragment = `
+repositories(
+	first: 50
+	orderBy: { field: UPDATED_AT, direction: DESC }
+) {
+	nodes {
+		id
+		nameWithOwner
+		owner {
+			id
+			login
+		}
+	}
+}`;
+
+export const authorsFragment = `repositories(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }){
+		nodes {
+			pullRequests(
+			last: 20
+			states: OPEN
+			orderBy: { field: UPDATED_AT, direction: DESC }
+		) {
+          nodes {
+            author {
+              ... on User {
+                id
+                login
+              }
+            }
+          }
+        }
+          }
+        } `;
