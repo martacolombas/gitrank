@@ -12,18 +12,20 @@
 }
 
 .Dashboard-title {
-	position: relative;
-	font-size: large;
-	padding: 16px;
-	font-weight: 900;
-	align-self: center;
+	position: fixed;
+	font-size: 10px;
+	padding: 6px;
+	font-weight: 400;
+	display: inline-flex;
+	background-color: white;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
 }
 
-.Dashboard-navBar {
-	width: 100%;
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-evenly;
+.Dashboard-title-pic {
+	width: 16px;
+	height: 16px;
 }
 
 .Dashboard-filter {
@@ -33,7 +35,8 @@
 	width: 100%;
 }
 
-.Dashboard-sidebar {
-	display: flex;
-	flex: 1;
+.github {
+	position: fixed;
+	display: block;
+	right: 4px;
 }

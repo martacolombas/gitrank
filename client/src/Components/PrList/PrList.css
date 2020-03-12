@@ -1,10 +1,10 @@
 .PrList {
 	overflow: scroll;
 	height: 90vh;
-	padding: 4px;
+	padding: 8px;
 	border-radius: 4px;
-	margin: 8px;
+	margin: 36px 0px;
 	display: flex;
 	flex-direction: column;
-	min-width: 700px;
+	min-width: 500px;
 }
