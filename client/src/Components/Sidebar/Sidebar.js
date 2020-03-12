@@ -19,7 +19,7 @@ function Sidebar({ className, ...props }) {
 				icon={isOpen ? 'times' : 'bars'}
 				onClick={toggleBar}
 				size={60}
-				iconSize={24}
+				iconSize={16}
 			/>
 			<SidebarContent isOpen={isOpen} content={props.content} />
 		</div>

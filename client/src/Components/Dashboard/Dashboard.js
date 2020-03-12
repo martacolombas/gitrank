@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { useQuery } from '@apollo/react-hooks';
 import './Dashboard.css';
 import PrList from '../PrList/PrList';
@@ -11,6 +12,7 @@ import { groupPRs, filterByRepos, groupAllRepos } from './utils';
 import TransitionPage from '../TransitionPage/TransitionPage';
 import Feedback from '../Feedback/Feedback';
 import Sidebar from '../Sidebar/Sidebar';
+import Button from '../Button/Button';
 
 library.add(fas);
 
@@ -115,11 +117,7 @@ function Dashboard({ className, username, offline }) {
 
 	// DATA MANIPULATION -PRS
 	const allPRs = data ? groupPRs(data) : [];
-	const filteredByRepos = filterByRepos(
-		allPRs,
-		selectedRepos,
-		selectedAuthor
-	);
+	const filteredByRepos = filterByRepos(allPRs, selectedRepos, selectedAuthor);
 
 	const notPinned = filteredByRepos.filter(
 		element => !pinnedItems.includes(element.id)
@@ -133,6 +131,22 @@ function Dashboard({ className, username, offline }) {
 
 	return (
 		<div className={cx('Dashboard', className)}>
+			<div className='Dashboard-title'>
+				gitRank
+				<img
+					src='https://cdn.sparkfun.com/assets/home_page_posts/1/4/7/0/femalecodertocat.png'
+					className='Dashboard-title-pic'
+					alt='login femalecodercat'
+				/>
+				<Button
+					icon={faGithub}
+					iconSize={12}
+					className='Dashboard-title-pic github'
+					onClick={() => {
+						window.open('https://github.com/martacolombas/gitrank');
+					}}
+				/>
+			</div>
 			<Sidebar
 				className='Dashboard-sidebar'
 				content={
@@ -145,10 +159,7 @@ function Dashboard({ className, username, offline }) {
 								placeholder='Select the PR author'
 								onChange={value => {
 									setSelectedAuthor(value);
-									localStorage.setItem(
-										'selectedAuthor',
-										JSON.stringify(value)
-									);
+									localStorage.setItem('selectedAuthor', JSON.stringify(value));
 								}}
 							/>
 						}
@@ -159,10 +170,7 @@ function Dashboard({ className, username, offline }) {
 							placeholder='Select your repos...'
 							onChange={value => {
 								setSelectedRepos(value);
-								localStorage.setItem(
-									'selectedRepos',
-									JSON.stringify(value)
-								);
+								localStorage.setItem('selectedRepos', JSON.stringify(value));
 							}}
 						/>
 						<Feedback />
@@ -170,7 +178,6 @@ function Dashboard({ className, username, offline }) {
 				}
 			/>
 			<div className='Dashboard-content'>
-				<div className='Dashboard-title'>Your PRs dashboard</div>
 				{prs.length ? (
 					<PrList
 						prs={prs}
