@@ -15,6 +15,7 @@ repositories(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }) {
 				updatedAt
 				state
 				url
+				isDraft
 				author {
 					... on User {
 						id

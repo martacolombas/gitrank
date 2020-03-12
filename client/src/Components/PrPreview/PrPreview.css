@@ -37,6 +37,9 @@
 	display: flex;
 	align-self: start;
 	margin-top: 8px;
+	flex-direction: column;
+	padding: 4px;
+	align-content: space-between;
 }
 
 .PrPreview-header-actions {
