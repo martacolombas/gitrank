@@ -5,7 +5,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { useQuery } from '@apollo/react-hooks';
 import './Dashboard.css';
 import PrList from '../PrList/PrList';
-import { GET_PRS, GET_REPOS, GET_AUTHORS } from '../../ApiClient/ApiClient';
+import { GET_PRS, GET_REPOS, GET_AUTHORS } from '../../ApiClient/Queries';
 import Filter from '../Filter/Filter';
 import { groupPRs, filterByRepos, groupAllRepos } from './utils';
 import TransitionPage from '../TransitionPage/TransitionPage';

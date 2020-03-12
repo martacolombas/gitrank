@@ -21,6 +21,7 @@ function NavBar({ className }) {
 				onClick={() => {
 					window.open('https://github.com/martacolombas/gitrank');
 				}}
+				alt='Open the repo!'
 			/>
 		</div>
 	);
