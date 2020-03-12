@@ -20,6 +20,12 @@
 	background-color: #cb2431;
 }
 
+.Badge--draft {
+	background-color: gray;
+	text-align: justify;
+	margin-top: 2px;
+}
+
 .emoji {
 	opacity: 1;
 }

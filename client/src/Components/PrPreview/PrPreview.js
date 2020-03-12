@@ -30,10 +30,7 @@ function PrPreview({ pr, setPinnedItems, className }) {
 		<div className={classnames}>
 			<header className='PrPreview-header'>
 				<div className='PrPreview-header-avatar'>
-					<Avatar
-						avatarUrl={pr.author.avatarUrl}
-						author={pr.author.login}
-					/>
+					<Avatar avatarUrl={pr.author.avatarUrl} author={pr.author.login} />
 				</div>
 				<div className='PrPreview-header-title'>
 					<a
@@ -59,13 +56,17 @@ function PrPreview({ pr, setPinnedItems, className }) {
 						type={pr.state}
 						emoji={true}
 					/>
+					{pr.isDraft && (
+						<Badge
+							className='PrPreview-header-badge'
+							type={'DRAFT'}
+							emoji={false}
+						/>
+					)}
 				</div>
 				<div className='PrPreview-header-actions'>
 					<CopyToClipboard text={pr.url}>
-						<Button
-							icon={'copy'}
-							className={'PrPreview-header-button'}
-						/>
+						<Button icon={'copy'} className={'PrPreview-header-button'} />
 					</CopyToClipboard>
 					<Button
 						icon={'star'}
