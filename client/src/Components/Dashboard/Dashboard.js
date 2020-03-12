@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { useQuery } from '@apollo/react-hooks';
 import './Dashboard.css';
 import PrList from '../PrList/PrList';
@@ -12,7 +11,7 @@ import { groupPRs, filterByRepos, groupAllRepos } from './utils';
 import TransitionPage from '../TransitionPage/TransitionPage';
 import Feedback from '../Feedback/Feedback';
 import Sidebar from '../Sidebar/Sidebar';
-import Button from '../Button/Button';
+import NavBar from '../NavBar/NavBar';
 
 library.add(fas);
 
@@ -131,22 +130,7 @@ function Dashboard({ className, username, offline }) {
 
 	return (
 		<div className={cx('Dashboard', className)}>
-			<div className='Dashboard-title'>
-				gitRank
-				<img
-					src='https://cdn.sparkfun.com/assets/home_page_posts/1/4/7/0/femalecodertocat.png'
-					className='Dashboard-title-pic'
-					alt='login femalecodercat'
-				/>
-				<Button
-					icon={faGithub}
-					iconSize={12}
-					className='Dashboard-title-pic github'
-					onClick={() => {
-						window.open('https://github.com/martacolombas/gitrank');
-					}}
-				/>
-			</div>
+			<NavBar className='Dashboard-navBar' />
 			<Sidebar
 				className='Dashboard-sidebar'
 				content={

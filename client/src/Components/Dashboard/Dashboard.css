@@ -11,32 +11,9 @@
 	margin: 0 auto;
 }
 
-.Dashboard-title {
-	position: fixed;
-	font-size: 10px;
-	padding: 6px;
-	font-weight: 400;
-	display: inline-flex;
-	background-color: white;
-	width: 100%;
-	align-items: center;
-	justify-content: center;
-}
-
-.Dashboard-title-pic {
-	width: 16px;
-	height: 16px;
-}
-
 .Dashboard-filter {
 	font-size: 14px;
 	margin-bottom: 16px;
 	align-self: center;
 	width: 100%;
-}
-
-.github {
-	position: fixed;
-	display: block;
-	right: 4px;
 }
