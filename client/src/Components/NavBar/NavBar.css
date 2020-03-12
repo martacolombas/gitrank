@@ -1,0 +1,25 @@
+.NavBar {
+	position: fixed;
+	display: inline-flex;
+	background-color: white;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
+.NavBar-title {
+	font-size: 10px;
+	padding: 6px;
+	font-weight: 400;
+}
+
+.NavBar-title-pic {
+	width: 16px;
+	height: 16px;
+}
+
+.github {
+	position: fixed;
+	display: block;
+	right: 4px;
+}
