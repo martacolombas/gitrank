@@ -3,6 +3,7 @@ import {
 	repositoriesFragment,
 	selectedReposFragment,
 	authorsFragment,
+	userFragments,
 } from './Fragments';
 
 export const GET_PRS = gql`
@@ -35,7 +36,7 @@ export const GET_REPOS = gql`
 `;
 
 export const GET_AUTHORS = gql`
-query getRepos($login: String!) {
+query getAuthors($login: String!) {
 user(login: $login) {
 id
 ${authorsFragment}
@@ -46,3 +47,20 @@ organizations(first: 10) {
    }
   }
  }`;
+
+export const GET_USERINFO = gql`
+	query PRinfo($login: String!) {
+		user(login: $login) {
+      id
+      login
+      avatarUrl
+			${userFragments}
+			organizations (first: 10) {
+				totalCount
+				nodes {
+					${userFragments}
+				}
+			}
+		}
+	}
+`;

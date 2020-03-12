@@ -15,7 +15,7 @@ import NavBar from '../NavBar/NavBar';
 
 library.add(fas);
 
-function Dashboard({ className, username, offline }) {
+function Dashboard({ className, username }) {
 	// STATES
 	const [pinnedItems, setPinnedItems] = useState(
 		localStorage.getItem('pinnedItems')

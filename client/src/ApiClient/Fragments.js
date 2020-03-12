@@ -93,4 +93,12 @@ export const authorsFragment = `repositories(first: 50, orderBy: { field: UPDATE
           }
         }
           }
-        } `;
+				} `;
+
+export const userFragments = `
+repositories(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }) {
+	nodes {
+		id
+		name
+	}
+}`;

@@ -18,6 +18,22 @@
 	height: 16px;
 }
 
+.NavBar-user-button {
+	width: 18px;
+	height: 18px;
+	position: relative;
+	display: block;
+	right: -568px;
+}
+
+.NavBar-user-pic {
+	width: 18px;
+	height: 18px;
+	position: relative;
+	display: block;
+	border-radius: 20%;
+}
+
 .github {
 	position: fixed;
 	display: block;
