@@ -47,7 +47,7 @@ function PrPreview({ pr, setPinnedItems, className }) {
 						target='_blank'
 						rel='noopener noreferrer'
 					>
-						{pr.title}
+						{`#${pr.number} ${pr.title}`}
 					</a>
 				</div>
 				<div className='PrPreview-header-details'>
