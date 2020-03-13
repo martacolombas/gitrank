@@ -5,10 +5,10 @@ import cx from 'classnames';
 function Checkbox({ className, text, size = 12, ...props }) {
 	const classnames = cx('Checkbox', className);
 	return (
-		<div className='input-container'>
+		<div className={classnames}>
 			<input
 				type='checkbox'
-				className={classnames}
+				className='Checkbox-input'
 				style={{ width: size, height: size }}
 				{...props}
 			></input>
