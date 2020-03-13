@@ -1,3 +1,4 @@
+// isDraft is removed due to incompatibilities with github enterprise
 export const repositoriesFragment = `
 repositories(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }) {
 	nodes {
@@ -16,7 +17,6 @@ repositories(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }) {
 				state
 				url
 				number
-				isDraft
 				author {
 					... on User {
 						id
