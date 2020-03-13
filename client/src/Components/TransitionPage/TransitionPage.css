@@ -9,3 +9,23 @@
 	align-items: center;
 	justify-content: space-evenly;
 }
+
+.TransitionPage-errorToken {
+	display: flex;
+}
+
+.TransitionPage-errorButton {
+	padding: 8px 16px;
+	margin-top: 10px;
+	border-radius: 10px;
+	font-size: large;
+	color: white;
+	background: rgb(133, 192, 225);
+	background: linear-gradient(
+		0deg,
+		rgba(133, 192, 225, 1) 0%,
+		rgba(228, 119, 175, 1) 100%
+	);
+	display: inline-block;
+	left: 150px;
+}

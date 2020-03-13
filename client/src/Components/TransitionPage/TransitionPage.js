@@ -24,6 +24,7 @@ function TransitionPage({ className, size = 300, image, children, ...props }) {
 							window.location.reload();
 						}}
 						children={'Wrong token? Try again!'}
+						className='TransitionPage-errorButton'
 					/>
 				</div>
 			</div>
