@@ -35,7 +35,7 @@ const createUser = (request, response) => {
 
 const updateUserToken = (request, response) => {
 	const id = parseInt(request.params.id);
-	const { token, id } = request.body;
+	const { token } = request.body;
 
 	pool.query(
 		'UPDATE users SET token=$1 WHERE id = $2',
@@ -51,7 +51,7 @@ const updateUserToken = (request, response) => {
 
 const updateUserPassword = (request, response) => {
 	const id = parseInt(request.params.id);
-	const { password, id } = request.body;
+	const { password } = request.body;
 
 	pool.query(
 		'UPDATE users SET password=$1 WHERE id = $2',
