@@ -7,8 +7,9 @@
 	flex-direction: column;
 	align-items: stretch;
 	justify-content: flex-start;
-	max-width: 750px;
 	margin: 0 auto;
+	max-width: 750px;
+	min-width: 500px;
 }
 
 .Dashboard-filter {
@@ -16,4 +17,41 @@
 	margin-bottom: 16px;
 	align-self: center;
 	width: 100%;
+}
+
+/* MEDIA QUERIES */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	.Dashboard-content {
+		max-width: 500px;
+		min-width: 400px;
+	}
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	.Dashboard-content {
+		max-width: 550px;
+		min-width: 450px;
+	}
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	.Dashboard-content {
+		max-width: 670px;
+		min-width: 470px;
+	}
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.Dashboard-content {
+		max-width: 750px;
+		min-width: 500px;
+	}
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	.Dashboard-content {
+		max-width: 750px;
+		min-width: 500px;
+	}
 }
