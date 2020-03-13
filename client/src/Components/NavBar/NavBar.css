@@ -1,16 +1,19 @@
 .NavBar {
 	position: fixed;
-	display: inline-flex;
+	display: flex;
 	background-color: white;
 	width: 100%;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 }
 
 .NavBar-title {
 	font-size: 10px;
 	padding: 6px;
 	font-weight: 400;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .NavBar-title-pic {
@@ -18,24 +21,33 @@
 	height: 16px;
 }
 
+.NavBar-details {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .NavBar-user-button {
 	width: 18px;
 	height: 18px;
-	position: relative;
-	display: block;
-	right: -568px;
+	border-radius: 20%;
+	overflow: hidden;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 4px;
+}
+
+.NavBar-user-details {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 12px;
+	margin-right: 8px;
 }
 
 .NavBar-user-pic {
 	width: 18px;
 	height: 18px;
-	position: relative;
-	display: block;
-	border-radius: 20%;
-}
-
-.github {
-	position: fixed;
-	display: block;
-	right: 4px;
 }

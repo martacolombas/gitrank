@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_USERINFO } from '../../ApiClient/Queries';
 import TransitionPage from '../TransitionPage/TransitionPage';
 
-function NavBar({ className }) {
+function NavBar({ className, ...props }) {
 	const classnames = cx('NavBar', className);
 	const username = localStorage.getItem('username');
 	const { loading, data, error } = useQuery(GET_USERINFO, {
@@ -38,28 +38,42 @@ function NavBar({ className }) {
 	return (
 		data && (
 			<div className='NavBar'>
-				<div className='NavBar-title'>gitRank</div>
-				<img
-					src='https://cdn.sparkfun.com/assets/home_page_posts/1/4/7/0/femalecodertocat.png'
-					className='NavBar-title-pic'
-					alt='login femalecodercat'
-				/>
-				<button className='NavBar-user-button'>
-					<img
-						src={data.user.avatarUrl}
-						alt={username}
-						className='NavBar-user-pic'
-					/>
-				</button>
 				<Button
-					icon={faGithub}
-					iconSize={12}
-					className='NavBar-title-pic github'
-					onClick={() => {
-						window.open('https://github.com/martacolombas/gitrank');
-					}}
-					alt='Open the repo!'
+					className='Sidebar-button'
+					icon={props.isOpen ? 'times' : 'bars'}
+					onClick={props.toggleBar}
+					size={60}
+					iconSize={16}
 				/>
+				<div className='NavBar-title'>
+					gitRank
+					<img
+						src='https://cdn.sparkfun.com/assets/home_page_posts/1/4/7/0/femalecodertocat.png'
+						className='NavBar-title-pic'
+						alt='login femalecodercat'
+					/>
+				</div>
+				<div className='NavBar-details'>
+					<div className='NavBar-user-details'>
+						<button className='NavBar-user-button'>
+							<img
+								src={data.user.avatarUrl}
+								alt={username}
+								className='NavBar-user-pic'
+							/>
+						</button>
+						{data.user.login}
+					</div>
+					<Button
+						icon={faGithub}
+						iconSize={16}
+						className='NavBar-title-pic github'
+						onClick={() => {
+							window.open('https://github.com/martacolombas/gitrank');
+						}}
+						title='Open the repo!'
+					/>
+				</div>
 			</div>
 		)
 	);

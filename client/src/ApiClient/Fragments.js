@@ -32,14 +32,6 @@ repositories(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }) {
 					url
 					id
 				}
-				assignees(first: 10) {
-					nodes {
-						name
-						email
-						avatarUrl
-						login
-					}
-				}
 				reviews(first: 10) {
 					nodes {
 						author {

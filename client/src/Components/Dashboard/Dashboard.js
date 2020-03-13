@@ -32,6 +32,11 @@ function Dashboard({ className, username }) {
 			? JSON.parse(localStorage.getItem('selectedAuthor'))
 			: []
 	);
+	const [isOpen, toggleSidebar] = useState(false);
+
+	function toggleBar() {
+		toggleSidebar(!isOpen);
+	}
 
 	// API CALLS
 	const { loading, data, error } = useQuery(GET_PRS, {
@@ -130,9 +135,14 @@ function Dashboard({ className, username }) {
 
 	return (
 		<div className={cx('Dashboard', className)}>
-			<NavBar className='Dashboard-navBar' />
+			<NavBar
+				className='Dashboard-navBar'
+				isOpen={isOpen}
+				toggleBar={toggleBar}
+			/>
 			<Sidebar
 				className='Dashboard-sidebar'
+				isOpen={isOpen}
 				content={
 					<>
 						{
@@ -151,7 +161,7 @@ function Dashboard({ className, username }) {
 							options={options}
 							className='Dashboard-filter'
 							value={selectedRepos}
-							placeholder='Select your repos...'
+							placeholder='Select your repos'
 							onChange={value => {
 								setSelectedRepos(value);
 								localStorage.setItem('selectedRepos', JSON.stringify(value));
