@@ -34,7 +34,6 @@ function NavBar({ className, ...props }) {
 		);
 	}
 
-	data && console.log(data);
 	return (
 		data && (
 			<div className='NavBar'>
