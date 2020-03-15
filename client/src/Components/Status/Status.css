@@ -1,4 +1,15 @@
 .Status {
+	display: flex;
+	align-content: space-between;
+}
+
+.Status-reviewers {
+	display: inline-flex;
+	flex-direction: row-reverse;
+	padding-left: 20px;
+}
+
+.Status-assignees {
 	display: inline-flex;
 	flex-direction: row-reverse;
 	padding-left: 20px;
@@ -28,4 +39,8 @@
 
 .Status-avatar--dismissed {
 	border: 2px solid #d64292;
+}
+
+.Status-avatar--assignee {
+	border: 2px solid hsl(226, 64%, 55%);
 }
