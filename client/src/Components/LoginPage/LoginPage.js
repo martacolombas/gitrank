@@ -7,10 +7,8 @@ import Badge from '../Badge/Badge';
 function LoginPage({ className, assignCredentials, offline }) {
 	const classnames = cx('LoginPage', className);
 	return (
-		<div className='LoginPage-container'>
-			{offline && (
-				<Badge type={offline} className='LoginPage-offlineBadge' />
-			)}
+		<div className={classnames}>
+			{offline && <Badge type={offline} className='LoginPage-offlineBadge' />}
 			<Login assignCredentials={assignCredentials} />
 		</div>
 	);

@@ -4,7 +4,6 @@ import cx from 'classnames';
 import Avatar from '../Avatar/Avatar';
 
 function Status({ className, reviewers, assignees }) {
-	console.log(assignees);
 	const classnames = cx('Status', className);
 	const avatarStatus = {
 		APPROVED: {
@@ -32,7 +31,9 @@ function Status({ className, reviewers, assignees }) {
 	return (
 		<div className={classnames}>
 			<div className='Status-roles'>
-				<span className='Status-text'>Reviewers</span>
+				<span className='Status-text'>
+					{reviewers.length ? 'Reviewers' : ''}
+				</span>
 				<div className='Status-reviewers-avatars'>
 					{reviewers.map(id => {
 						return (
@@ -53,7 +54,9 @@ function Status({ className, reviewers, assignees }) {
 				</div>
 			</div>
 			<div className='Status-roles'>
-				<span className='Status-text'>Assignees</span>
+				<span className='Status-text'>
+					{assignees.length ? 'Assignees' : ''}
+				</span>
 				<div className='Status-assignees-avatars'>
 					{assignees.map(assignee => {
 						return (
