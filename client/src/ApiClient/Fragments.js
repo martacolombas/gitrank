@@ -5,7 +5,7 @@ repositories(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }) {
 		id
 		name
 		pullRequests(
-			last: 20
+			last: 30
 			states: OPEN
 			orderBy: { field: UPDATED_AT, direction: DESC }
 		) {
@@ -20,8 +20,6 @@ repositories(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }) {
 				author {
 					... on User {
 						id
-						name
-						email
 						avatarUrl
 						login
 					}
@@ -32,13 +30,18 @@ repositories(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }) {
 					url
 					id
 				}
-				reviews(first: 10) {
+				assignees(first: 10) {
+          nodes {
+            login
+						avatarUrl
+						id
+					}
+				}
+				reviews(last: 15) {
 					nodes {
 						author {
 							... on User {
 								id
-								name
-								email
 								avatarUrl
 								login
 							}

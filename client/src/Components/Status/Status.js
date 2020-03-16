@@ -30,37 +30,43 @@ function Status({ className, reviewers, assignees }) {
 
 	return (
 		<div className={classnames}>
-			<div className='Status-reviewers'>
-				{reviewers.map(id => {
-					return (
-						<Avatar
-							key={id.author_id}
-							avatarUrl={id.avatarUrl}
-							size={24}
-							author={id.author}
-							title={
-								id.author
-									? `${id.author} ${avatarStatus[id.state].statusname}`
-									: `You ${avatarStatus[id.state].statusname}`
-							}
-							className={`Status-avatar ${avatarStatus[id.state].classname}`}
-						/>
-					);
-				})}
+			<div className='Status-roles'>
+				<span className='Status-text'>Reviewers</span>
+				<div className='Status-reviewers-avatars'>
+					{reviewers.map(id => {
+						return (
+							<Avatar
+								key={id.author_id}
+								avatarUrl={id.avatarUrl}
+								size={24}
+								author={id.author}
+								title={
+									id.author
+										? `${id.author} ${avatarStatus[id.state].statusname}`
+										: `You ${avatarStatus[id.state].statusname}`
+								}
+								className={`Status-avatar ${avatarStatus[id.state].classname}`}
+							/>
+						);
+					})}
+				</div>
 			</div>
-			<div className='Status-assignees'>
-				{assignees.map(assignee => {
-					return (
-						<Avatar
-							key={assignee.id}
-							avatarUrl={assignee.avatarUrl}
-							size={24}
-							author={assignee.login}
-							title={assignee.login ? assignee.login : `You`}
-							className={`Status-avatar Status-avatar--assignee`}
-						/>
-					);
-				})}
+			<div className='Status-roles'>
+				<span className='Status-text'>Assignees</span>
+				<div className='Status-assignees-avatars'>
+					{assignees.map(assignee => {
+						return (
+							<Avatar
+								key={assignee.id}
+								avatarUrl={assignee.avatarUrl}
+								size={24}
+								author={assignee.login}
+								title={assignee.login ? assignee.login : `You`}
+								className={`Status-avatar Status-avatar--assignee`}
+							/>
+						);
+					})}
+				</div>
 			</div>
 		</div>
 	);

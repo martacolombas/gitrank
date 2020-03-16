@@ -3,16 +3,28 @@
 	align-content: space-between;
 }
 
-.Status-reviewers {
+.Status-roles {
+	display: flex;
+	align-content: space-between;
+	padding: 4px;
+}
+
+.Status-reviewers-avatars {
+	display: inline-flex;
+	flex-direction: row-reverse;
+	padding-left: 16px;
+}
+
+.Status-assignees-avatars {
 	display: inline-flex;
 	flex-direction: row-reverse;
 	padding-left: 20px;
 }
 
-.Status-assignees {
-	display: inline-flex;
-	flex-direction: row-reverse;
-	padding-left: 20px;
+.Status-text {
+	font-size: 10px;
+	display: flex;
+	align-self: center;
 }
 
 .Status-avatar {

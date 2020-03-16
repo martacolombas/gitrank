@@ -6,16 +6,15 @@ import Status from '../Status/Status';
 
 function PrDetails({ className, pr }) {
 	const classnames = cx('PrDetails', className);
-	console.log(pr.assignees);
 	return (
 		<div className={classnames}>
-			<div className='PrDetails-date'>
-				{pr && `Last updated ${dateDiff(pr.updatedAt)}`}
-			</div>
 			<Status
 				reviewers={reviewersDetails(pr.reviews.nodes)}
 				assignees={pr.assignees.nodes}
 			/>
+			<div className='PrDetails-date'>
+				{pr && `Last updated ${dateDiff(pr.updatedAt)}`}
+			</div>
 		</div>
 	);
 }
