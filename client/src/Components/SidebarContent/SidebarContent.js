@@ -36,7 +36,7 @@ function sidebarContent({ className, content, isOpen, ...props }) {
 							...linkTransitionStyles[state],
 							backgroundColor: 'white',
 						}}
-						className={'SidebarContent'}
+						className={classnames}
 					>
 						{content}
 					</div>
@@ -48,7 +48,7 @@ function sidebarContent({ className, content, isOpen, ...props }) {
 		<Transition in={isOpen} timeout={duration}>
 			{state => (
 				<div
-					className='SidebarContent'
+					className={classnames}
 					style={{
 						...sidebarStyle,
 						...sidebarTransitionStyles[state],

@@ -36,7 +36,7 @@ function NavBar({ className, ...props }) {
 
 	return (
 		data && (
-			<div className='NavBar'>
+			<div className={classnames}>
 				<Button
 					className='Sidebar-button'
 					icon={props.isOpen ? 'times' : 'bars'}

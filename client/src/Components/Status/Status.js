@@ -3,7 +3,7 @@ import './Status.css';
 import cx from 'classnames';
 import Avatar from '../Avatar/Avatar';
 
-function Status({ className, reviewers }) {
+function Status({ className, reviewers, assignees }) {
 	const classnames = cx('Status', className);
 	const avatarStatus = {
 		APPROVED: {
@@ -30,26 +30,48 @@ function Status({ className, reviewers }) {
 
 	return (
 		<div className={classnames}>
-			{reviewers.map(id => {
-				return (
-					<Avatar
-						key={id.author_id}
-						avatarUrl={id.avatarUrl}
-						size={24}
-						author={id.author}
-						title={
-							id.author
-								? `${id.author} ${
-										avatarStatus[id.state].statusname
-								  }`
-								: `You ${avatarStatus[id.state].statusname}`
-						}
-						className={`Status-avatar ${
-							avatarStatus[id.state].classname
-						}`}
-					/>
-				);
-			})}
+			<div className='Status-roles'>
+				<span className='Status-text'>
+					{reviewers.length ? 'Reviewers' : ''}
+				</span>
+				<div className='Status-reviewers-avatars'>
+					{reviewers.map(id => {
+						return (
+							<Avatar
+								key={id.author_id}
+								avatarUrl={id.avatarUrl}
+								size={24}
+								author={id.author}
+								title={
+									id.author
+										? `${id.author} ${avatarStatus[id.state].statusname}`
+										: `You ${avatarStatus[id.state].statusname}`
+								}
+								className={`Status-avatar ${avatarStatus[id.state].classname}`}
+							/>
+						);
+					})}
+				</div>
+			</div>
+			<div className='Status-roles'>
+				<span className='Status-text'>
+					{assignees.length ? 'Assignees' : ''}
+				</span>
+				<div className='Status-assignees-avatars'>
+					{assignees.map(assignee => {
+						return (
+							<Avatar
+								key={assignee.id}
+								avatarUrl={assignee.avatarUrl}
+								size={24}
+								author={assignee.login}
+								title={assignee.login ? assignee.login : `You`}
+								className={`Status-avatar`}
+							/>
+						);
+					})}
+				</div>
+			</div>
 		</div>
 	);
 }

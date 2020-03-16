@@ -5,9 +5,10 @@ import './Feedback.css';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
-function Feedback() {
+function Feedback({ className }) {
+	const classnames = cx('Feedback', className);
 	return (
-		<div className='Feedback'>
+		<div className={classnames}>
 			<div className='Feedback-github'>
 				<Button
 					icon={faGithub}
@@ -15,13 +16,11 @@ function Feedback() {
 					iconSize={16}
 					className='Feedback-button'
 					onClick={() => {
-						window.open(
-							'https://github.com/martacolombas/gitrank/issues/new'
-						);
+						window.open('https://github.com/martacolombas/gitrank/issues/new');
 					}}
 				/>
 				<span
-					role='image'
+					role='img'
 					aria-label='purple-heart'
 					className={'Feedback-github-text'}
 				>

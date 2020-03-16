@@ -7,7 +7,7 @@ function Sidebar({ className, ...props }) {
 	const classnames = cx('Sidebar', className);
 
 	return (
-		<div className='Sidebar'>
+		<div className={classnames}>
 			<SidebarContent isOpen={props.isOpen} content={props.content} />
 		</div>
 	);

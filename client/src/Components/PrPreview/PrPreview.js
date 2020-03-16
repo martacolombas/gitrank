@@ -66,10 +66,15 @@ function PrPreview({ pr, setPinnedItems, className }) {
 				</div>
 				<div className='PrPreview-header-actions'>
 					<CopyToClipboard text={pr.url}>
-						<Button icon={'copy'} className={'PrPreview-header-button'} />
+						<Button
+							icon={'copy'}
+							className={'PrPreview-header-button'}
+							title='copy item'
+						/>
 					</CopyToClipboard>
 					<Button
 						icon={'star'}
+						title='favorite item'
 						onClick={handlePinButton}
 						prid={pr.id}
 						className={
