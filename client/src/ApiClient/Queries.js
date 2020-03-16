@@ -1,9 +1,9 @@
 import { gql } from 'apollo-boost';
 import {
-	repositoriesFragment,
-	selectedReposFragment,
-	authorsFragment,
-	userFragments,
+  repositoriesFragment,
+  selectedReposFragment,
+  authorsFragment,
+  userFragments,
 } from './Fragments';
 
 export const GET_PRS = gql`

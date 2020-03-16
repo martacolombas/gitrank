@@ -4,38 +4,38 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import LoginPage from './Components/LoginPage/LoginPage';
 
 function App() {
-	const [token, setToken] = useState('');
-	const [username, setUsername] = useState('');
-	const [offline, setOffline] = useState(!navigator.onLine);
+  const [token, setToken] = useState('');
+  const [username, setUsername] = useState('');
+  const [offline, setOffline] = useState(!navigator.onLine);
 
-	useEffect(() => {
-		if (localStorage.getItem('token')) {
-			setToken(localStorage.getItem('token'));
-			setUsername(localStorage.getItem('username'));
-		}
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      setToken(localStorage.getItem('token'));
+      setUsername(localStorage.getItem('username'));
+    }
 
-		window.addEventListener('online', setOfflineStatus);
-		window.addEventListener('offline', setOfflineStatus);
-		return function cleanup() {
-			window.removeEventListener('online', setOfflineStatus);
-			window.removeEventListener('offline', setOfflineStatus);
-		};
-	}, []);
+    window.addEventListener('online', setOfflineStatus);
+    window.addEventListener('offline', setOfflineStatus);
+    return function cleanup() {
+      window.removeEventListener('online', setOfflineStatus);
+      window.removeEventListener('offline', setOfflineStatus);
+    };
+  }, []);
 
-	function setOfflineStatus() {
-		setOffline(!navigator.onLine);
-	}
+  function setOfflineStatus() {
+    setOffline(!navigator.onLine);
+  }
 
-	function assignCredentials(usernameVal, tokenVal) {
-		setUsername(usernameVal);
-		setToken(tokenVal);
-	}
+  function assignCredentials(usernameVal, tokenVal) {
+    setUsername(usernameVal);
+    setToken(tokenVal);
+  }
 
-	return token ? (
-		<Dashboard token={token} username={username} offline={offline} />
-	) : (
-		<LoginPage assignCredentials={assignCredentials} offline={offline} />
-	);
+  return token ? (
+    <Dashboard token={token} username={username} offline={offline} />
+  ) : (
+    <LoginPage assignCredentials={assignCredentials} offline={offline} />
+  );
 }
 
 export default App;

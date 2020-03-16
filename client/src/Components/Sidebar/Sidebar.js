@@ -4,13 +4,13 @@ import SidebarContent from '../SidebarContent/SidebarContent';
 import './Sidebar.css';
 
 function Sidebar({ className, ...props }) {
-	const classnames = cx('Sidebar', className);
+  const classnames = cx('Sidebar', className);
 
-	return (
-		<div className={classnames}>
-			<SidebarContent isOpen={props.isOpen} content={props.content} />
-		</div>
-	);
+  return (
+    <div className={classnames}>
+      <SidebarContent isOpen={props.isOpen} content={props.content} />
+    </div>
+  );
 }
 
 export default Sidebar;
