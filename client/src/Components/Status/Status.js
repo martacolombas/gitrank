@@ -4,6 +4,7 @@ import cx from 'classnames';
 import Avatar from '../Avatar/Avatar';
 
 function Status({ className, reviewers, assignees }) {
+	console.log(assignees);
 	const classnames = cx('Status', className);
 	const avatarStatus = {
 		APPROVED: {
@@ -62,7 +63,7 @@ function Status({ className, reviewers, assignees }) {
 								size={24}
 								author={assignee.login}
 								title={assignee.login ? assignee.login : `You`}
-								className={`Status-avatar Status-avatar--assignee`}
+								className={`Status-avatar`}
 							/>
 						);
 					})}

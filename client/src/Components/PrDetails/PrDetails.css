@@ -1,7 +1,6 @@
 .PrDetails {
 	height: 36px;
 	background-color: white;
-	margin-bottom: 8px;
 	border-radius: 8px;
 	padding: 4px 8px 8px 4px;
 	display: flex;
@@ -12,5 +11,5 @@
 .PrDetails-date {
 	display: inline-block;
 	font-size: 8px;
-	margin-bottom: -36px;
+	align-self: flex-end;
 }
