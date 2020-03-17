@@ -71,11 +71,15 @@ React
 | P2   | Add custom view to URL (link sharing) | :white_check_mark: |
 | P3   | Slack integration                     | :white_check_mark: |
 
+
 ### Contribute
 
 `CONTRIBUTE.md` coming soon!
 
 Meanwhile, fork the repo and send me a PR :boom: ![](https://img.shields.io/github/forks/martacolombas/gitrank?label=Fork&style=social)
+
+### Contributors
+[Ivan Ortega](https://github.com/ivanortegaalba)
 
 ### Suggest a feature!
 
