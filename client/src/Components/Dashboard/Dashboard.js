@@ -33,6 +33,7 @@ function Dashboard({ className, username }) {
       : []
   );
   const [isOpen, toggleSidebar] = useState(false);
+  let uid;
 
   function toggleBar() {
     toggleSidebar(!isOpen);
@@ -45,6 +46,12 @@ function Dashboard({ className, username }) {
     },
     // pollInterval: 40000, //todo uncomment
   });
+
+  // we're keeping the user id
+
+  if (data) {
+    uid = data.user.id;
+  }
 
   const {
     loading: reposLoading,
@@ -175,7 +182,8 @@ function Dashboard({ className, username }) {
           <PrList
             prs={prs}
             setPinnedItems={setPinnedItems}
-            className={'Dashboard-list'}
+            className='Dashboard-list'
+            userId={uid}
           />
         ) : (
           <TransitionPage

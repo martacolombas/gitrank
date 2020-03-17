@@ -7,8 +7,9 @@ import Button from '../Button/Button';
 import Avatar from '../Avatar/Avatar';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import PrDetails from '../PrDetails/PrDetails';
+import Assign from '../Assign/Assign';
 
-function PrPreview({ pr, setPinnedItems, className }) {
+function PrPreview({ pr, setPinnedItems, className, userId }) {
   const classnames = cx('PrPreview', className);
 
   function handlePinButton(event) {
@@ -82,6 +83,11 @@ function PrPreview({ pr, setPinnedItems, className }) {
                 ? 'PrPreview-header-button--isFavorite'
                 : 'PrPreview-header-button'
             }
+          />
+          <Assign
+            prId={pr.id}
+            userId={userId}
+            className={'PrPreview-header-button'}
           />
         </div>
       </header>
