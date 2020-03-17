@@ -3,18 +3,28 @@ import '../Button/Button';
 import { ASSIGN_TO_USER } from '../../ApiClient/Queries';
 import { useMutation } from '@apollo/react-hooks';
 import Button from '../Button/Button';
+import cx from 'classnames';
 
-function Assign({ userId, prId, className }) {
+function Assign({ userId, prId, className, isAssigned }) {
   const assignId = [];
   assignId.push(userId);
   const [assignToMe, { data }] = useMutation(ASSIGN_TO_USER);
-  if (data) {
-    console.log('Succesfully assigned to you');
-  }
+  const classnames = cx('Assign', className);
 
   function handleAssignment(event) {
-    event.preventDefault();
-    assignToMe({ variables: { pullRequestId: prId, assigneeIds: assignId } });
+    if (!isAssigned) {
+      event.preventDefault();
+      assignToMe({ variables: { pullRequestId: prId, assigneeIds: assignId } });
+      if (data) {
+        console.log('Succesfully assigned to you');
+      }
+    } else {
+      event.preventDefault();
+      assignToMe({ variables: { pullRequestId: prId, assigneeIds: [] } });
+      if (data) {
+        console.log('Succesfully unassigned');
+      }
+    }
   }
 
   return (
@@ -22,7 +32,7 @@ function Assign({ userId, prId, className }) {
       icon='user-check'
       title='Assign to me'
       onClick={handleAssignment}
-      className={className}
+      className={isAssigned ? `${classnames}--isFavorite` : classnames}
     />
   );
 }

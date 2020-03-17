@@ -11,6 +11,8 @@ import Assign from '../Assign/Assign';
 
 function PrPreview({ pr, setPinnedItems, className, userId }) {
   const classnames = cx('PrPreview', className);
+  const assignees = pr.assignees.nodes.map(element => element.id);
+  const isAssignedToUser = assignees.includes(userId);
 
   function handlePinButton(event) {
     pinItem(event.currentTarget.getAttribute('prid'));
@@ -95,6 +97,7 @@ function PrPreview({ pr, setPinnedItems, className, userId }) {
             prId={pr.id}
             userId={userId}
             className={'PrPreview-header-button'}
+            isAssigned={isAssignedToUser}
           />
         </div>
       </header>
