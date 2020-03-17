@@ -36,7 +36,7 @@ function Status({ className, reviewers, assignees }) {
         </span>
         <div className='Status-reviewers-avatars'>
           {reviewers.map(id => {
-            return (
+            return id.__typename === 'User' ? (
               <Avatar
                 key={id.author_id}
                 avatarUrl={id.avatarUrl}
@@ -48,6 +48,13 @@ function Status({ className, reviewers, assignees }) {
                     : `You ${avatarStatus[id.state].statusname}`
                 }
                 className={`Status-avatar ${avatarStatus[id.state].classname}`}
+              />
+            ) : (
+              <Avatar
+                className={`Status-avatar ${avatarStatus[id.state].classname}`}
+                avatarUrl={'https://octodex.github.com/images/Robotocat.png'}
+                author={'Bot'}
+                size={24}
               />
             );
           })}

@@ -18,6 +18,7 @@ export const reviewsByAuthor = reviews => {
       createdAt: element.createdAt,
       state: element.state,
       avatarUrl: element.author.avatarUrl,
+      __typename: element.author.__typename,
     };
   });
   // Example of single item returned [{author: nameOfAuthor, author_id: 1234567, createdAt: 12/77/77, state: "COMMENTED", avatarUrl: "www.avatarurl.com"}]
