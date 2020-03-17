@@ -64,3 +64,24 @@ export const GET_USERINFO = gql`
 		}
 	}
 `;
+
+export const ASSIGN_TO_USER = gql`
+  mutation updatePRAssignee($pullRequestId: ID!, $assigneeIds: [ID!]) {
+    __typename
+    updatePullRequest(
+      input: { pullRequestId: $pullRequestId, assigneeIds: $assigneeIds }
+    ) {
+      pullRequest {
+        title
+        number
+        id
+        assignees(first: 10) {
+          nodes {
+            id
+            login
+          }
+        }
+      }
+    }
+  }
+`;

@@ -32,7 +32,7 @@ function Status({ className, reviewers, assignees }) {
     <div className={classnames}>
       <div className='Status-roles'>
         <span className='Status-text'>
-          {reviewers.length ? 'Reviewers' : ''}
+          {reviewers.length ? 'Reviewers' : 'No reviewers'}
         </span>
         <div className='Status-reviewers-avatars'>
           {reviewers.map(id => {
@@ -55,7 +55,7 @@ function Status({ className, reviewers, assignees }) {
       </div>
       <div className='Status-roles'>
         <span className='Status-text'>
-          {assignees.length ? 'Assignees' : ''}
+          {assignees.length ? 'Assignees' : 'No assignees'}
         </span>
         <div className='Status-assignees-avatars'>
           {assignees.map(assignee => {

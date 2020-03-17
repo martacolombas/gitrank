@@ -20,6 +20,7 @@ export const reviewsByAuthor = reviews => {
       avatarUrl: element.author.avatarUrl,
     };
   });
+  // Example of single item returned [{author: nameOfAuthor, author_id: 1234567, createdAt: 12/77/77, state: "COMMENTED", avatarUrl: "www.avatarurl.com"}]
   const orderById = orderedRev.reduce((acc, obj) => {
     let key = obj.author_id;
     if (!acc[key]) {
