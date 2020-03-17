@@ -31,7 +31,14 @@ function PrPreview({ pr, setPinnedItems, className, userId }) {
     <div className={classnames}>
       <header className='PrPreview-header'>
         <div className='PrPreview-header-avatar'>
-          <Avatar avatarUrl={pr.author.avatarUrl} author={pr.author.login} />
+          {pr.author.__typename === 'User' ? (
+            <Avatar avatarUrl={pr.author.avatarUrl} author={pr.author.login} />
+          ) : (
+            <Avatar
+              avatarUrl={'https://octodex.github.com/images/Robotocat.png'}
+              author={'Bot'}
+            />
+          )}
         </div>
         <div className='PrPreview-header-title'>
           <a
