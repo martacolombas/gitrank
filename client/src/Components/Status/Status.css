@@ -17,7 +17,7 @@
 
 .Status-reviewers-avatars--usernames {
   flex-wrap: wrap;
-  padding-left: 16px;
+  margin-left: 4px;
   display: flex;
 }
 
@@ -25,6 +25,7 @@
   margin-left: 0px;
   padding: 1px 3px;
   display: flex;
+  align-items: center;
 }
 
 .Status-assignees-avatars {
