@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Status.css';
 import cx from 'classnames';
 import Avatar from '../Avatar/Avatar';
 
 function Status({ className, reviewers, assignees }) {
   const classnames = cx('Status', className);
+  const [imageError, setImageError] = useState(false);
   const avatarStatus = {
     APPROVED: {
       classname: 'Status-avatar--approved',
@@ -28,13 +29,32 @@ function Status({ className, reviewers, assignees }) {
     },
   };
 
+  const classnamesAssignees = cx('Status-avatar', {
+    'Status-avatar--error': imageError,
+  });
+
+  const getClassnames = id => {
+    const classnamesReviewers = cx(
+      'Status-avatar',
+      avatarStatus[id.state].classname,
+      { 'Status-avatar--error': imageError }
+    );
+    return classnamesReviewers;
+  };
+
   return (
     <div className={classnames}>
       <div className='Status-roles'>
         <span className='Status-text'>
           {reviewers.length ? 'Reviewers' : 'No reviewers'}
         </span>
-        <div className='Status-reviewers-avatars'>
+        <div
+          className={
+            !imageError
+              ? 'Status-reviewers-avatars'
+              : 'Status-reviewers-avatars--usernames'
+          }
+        >
           {reviewers.map(id => {
             return id.__typename === 'User' ? (
               <Avatar
@@ -42,16 +62,21 @@ function Status({ className, reviewers, assignees }) {
                 avatarUrl={id.avatarUrl}
                 size={24}
                 author={id.author}
+                onError={() => {
+                  if (!imageError) {
+                    setImageError(true);
+                  }
+                }}
                 title={
                   id.author
                     ? `${id.author} ${avatarStatus[id.state].statusname}`
                     : `You ${avatarStatus[id.state].statusname}`
                 }
-                className={`Status-avatar ${avatarStatus[id.state].classname}`}
+                className={getClassnames(id)}
               />
             ) : (
               <Avatar
-                className={`Status-avatar ${avatarStatus[id.state].classname}`}
+                className={getClassnames(id)}
                 avatarUrl={'https://octodex.github.com/images/Robotocat.png'}
                 author={'Bot'}
                 size={24}
@@ -73,7 +98,7 @@ function Status({ className, reviewers, assignees }) {
                 size={24}
                 author={assignee.login}
                 title={assignee.login ? assignee.login : `You`}
-                className={`Status-avatar`}
+                className={classnamesAssignees}
               />
             );
           })}

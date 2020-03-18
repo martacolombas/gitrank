@@ -1,8 +1,12 @@
 .Avatar {
-	border-radius: 4px;
-	overflow: hidden;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .Avatar img {
-	max-width: 100%;
+  max-width: 100%;
+}
+
+.Avatar-error {
+  font-size: 10px;
 }
