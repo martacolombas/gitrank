@@ -49,7 +49,7 @@ organizations(first: 10) {
  }`;
 
 export const GET_USERINFO = gql`
-	query PRinfo($login: String!) {
+	query getUserInfo($login: String!) {
 		user(login: $login) {
       id
       login
