@@ -17,8 +17,8 @@
 
 .Status-reviewers-avatars--usernames {
   flex-wrap: wrap;
-  flex-direction: row-reverse;
   padding-left: 16px;
+  display: flex;
 }
 
 .Status-avatar.Status-avatar--error {
