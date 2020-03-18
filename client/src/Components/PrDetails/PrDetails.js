@@ -13,7 +13,7 @@ function PrDetails({ className, pr }) {
         assignees={pr.assignees.nodes}
       />
       <div className='PrDetails-date'>
-        {pr && `Last updated ${dateDiff(pr.updatedAt)}`}
+        {pr && `Updated ${dateDiff(pr.updatedAt)}`}
       </div>
     </div>
   );

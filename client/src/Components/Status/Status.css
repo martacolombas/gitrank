@@ -1,58 +1,71 @@
 .Status {
-	display: flex;
-	align-content: space-between;
+  display: flex;
+  align-content: space-between;
 }
 
 .Status-roles {
-	display: flex;
-	align-content: space-between;
-	padding: 4px;
+  display: flex;
+  align-content: space-between;
+  padding: 4px;
 }
 
 .Status-reviewers-avatars {
-	display: inline-flex;
-	flex-direction: row-reverse;
-	padding-left: 16px;
+  display: inline-flex;
+  flex-direction: row-reverse;
+  padding-left: 16px;
+}
+
+.Status-reviewers-avatars--usernames {
+  flex-wrap: wrap;
+  margin-left: 4px;
+  display: flex;
+}
+
+.Status-avatar.Status-avatar--error {
+  margin-left: 0px;
+  padding: 1px 3px;
+  display: flex;
+  align-items: center;
 }
 
 .Status-assignees-avatars {
-	display: inline-flex;
-	flex-direction: row-reverse;
-	padding-left: 20px;
+  display: inline-flex;
+  flex-direction: row-reverse;
+  padding-left: 16px;
 }
 
 .Status-text {
-	font-size: 10px;
-	display: flex;
-	align-self: center;
+  font-size: 10px;
+  display: flex;
+  align-self: center;
 }
 
 .Status-avatar {
-	margin-left: -10px;
-	position: relative;
-	border: 1px solid #ffffff;
+  margin-left: -10px;
+  position: relative;
+  border: 1px solid #ffffff;
 }
 
 .Status-avatar--approved {
-	border: 2px solid #28a744;
+  border: 2px solid #28a744;
 }
 
 .Status-avatar--commented {
-	border: 2px solid lightgrey;
+  border: 2px solid lightgrey;
 }
 
 .Status-avatar--changes {
-	border: 2px solid #cb2431;
+  border: 2px solid #cb2431;
 }
 
 .Status-avatar--pending {
-	border: 2px solid #fffbdd;
+  border: 2px solid #fffbdd;
 }
 
 .Status-avatar--dismissed {
-	border: 2px solid #d64292;
+  border: 2px solid #d64292;
 }
 
 .Status-avatar--assignee {
-	border: 2px solid hsl(226, 64%, 55%);
+  border: 2px solid hsl(226, 64%, 55%);
 }
