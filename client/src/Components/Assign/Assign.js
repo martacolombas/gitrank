@@ -5,14 +5,24 @@ import { useMutation } from '@apollo/react-hooks';
 import Button from '../Button/Button';
 import cx from 'classnames';
 
-function Assign({ userId, prId, className, isAssigned }) {
-  const assignId = [];
-  assignId.push(userId);
+function Assign({ userId, prId, className, isAssigned, currentAssignees }) {
+  let prevAssignees = [];
+  if (currentAssignees.length) {
+    prevAssignees = [
+      ...currentAssignees.map(element => {
+        return element.id;
+      }),
+    ];
+  }
+
+  const assignId = [...prevAssignees];
+
   const [assignToMe, { data }] = useMutation(ASSIGN_TO_USER);
   const classnames = cx('Assign', className);
 
   function handleAssignment(event) {
     if (!isAssigned) {
+      assignId.push(userId);
       event.preventDefault();
       assignToMe({ variables: { pullRequestId: prId, assigneeIds: assignId } });
       if (data) {
@@ -20,7 +30,12 @@ function Assign({ userId, prId, className, isAssigned }) {
       }
     } else {
       event.preventDefault();
-      assignToMe({ variables: { pullRequestId: prId, assigneeIds: [] } });
+      assignToMe({
+        variables: {
+          pullRequestId: prId,
+          assigneeIds: assignId.filter(element => element !== userId),
+        },
+      });
       if (data) {
         console.log('Succesfully unassigned');
       }

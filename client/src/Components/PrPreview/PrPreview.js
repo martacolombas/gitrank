@@ -98,6 +98,7 @@ function PrPreview({ pr, setPinnedItems, className, userId }) {
             userId={userId}
             className={'PrPreview-header-button'}
             isAssigned={isAssignedToUser}
+            currentAssignees={pr.assignees.nodes}
           />
         </div>
       </header>
