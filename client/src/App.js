@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Dashboard from './Components/Dashboard/Dashboard';
 import LoginPage from './Components/LoginPage/LoginPage';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function App() {
   const [token, setToken] = useState('');
@@ -31,10 +32,17 @@ function App() {
     setToken(tokenVal);
   }
 
-  return token ? (
-    <Dashboard token={token} username={username} offline={offline} />
-  ) : (
-    <LoginPage assignCredentials={assignCredentials} offline={offline} />
+  return (
+    <Router>
+      <Switch>
+        <Route path='/dashboard'>
+          <Dashboard token={token} username={username} offline={offline} />
+        </Route>
+        <Route path='/login'>
+          <LoginPage assignCredentials={assignCredentials} offline={offline} />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

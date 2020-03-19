@@ -3,6 +3,8 @@ import './Login.css';
 import Button from '../Button/Button';
 import cx from 'classnames';
 import Checkbox from '../Checkbox/Checkbox';
+import { GithubLoginButton } from 'react-social-login-buttons';
+import { Link } from 'react-router-dom';
 
 //TODO(marta) create a form component
 
@@ -64,6 +66,7 @@ function Login({ className, assignCredentials }) {
         className='pic'
         alt='login femalecodercat'
       ></img>
+      <GithubLoginButton onClick={() => alert('Hello')} />
       <form onSubmit={handleSubmit} className='Login-form'>
         <input
           placeholder='Username'
@@ -106,16 +109,18 @@ function Login({ className, assignCredentials }) {
             onChange={handleEnterpriseUrl}
           />
         )}
-        <Button
-          type='Submit'
-          disabled={!isFormEnabled}
-          children={'Go!'}
-          className={
-            isFormEnabled
-              ? `Login-button`
-              : `Login-button Login-button--disabled`
-          }
-        />
+        <Link to='/dashboard'>
+          <Button
+            type='Submit'
+            disabled={!isFormEnabled}
+            children={'Go!'}
+            className={
+              isFormEnabled
+                ? `Login-button`
+                : `Login-button Login-button--disabled`
+            }
+          />
+        </Link>
       </form>
     </div>
   );

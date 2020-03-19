@@ -18,11 +18,14 @@
   "homepage": "https://github.com/martacolombas/gitrank#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cookie-session": "^1.4.0",
     "dotenv": "^8.2.0",
     "encoding": "^0.1.12",
     "express": "^4.17.1",
     "mongoose": "^5.9.5",
     "nodemon": "^2.0.2",
+    "passport": "^0.4.1",
+    "passport-github2": "^0.1.11",
     "pg": "^7.18.2",
     "pg-promise": "^10.4.4"
   }
