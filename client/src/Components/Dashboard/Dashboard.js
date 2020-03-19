@@ -129,15 +129,22 @@ function Dashboard({ className, username }) {
   const allPRs = data ? groupPRs(data) : [];
   const filteredByRepos = filterByRepos(allPRs, selectedRepos, selectedAuthor);
 
-  const notPinned = filteredByRepos.filter(
-    element => !pinnedItems.includes(element.id)
-  );
-  const pinned = filteredByRepos.filter(element =>
-    pinnedItems.includes(element.id)
-  );
-  const prs = [...pinned, ...notPinned].sort((a, b) => {
-    return new Date(b.updatedAt) - new Date(a.updatedAt);
-  });
+  const notPinned = filteredByRepos
+    .filter(element => !pinnedItems.includes(element.id))
+    .sort((a, b) => {
+      return new Date(b.updatedAt) - new Date(a.updatedAt);
+    });
+
+  const pinned = filteredByRepos
+    .filter(element => pinnedItems.includes(element.id))
+    .sort((a, b) => {
+      return new Date(b.updatedAt) - new Date(a.updatedAt);
+    });
+
+  console.log('pinned :', pinned);
+  console.log('notPinned :', notPinned);
+  const prs = [...pinned, ...notPinned];
+  console.log(prs);
 
   return (
     <div className={cx('Dashboard', className)}>
