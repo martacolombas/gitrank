@@ -1,6 +1,3 @@
-const pool = require('../db');
-pool.connect();
-
 const getUsers = async (request, response) => {
   try {
     const { rows } = await pool.query('SELECT * FROM users ORDER BY id ASC');
