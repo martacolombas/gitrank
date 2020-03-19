@@ -141,10 +141,7 @@ function Dashboard({ className, username }) {
       return new Date(b.updatedAt) - new Date(a.updatedAt);
     });
 
-  console.log('pinned :', pinned);
-  console.log('notPinned :', notPinned);
   const prs = [...pinned, ...notPinned];
-  console.log(prs);
 
   return (
     <div className={cx('Dashboard', className)}>
