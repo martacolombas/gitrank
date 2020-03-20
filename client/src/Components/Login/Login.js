@@ -66,7 +66,9 @@ function Login({ className, assignCredentials }) {
         className='pic'
         alt='login femalecodercat'
       ></img>
-      <GithubLoginButton onClick={() => alert('Hello')} />
+      <a href='http://localhost:8080/oauth/github'>
+        <GithubLoginButton />
+      </a>
       <form onSubmit={handleSubmit} className='Login-form'>
         <input
           placeholder='Username'
