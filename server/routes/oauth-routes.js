@@ -5,7 +5,7 @@ const passport = require('passport');
 router.get(
   '/github',
   passport.authenticate('github', {
-    scope: ['repo:status', 'repo_deployment', 'read:org', 'read: discussion'],
+    scope: ['repo:status', 'repo_deployment', 'write:org', 'read: discussion'],
   })
 );
 

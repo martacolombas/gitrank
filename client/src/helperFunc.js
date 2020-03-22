@@ -58,3 +58,15 @@ export const pinItem = id => {
     localStorage.setItem('pinnedItems', JSON.stringify(currentStorage));
   }
 };
+
+export const getIdFromLocation = () => {
+  const url = new URL(window.location);
+  if (url.search.length && url.search.includes('=')) {
+    const params = url.search
+      .substr(1)
+      .split('&')
+      .map(element => element.split('='));
+    const paramWithId = params.find(element => element[0] === 'id');
+    return paramWithId && paramWithId[1];
+  }
+};

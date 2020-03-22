@@ -3,30 +3,39 @@ import './App.css';
 import Dashboard from './Components/Dashboard/Dashboard';
 import LoginPage from './Components/LoginPage/LoginPage';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { getIdFromLocation } from './helperFunc';
 
 function App() {
-  const [token, setToken] = useState('');
-  const [username, setUsername] = useState('');
-  const [offline, setOffline] = useState(!navigator.onLine);
+  debugger;
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const [username, setUsername] = useState(
+    localStorage.getItem('username') || ''
+  );
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      setToken(localStorage.getItem('token'));
-      setUsername(localStorage.getItem('username'));
+    const userId = getIdFromLocation();
+    if (userId) {
+      fetch(`http://localhost:8080/users/${userId}`)
+        .then(res => {
+          return res.text();
+        })
+        .then(data => {
+          try {
+            const parsedData = JSON.parse(data);
+            localStorage.setItem('token', parsedData.token);
+            setToken(parsedData.token);
+            localStorage.setItem('username', parsedData.username);
+            setUsername(parsedData.username);
+            window.location.href = '/dashboard';
+          } catch (e) {
+            console.error(
+              `Error in parsing json data while requesting user by Id : ${e}`
+            );
+          }
+        });
     }
-
-    window.addEventListener('online', setOfflineStatus);
-    window.addEventListener('offline', setOfflineStatus);
-    return function cleanup() {
-      window.removeEventListener('online', setOfflineStatus);
-      window.removeEventListener('offline', setOfflineStatus);
-    };
   }, []);
-
-  function setOfflineStatus() {
-    setOffline(!navigator.onLine);
-  }
 
   function assignCredentials(usernameVal, tokenVal) {
     setUsername(usernameVal);
@@ -37,10 +46,10 @@ function App() {
     <Router>
       <Switch>
         <PrivateRoute path='/dashboard'>
-          <Dashboard token={token} username={username} offline={offline} />
+          <Dashboard token={token} username={username} />
         </PrivateRoute>
         <Route path='/login'>
-          <LoginPage assignCredentials={assignCredentials} offline={offline} />
+          <LoginPage assignCredentials={assignCredentials} />
         </Route>
       </Switch>
     </Router>

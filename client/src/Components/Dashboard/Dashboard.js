@@ -12,6 +12,7 @@ import TransitionPage from '../TransitionPage/TransitionPage';
 import Feedback from '../Feedback/Feedback';
 import Sidebar from '../Sidebar/Sidebar';
 import NavBar from '../NavBar/NavBar';
+import { isLoggedIn } from '../Login/auth-utils';
 
 library.add(fas);
 
