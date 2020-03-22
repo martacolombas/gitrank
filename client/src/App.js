@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Dashboard from './Components/Dashboard/Dashboard';
 import LoginPage from './Components/LoginPage/LoginPage';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -35,9 +36,9 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/dashboard'>
+        <PrivateRoute path='/dashboard'>
           <Dashboard token={token} username={username} offline={offline} />
-        </Route>
+        </PrivateRoute>
         <Route path='/login'>
           <LoginPage assignCredentials={assignCredentials} offline={offline} />
         </Route>

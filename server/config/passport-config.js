@@ -20,11 +20,21 @@ passport.use(
       clientSecret: process.env.CLIENT_SECRET,
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log('accessToken', accessToken);
-      console.log('profile', profile);
-      console.log('done', done);
-      process.nextTick(function() {
-        return done(null, profile);
+      User.findOne({ githubId: profile.id }).then(currentUser => {
+        if (currentUser) {
+          done(null, currentUser);
+        } else {
+          new User({
+            username: profile.username,
+            githubId: profile.id,
+            avatarUrl: profile.photos[0].value,
+            token: accessToken,
+          })
+            .save()
+            .then(newUSer => {
+              done(null, newUSer);
+            });
+        }
       });
     }
   )

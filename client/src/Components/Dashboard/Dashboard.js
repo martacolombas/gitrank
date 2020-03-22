@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,7 @@ import NavBar from '../NavBar/NavBar';
 
 library.add(fas);
 
-function Dashboard({ className, username }) {
+function Dashboard({ className, username, ...props }) {
   // STATES
   const [pinnedItems, setPinnedItems] = useState(
     localStorage.getItem('pinnedItems')

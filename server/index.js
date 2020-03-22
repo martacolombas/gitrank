@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.PORT;
-// const basicRouter = require('./routes/basic-routes');
+const basicRouter = require('./routes/basic-routes');
 const oauthRouter = require('./routes/oauth-routes');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -49,5 +49,6 @@ app.use(cors());
 
 // access authentication routes middlewares
 app.use('/oauth', oauthRouter);
+app.use('/', basicRouter);
 
 app.listen(port, () => console.log(`🚀gitRank listening on port ${port}!`));

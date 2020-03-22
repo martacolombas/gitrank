@@ -4,7 +4,8 @@ import Button from '../Button/Button';
 import cx from 'classnames';
 import Checkbox from '../Checkbox/Checkbox';
 import { GithubLoginButton } from 'react-social-login-buttons';
-import { Link } from 'react-router-dom';
+import Dashboard from '../Dashboard/Dashboard';
+import { useHistory, useLocation } from 'react-router-dom';
 
 //TODO(marta) create a form component
 
@@ -16,7 +17,10 @@ function Login({ className, assignCredentials }) {
   const [enterpriseUrl, setEnterpriseUrl] = useState('');
   const [isFormEnabled, setEnableForm] = useState(false);
 
-  useEffect(() => {});
+  let history = useHistory();
+  let location = useLocation();
+
+  let { from } = location.state || { from: { pathname: '/dashboard' } };
 
   function handleTokenChange({ target }) {
     setToken(target.value);
@@ -43,6 +47,7 @@ function Login({ className, assignCredentials }) {
       localStorage.setItem('enterpriseUrl', JSON.stringify(enterpriseUrl));
     }
     assignCredentials(username, token);
+    history.replace(from);
   }
 
   useEffect(() => {
@@ -111,18 +116,16 @@ function Login({ className, assignCredentials }) {
             onChange={handleEnterpriseUrl}
           />
         )}
-        <Link to='/dashboard'>
-          <Button
-            type='Submit'
-            disabled={!isFormEnabled}
-            children={'Go!'}
-            className={
-              isFormEnabled
-                ? `Login-button`
-                : `Login-button Login-button--disabled`
-            }
-          />
-        </Link>
+        <Button
+          type='Submit'
+          disabled={!isFormEnabled}
+          children={'Go!'}
+          className={
+            isFormEnabled
+              ? `Login-button`
+              : `Login-button Login-button--disabled`
+          }
+        />
       </form>
     </div>
   );

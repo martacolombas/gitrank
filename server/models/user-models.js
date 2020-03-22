@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-  login: String,
+  username: String,
   githubId: String,
   avatarUrl: String,
+  token: String,
+  date: { type: Date, default: Date.now },
 });
 
 const User = mongoose.model('user', UserSchema);
