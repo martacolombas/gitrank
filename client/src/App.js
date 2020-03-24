@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { getIdFromLocation } from './helperFunc';
 
 function App() {
-  debugger;
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [username, setUsername] = useState(
     localStorage.getItem('username') || ''
