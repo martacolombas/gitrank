@@ -20,7 +20,6 @@ passport.use(
       clientSecret: process.env.CLIENT_SECRET,
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(accessToken);
       User.findOne({ githubId: profile.id }).then((errors, currentUser) => {
         if (currentUser) {
           currentUser
@@ -37,7 +36,7 @@ passport.use(
             token: accessToken,
           })
             .save()
-            .then(newUSer => {
+            .then((errors, newUSer) => {
               done(null, newUSer);
             });
         }
