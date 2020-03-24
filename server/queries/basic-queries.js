@@ -32,7 +32,9 @@ const updateUserToken = async (request, response) => {
     User.findOne({ githubId: profile.id }).then((errors, currentUser) => {
       if (currentUser) {
         currentUser.overwrite({ token: accessToken }).save();
-        response.status(201).send(rows);
+        response
+          .status(201)
+          .send(`Access token for user with id ${id} has been updated`);
       } else {
         response.status(204);
         console.log(`Couldn't find ${id}`);

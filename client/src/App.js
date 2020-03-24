@@ -23,9 +23,8 @@ function App() {
           try {
             const parsedData = JSON.parse(data);
             localStorage.setItem('token', parsedData.token);
-            setToken(parsedData.token);
             localStorage.setItem('username', parsedData.username);
-            setUsername(parsedData.username);
+            assignCredentials(parsedData.username, parsedData.token);
             window.location.href = '/dashboard';
           } catch (e) {
             console.error(

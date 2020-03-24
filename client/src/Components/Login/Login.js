@@ -4,7 +4,6 @@ import Button from '../Button/Button';
 import cx from 'classnames';
 import Checkbox from '../Checkbox/Checkbox';
 import { GithubLoginButton } from 'react-social-login-buttons';
-import Dashboard from '../Dashboard/Dashboard';
 import { useHistory, useLocation } from 'react-router-dom';
 
 //TODO(marta) create a form component
