@@ -12,9 +12,15 @@ function App() {
     localStorage.getItem('username') || ''
   );
 
+  /* the user can access the app through two different options:
+  1. indicating username and token manually. In the case of GitHub Enterprise the user also needs to indicate the endpoint.
+  2. Github authentication */
+
   useEffect(() => {
+    // in case that the user is authenticated through github, an id will be attached to the url.
     const userId = getIdFromLocation();
     if (userId) {
+      // if there's id, we need to look for the token stored in the ddbb
       fetch(`http://localhost:8080/users/${userId}`)
         .then(res => {
           return res.text();
@@ -22,9 +28,12 @@ function App() {
         .then(data => {
           try {
             const parsedData = JSON.parse(data);
+            // save the token in localstorage
             localStorage.setItem('token', parsedData.token);
             localStorage.setItem('username', parsedData.username);
+            // we change the state of the component since now the user is authenticated
             assignCredentials(parsedData.username, parsedData.token);
+            // we redirect to the dashboard
             window.location.href = '/dashboard';
           } catch (e) {
             console.error(

@@ -6,6 +6,7 @@ import Button from '../Button/Button';
 import cx from 'classnames';
 
 function Assign({ userId, prId, className, isAssigned, currentAssignees }) {
+  // if there's previous assigness we keep their id
   let prevAssignees = [];
   if (currentAssignees.length) {
     prevAssignees = [
@@ -22,13 +23,16 @@ function Assign({ userId, prId, className, isAssigned, currentAssignees }) {
 
   function handleAssignment(event) {
     if (!isAssigned) {
+      // if the pr is not yet assigned to the user, we add the userId to the previous assignees' ids
       assignId.push(userId);
       event.preventDefault();
+      // perform mutation
       assignToMe({ variables: { pullRequestId: prId, assigneeIds: assignId } });
       if (data) {
         console.log('Succesfully assigned to you');
       }
     } else {
+      // otherwsise we filter all the ids except the user's and we perform the mutation
       event.preventDefault();
       assignToMe({
         variables: {
@@ -47,7 +51,7 @@ function Assign({ userId, prId, className, isAssigned, currentAssignees }) {
       icon='user-check'
       title='Assign to me'
       onClick={handleAssignment}
-      className={isAssigned ? `${classnames}--isFavorite` : classnames}
+      className={isAssigned ? `${classnames}--isFavorite` : classnames} // isFavorite needs renaming as the same modifications are applied for the favoriting feature
     />
   );
 }

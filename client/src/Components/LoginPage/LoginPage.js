@@ -8,7 +8,6 @@ function LoginPage({ className, assignCredentials, offline }) {
   const classnames = cx('LoginPage', className);
   return (
     <div className={classnames}>
-      {offline && <Badge type={offline} className='LoginPage-offlineBadge' />}
       <Login assignCredentials={assignCredentials} />
     </div>
   );

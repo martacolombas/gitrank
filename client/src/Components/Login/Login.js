@@ -16,7 +16,9 @@ function Login({ className, assignCredentials }) {
   const [enterpriseUrl, setEnterpriseUrl] = useState('');
   const [isFormEnabled, setEnableForm] = useState(false);
 
+  // gets access to the browser history object
   let history = useHistory();
+  // returns the current location object
   let location = useLocation();
 
   let { from } = location.state || { from: { pathname: '/dashboard' } };
@@ -38,6 +40,8 @@ function Login({ className, assignCredentials }) {
   }
 
   function handleSubmit(event) {
+    /* if the user accesses the app through the form,
+     all the data will be handled by the above functions and stored in localstorage*/
     event.preventDefault();
     localStorage.setItem('username', username);
     localStorage.setItem('token', token);
@@ -46,6 +50,7 @@ function Login({ className, assignCredentials }) {
       localStorage.setItem('enterpriseUrl', JSON.stringify(enterpriseUrl));
     }
     assignCredentials(username, token);
+    // we redirect to the dashboard
     history.replace(from);
   }
 

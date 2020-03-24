@@ -12,6 +12,8 @@ function Avatar({
 }) {
   const [imageError, setImageError] = useState(false);
   const classnames = cx('Avatar', className);
+  /* we found that using github enterprise returned error when rendering images coming from the company's servers.
+   We are proactively handling this error here */
   return !imageError ? (
     <div className={classnames} style={{ width: size, height: size }}>
       <img

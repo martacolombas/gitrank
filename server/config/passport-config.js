@@ -20,27 +20,27 @@ passport.use(
       clientSecret: process.env.CLIENT_SECRET,
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOne({ githubId: profile.id }).then((errors, currentUser) => {
-        if (currentUser) {
-          currentUser
-            .overwrite({ token: accessToken })
-            .save()
-            .then((errors, currentUser) => {
-              done(null, currentUser);
-            });
-        } else {
-          new User({
-            username: profile.username,
-            githubId: profile.id,
-            avatarUrl: profile.photos[0].value,
-            token: accessToken,
-          })
-            .save()
-            .then((errors, newUSer) => {
-              done(null, newUSer);
-            });
+      User.findOneAndUpdate(
+        { githubId: profile.id },
+        { token: accessToken },
+        { new: true },
+        (error, updatedUser) => {
+          if (updatedUser) {
+            done(null, updatedUser);
+          } else {
+            new User({
+              username: profile.username,
+              githubId: profile.id,
+              avatarUrl: profile.photos[0].value,
+              token: accessToken,
+            })
+              .save()
+              .then((errors, newUSer) => {
+                done(null, newUSer);
+              });
+          }
         }
-      });
+      );
     }
   )
 );
