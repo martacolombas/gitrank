@@ -6,7 +6,5 @@ router.use(express.json());
 
 router.get('/users', queries.getUsers);
 router.get('/users/:id', queries.getUserById);
-router.put('/users/token/:id', queries.updateUserToken);
-router.delete('/users/:id', queries.deleteUser);
 
 module.exports = router;

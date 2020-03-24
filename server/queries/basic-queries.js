@@ -26,46 +26,7 @@ const getUserById = async (request, response) => {
   }
 };
 
-const updateUserToken = async (request, response) => {
-  const id = parseInt(request.params.id);
-  try {
-    User.findOne({ githubId: profile.id }).then((errors, currentUser) => {
-      if (currentUser) {
-        currentUser.overwrite({ token: accessToken }).save();
-        response
-          .status(201)
-          .send(`Access token for user with id ${id} has been updated`);
-      } else {
-        response.status(204);
-        console.log(`Couldn't find ${id}`);
-      }
-    });
-  } catch {
-    response.status(500);
-    console.error(`Error ${error} occurred`);
-  }
-};
-
-const deleteUser = async (request, response) => {
-  const id = parseInt(request.params.id);
-  try {
-    User.deleteOne({ githubId: profile.id }).then(({ ok, deletedCount }) => {
-      if (ok) {
-        response.status(201).send(`${deletedCount} deleted`);
-      } else {
-        response.status(204);
-        console.log(`Couldn't find ${id}`);
-      }
-    });
-  } catch {
-    response.status(500);
-    console.error(`Error ${error} occurred`);
-  }
-};
-
 module.exports = {
   getUsers,
   getUserById,
-  updateUserToken,
-  deleteUser,
 };
