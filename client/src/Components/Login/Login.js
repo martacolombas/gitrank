@@ -66,7 +66,7 @@ function Login({ className, assignCredentials }) {
     } else if (isFormEnabled) {
       setEnableForm(false);
     }
-  }, [username, token, isEnterprise, enterpriseUrl]);
+  }, [username, token, isEnterprise, enterpriseUrl, isFormEnabled]);
 
   return (
     <div className={classnames}>
@@ -78,6 +78,7 @@ function Login({ className, assignCredentials }) {
       <a href='http://localhost:8080/oauth/github'>
         <GithubLoginButton />
       </a>
+      <p className='Login-link'>or</p>
       <form onSubmit={handleSubmit} className='Login-form'>
         <input
           placeholder='Username'
