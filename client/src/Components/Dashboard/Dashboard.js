@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +12,6 @@ import TransitionPage from '../TransitionPage/TransitionPage';
 import Feedback from '../Feedback/Feedback';
 import Sidebar from '../Sidebar/Sidebar';
 import NavBar from '../NavBar/NavBar';
-import { isLoggedIn } from '../Login/auth-utils';
 
 library.add(fas);
 

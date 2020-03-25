@@ -3,7 +3,12 @@ import './App.css';
 import Dashboard from './Components/Dashboard/Dashboard';
 import LoginPage from './Components/LoginPage/LoginPage';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Switch,
+  Route,
+  BrowserRouter,
+  Redirect,
+} from 'react-router-dom';
 import { getIdFromLocation } from './helperFunc';
 
 function App() {
@@ -50,8 +55,9 @@ function App() {
   }
 
   return (
-    <Router>
+    <BrowserRouter>
       <Switch>
+        <Redirect from='/' to='/dashboard' />
         <PrivateRoute path='/dashboard'>
           <Dashboard token={token} username={username} />
         </PrivateRoute>
@@ -59,7 +65,7 @@ function App() {
           <LoginPage assignCredentials={assignCredentials} />
         </Route>
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
 
