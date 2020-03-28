@@ -1,5 +1,6 @@
 import moment from 'moment';
 
+// formatting dates functions
 export const formatDate = date => {
   //date --> 2020-02-26T20:19:38Z
   const newDate = moment(date).format('L LT'); // returns date as DD/MM/YYY H:MM A/PM
@@ -10,6 +11,9 @@ export const dateDiff = updated => {
   return moment(updated).fromNow();
 };
 
+/* -------------------------------------------------------------------------------------------- */
+
+// formatting data coming from API functions
 export const reviewsByAuthor = reviews => {
   const orderedRev = reviews.map(element => {
     return {
@@ -43,6 +47,9 @@ export const reviewersDetails = reviews => {
   return reviewsToShow;
 };
 
+/* -------------------------------------------------------------------------------------------- */
+
+//  pin items feature helper function
 export const pinItem = id => {
   let currentStorage = JSON.parse(localStorage.getItem('pinnedItems', id));
   let newStorage = [];
@@ -56,5 +63,19 @@ export const pinItem = id => {
   } else {
     currentStorage.push(id);
     localStorage.setItem('pinnedItems', JSON.stringify(currentStorage));
+  }
+};
+
+/* -------------------------------------------------------------------------------------------- */
+// get id in url in case there's one helper func
+export const getIdFromLocation = () => {
+  const url = new URL(window.location);
+  if (url.search.length && url.search.includes('=')) {
+    const params = url.search
+      .substr(1)
+      .split('&')
+      .map(element => element.split('='));
+    const paramWithId = params.find(element => element[0] === 'id');
+    return paramWithId && paramWithId[1];
   }
 };

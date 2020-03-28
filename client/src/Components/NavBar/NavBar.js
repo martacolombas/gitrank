@@ -10,6 +10,7 @@ import TransitionPage from '../TransitionPage/TransitionPage';
 function NavBar({ className, ...props }) {
   const classnames = cx('NavBar', className);
   const username = localStorage.getItem('username');
+
   const { loading, data, error } = useQuery(GET_USERINFO, {
     variables: {
       login: `${username}`,
@@ -61,7 +62,7 @@ function NavBar({ className, ...props }) {
                 className='NavBar-user-pic'
               />
             </button>
-            {data.user.login}
+            {username}
           </div>
           <Button
             icon={faGithub}

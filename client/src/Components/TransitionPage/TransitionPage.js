@@ -2,6 +2,7 @@ import React from 'react';
 import './TransitionPage.css';
 import cx from 'classnames';
 import Button from '../Button/Button';
+import { Link } from 'react-router-dom';
 
 function TransitionPage({ className, size = 300, image, children, ...props }) {
   if (props.type === 'error token') {
@@ -16,16 +17,18 @@ function TransitionPage({ className, size = 300, image, children, ...props }) {
         />
         <p className='TransitionPage-text'>{children}</p>
         <div className='TransitionPage-errorToken'>
-          <Button
-            onClick={() => {
-              localStorage.getItem('token') && localStorage.removeItem('token');
-              localStorage.getItem('username') &&
-                localStorage.removeItem('username');
-              window.location.reload();
-            }}
-            children={'Wrong token? Try again!'}
-            className='TransitionPage-errorButton'
-          />
+          <Link to='/login'>
+            <Button
+              onClick={() => {
+                localStorage.getItem('token') &&
+                  localStorage.removeItem('token');
+                localStorage.getItem('username') &&
+                  localStorage.removeItem('username');
+              }}
+              children={'Wrong token? Try again!'}
+              className='TransitionPage-errorButton'
+            />
+          </Link>
         </div>
       </div>
     );

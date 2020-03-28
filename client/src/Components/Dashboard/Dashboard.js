@@ -15,7 +15,7 @@ import NavBar from '../NavBar/NavBar';
 
 library.add(fas);
 
-function Dashboard({ className, username }) {
+function Dashboard({ className, username, ...props }) {
   // STATES
   const [pinnedItems, setPinnedItems] = useState(
     localStorage.getItem('pinnedItems')
@@ -35,11 +35,13 @@ function Dashboard({ className, username }) {
   const [isOpen, toggleSidebar] = useState(false);
   let uid;
 
+  // helper Function
   function toggleBar() {
     toggleSidebar(!isOpen);
   }
 
   // API CALLS
+  // PR Data
   const { loading, data, error } = useQuery(GET_PRS, {
     variables: {
       login: `${username}`,
@@ -53,6 +55,7 @@ function Dashboard({ className, username }) {
     uid = data.user.id;
   }
 
+  // Repos data
   const {
     loading: reposLoading,
     data: reposData,
@@ -62,7 +65,7 @@ function Dashboard({ className, username }) {
       login: `${username}`,
     },
   });
-
+  // PR authors data
   const {
     loading: authorsLoading,
     data: authorsData,

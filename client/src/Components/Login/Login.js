@@ -3,6 +3,8 @@ import './Login.css';
 import Button from '../Button/Button';
 import cx from 'classnames';
 import Checkbox from '../Checkbox/Checkbox';
+import { GithubLoginButton } from 'react-social-login-buttons';
+import { useHistory, useLocation } from 'react-router-dom';
 
 //TODO(marta) create a form component
 
@@ -14,7 +16,12 @@ function Login({ className, assignCredentials }) {
   const [enterpriseUrl, setEnterpriseUrl] = useState('');
   const [isFormEnabled, setEnableForm] = useState(false);
 
-  useEffect(() => {});
+  // gets access to the browser history object
+  let history = useHistory();
+  // returns the current location object
+  let location = useLocation();
+
+  let { from } = location.state || { from: { pathname: '/dashboard' } };
 
   function handleTokenChange({ target }) {
     setToken(target.value);
@@ -33,6 +40,8 @@ function Login({ className, assignCredentials }) {
   }
 
   function handleSubmit(event) {
+    /* if the user accesses the app through the form,
+     all the data will be handled by the above functions and stored in localstorage*/
     event.preventDefault();
     localStorage.setItem('username', username);
     localStorage.setItem('token', token);
@@ -41,6 +50,8 @@ function Login({ className, assignCredentials }) {
       localStorage.setItem('enterpriseUrl', JSON.stringify(enterpriseUrl));
     }
     assignCredentials(username, token);
+    // we redirect to the dashboard
+    history.replace(from);
   }
 
   useEffect(() => {
@@ -55,7 +66,7 @@ function Login({ className, assignCredentials }) {
     } else if (isFormEnabled) {
       setEnableForm(false);
     }
-  }, [username, token, isEnterprise, enterpriseUrl]);
+  }, [username, token, isEnterprise, enterpriseUrl, isFormEnabled]);
 
   return (
     <div className={classnames}>
@@ -64,6 +75,10 @@ function Login({ className, assignCredentials }) {
         className='pic'
         alt='login femalecodercat'
       ></img>
+      <a href='http://localhost:8080/oauth/github'>
+        <GithubLoginButton />
+      </a>
+      <p className='Login-link'>or</p>
       <form onSubmit={handleSubmit} className='Login-form'>
         <input
           placeholder='Username'
